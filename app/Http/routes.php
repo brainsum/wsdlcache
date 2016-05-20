@@ -14,3 +14,7 @@
 $app->get('/', function () {
     return view("index");
 });
+
+$app->get('/info', function () {
+    return view("info");
+});
