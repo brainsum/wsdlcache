@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/dijkalk_webservice/gfb" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/dijkalk_webservice/gfb" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/dijkalk_webservice/gfb">
+      <s:element name="GFB_KEKKH">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cTorzsszam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_KEKKHResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GFB_KEKKHResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_KEKKH_Dijkalk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cTorzsszam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_KEKKH_DijkalkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GFB_KEKKH_DijkalkResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_Dijkalk">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cTorzsszam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_DijkalkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GFB_DijkalkResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_Ajanlat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cTorzsszam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_AjanlatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GFB_AjanlatResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_IndexaltDij">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cTorzsszam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_IndexaltDijResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GFB_IndexaltDijResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Evfordulos_felmondas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cTorzsszam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Evfordulos_felmondasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Evfordulos_felmondasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_IDX_SZERZ_ADAT_MODOSITAS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cTorzsszam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GFB_IDX_SZERZ_ADAT_MODOSITASResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GFB_IDX_SZERZ_ADAT_MODOSITASResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Gfb_Ajanlat_veglegesites">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cTorzsszam" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Gfb_Ajanlat_veglegesitesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Gfb_Ajanlat_veglegesitesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GFB_KEKKHSoapIn">
+    <wsdl:part name="parameters" element="tns:GFB_KEKKH" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKHSoapOut">
+    <wsdl:part name="parameters" element="tns:GFB_KEKKHResponse" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKH_DijkalkSoapIn">
+    <wsdl:part name="parameters" element="tns:GFB_KEKKH_Dijkalk" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKH_DijkalkSoapOut">
+    <wsdl:part name="parameters" element="tns:GFB_KEKKH_DijkalkResponse" />
+  </wsdl:message>
+  <wsdl:message name="GFB_DijkalkSoapIn">
+    <wsdl:part name="parameters" element="tns:GFB_Dijkalk" />
+  </wsdl:message>
+  <wsdl:message name="GFB_DijkalkSoapOut">
+    <wsdl:part name="parameters" element="tns:GFB_DijkalkResponse" />
+  </wsdl:message>
+  <wsdl:message name="GFB_AjanlatSoapIn">
+    <wsdl:part name="parameters" element="tns:GFB_Ajanlat" />
+  </wsdl:message>
+  <wsdl:message name="GFB_AjanlatSoapOut">
+    <wsdl:part name="parameters" element="tns:GFB_AjanlatResponse" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IndexaltDijSoapIn">
+    <wsdl:part name="parameters" element="tns:GFB_IndexaltDij" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IndexaltDijSoapOut">
+    <wsdl:part name="parameters" element="tns:GFB_IndexaltDijResponse" />
+  </wsdl:message>
+  <wsdl:message name="Evfordulos_felmondasSoapIn">
+    <wsdl:part name="parameters" element="tns:Evfordulos_felmondas" />
+  </wsdl:message>
+  <wsdl:message name="Evfordulos_felmondasSoapOut">
+    <wsdl:part name="parameters" element="tns:Evfordulos_felmondasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IDX_SZERZ_ADAT_MODOSITASSoapIn">
+    <wsdl:part name="parameters" element="tns:GFB_IDX_SZERZ_ADAT_MODOSITAS" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IDX_SZERZ_ADAT_MODOSITASSoapOut">
+    <wsdl:part name="parameters" element="tns:GFB_IDX_SZERZ_ADAT_MODOSITASResponse" />
+  </wsdl:message>
+  <wsdl:message name="Gfb_Ajanlat_veglegesitesSoapIn">
+    <wsdl:part name="parameters" element="tns:Gfb_Ajanlat_veglegesites" />
+  </wsdl:message>
+  <wsdl:message name="Gfb_Ajanlat_veglegesitesSoapOut">
+    <wsdl:part name="parameters" element="tns:Gfb_Ajanlat_veglegesitesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKHHttpGetIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKHHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKH_DijkalkHttpGetIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKH_DijkalkHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_DijkalkHttpGetIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_DijkalkHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_AjanlatHttpGetIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_AjanlatHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IndexaltDijHttpGetIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IndexaltDijHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Evfordulos_felmondasHttpGetIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Evfordulos_felmondasHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IDX_SZERZ_ADAT_MODOSITASHttpGetIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IDX_SZERZ_ADAT_MODOSITASHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Gfb_Ajanlat_veglegesitesHttpGetIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Gfb_Ajanlat_veglegesitesHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKHHttpPostIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKHHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKH_DijkalkHttpPostIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_KEKKH_DijkalkHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_DijkalkHttpPostIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_DijkalkHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_AjanlatHttpPostIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_AjanlatHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IndexaltDijHttpPostIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IndexaltDijHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Evfordulos_felmondasHttpPostIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Evfordulos_felmondasHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IDX_SZERZ_ADAT_MODOSITASHttpPostIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GFB_IDX_SZERZ_ADAT_MODOSITASHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Gfb_Ajanlat_veglegesitesHttpPostIn">
+    <wsdl:part name="cTorzsszam" type="s:string" />
+    <wsdl:part name="cPassword" type="s:string" />
+    <wsdl:part name="cXml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Gfb_Ajanlat_veglegesitesHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="GfbSoap">
+    <wsdl:operation name="GFB_KEKKH">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB lekérdezés KEKKH adatbázis alapján</wsdl:documentation>
+      <wsdl:input message="tns:GFB_KEKKHSoapIn" />
+      <wsdl:output message="tns:GFB_KEKKHSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_KEKKH_Dijkalk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB biztosítás dijkalkuláció KEKKH adatbázis alapján</wsdl:documentation>
+      <wsdl:input message="tns:GFB_KEKKH_DijkalkSoapIn" />
+      <wsdl:output message="tns:GFB_KEKKH_DijkalkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Dijkalk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB biztosítás dijkalkuláció</wsdl:documentation>
+      <wsdl:input message="tns:GFB_DijkalkSoapIn" />
+      <wsdl:output message="tns:GFB_DijkalkSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Ajanlat">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB biztosítás díjkalkuláció és ajánlat készítés</wsdl:documentation>
+      <wsdl:input message="tns:GFB_AjanlatSoapIn" />
+      <wsdl:output message="tns:GFB_AjanlatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IndexaltDij">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB indexált díj</wsdl:documentation>
+      <wsdl:input message="tns:GFB_IndexaltDijSoapIn" />
+      <wsdl:output message="tns:GFB_IndexaltDijSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Evfordulos_felmondas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Évfordulós GFB felmondás</wsdl:documentation>
+      <wsdl:input message="tns:Evfordulos_felmondasSoapIn" />
+      <wsdl:output message="tns:Evfordulos_felmondasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IDX_SZERZ_ADAT_MODOSITAS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB indexált díj lekérdezés és szerződés adatmódosítás</wsdl:documentation>
+      <wsdl:input message="tns:GFB_IDX_SZERZ_ADAT_MODOSITASSoapIn" />
+      <wsdl:output message="tns:GFB_IDX_SZERZ_ADAT_MODOSITASSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Gfb_Ajanlat_veglegesites">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gfb biztosítás ajánlat véglegesítése</wsdl:documentation>
+      <wsdl:input message="tns:Gfb_Ajanlat_veglegesitesSoapIn" />
+      <wsdl:output message="tns:Gfb_Ajanlat_veglegesitesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="GfbHttpGet">
+    <wsdl:operation name="GFB_KEKKH">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB lekérdezés KEKKH adatbázis alapján</wsdl:documentation>
+      <wsdl:input message="tns:GFB_KEKKHHttpGetIn" />
+      <wsdl:output message="tns:GFB_KEKKHHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_KEKKH_Dijkalk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB biztosítás dijkalkuláció KEKKH adatbázis alapján</wsdl:documentation>
+      <wsdl:input message="tns:GFB_KEKKH_DijkalkHttpGetIn" />
+      <wsdl:output message="tns:GFB_KEKKH_DijkalkHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Dijkalk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB biztosítás dijkalkuláció</wsdl:documentation>
+      <wsdl:input message="tns:GFB_DijkalkHttpGetIn" />
+      <wsdl:output message="tns:GFB_DijkalkHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Ajanlat">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB biztosítás díjkalkuláció és ajánlat készítés</wsdl:documentation>
+      <wsdl:input message="tns:GFB_AjanlatHttpGetIn" />
+      <wsdl:output message="tns:GFB_AjanlatHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IndexaltDij">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB indexált díj</wsdl:documentation>
+      <wsdl:input message="tns:GFB_IndexaltDijHttpGetIn" />
+      <wsdl:output message="tns:GFB_IndexaltDijHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Evfordulos_felmondas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Évfordulós GFB felmondás</wsdl:documentation>
+      <wsdl:input message="tns:Evfordulos_felmondasHttpGetIn" />
+      <wsdl:output message="tns:Evfordulos_felmondasHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IDX_SZERZ_ADAT_MODOSITAS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB indexált díj lekérdezés és szerződés adatmódosítás</wsdl:documentation>
+      <wsdl:input message="tns:GFB_IDX_SZERZ_ADAT_MODOSITASHttpGetIn" />
+      <wsdl:output message="tns:GFB_IDX_SZERZ_ADAT_MODOSITASHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Gfb_Ajanlat_veglegesites">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gfb biztosítás ajánlat véglegesítése</wsdl:documentation>
+      <wsdl:input message="tns:Gfb_Ajanlat_veglegesitesHttpGetIn" />
+      <wsdl:output message="tns:Gfb_Ajanlat_veglegesitesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="GfbHttpPost">
+    <wsdl:operation name="GFB_KEKKH">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB lekérdezés KEKKH adatbázis alapján</wsdl:documentation>
+      <wsdl:input message="tns:GFB_KEKKHHttpPostIn" />
+      <wsdl:output message="tns:GFB_KEKKHHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_KEKKH_Dijkalk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB biztosítás dijkalkuláció KEKKH adatbázis alapján</wsdl:documentation>
+      <wsdl:input message="tns:GFB_KEKKH_DijkalkHttpPostIn" />
+      <wsdl:output message="tns:GFB_KEKKH_DijkalkHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Dijkalk">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB biztosítás dijkalkuláció</wsdl:documentation>
+      <wsdl:input message="tns:GFB_DijkalkHttpPostIn" />
+      <wsdl:output message="tns:GFB_DijkalkHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Ajanlat">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB biztosítás díjkalkuláció és ajánlat készítés</wsdl:documentation>
+      <wsdl:input message="tns:GFB_AjanlatHttpPostIn" />
+      <wsdl:output message="tns:GFB_AjanlatHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IndexaltDij">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB indexált díj</wsdl:documentation>
+      <wsdl:input message="tns:GFB_IndexaltDijHttpPostIn" />
+      <wsdl:output message="tns:GFB_IndexaltDijHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Evfordulos_felmondas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Évfordulós GFB felmondás</wsdl:documentation>
+      <wsdl:input message="tns:Evfordulos_felmondasHttpPostIn" />
+      <wsdl:output message="tns:Evfordulos_felmondasHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IDX_SZERZ_ADAT_MODOSITAS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">GFB indexált díj lekérdezés és szerződés adatmódosítás</wsdl:documentation>
+      <wsdl:input message="tns:GFB_IDX_SZERZ_ADAT_MODOSITASHttpPostIn" />
+      <wsdl:output message="tns:GFB_IDX_SZERZ_ADAT_MODOSITASHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Gfb_Ajanlat_veglegesites">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gfb biztosítás ajánlat véglegesítése</wsdl:documentation>
+      <wsdl:input message="tns:Gfb_Ajanlat_veglegesitesHttpPostIn" />
+      <wsdl:output message="tns:Gfb_Ajanlat_veglegesitesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GfbSoap" type="tns:GfbSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GFB_KEKKH">
+      <soap:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_KEKKH" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_KEKKH_Dijkalk">
+      <soap:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_KEKKH_Dijkalk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Dijkalk">
+      <soap:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_Dijkalk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Ajanlat">
+      <soap:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_Ajanlat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IndexaltDij">
+      <soap:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_IndexaltDij" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Evfordulos_felmondas">
+      <soap:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/Evfordulos_felmondas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IDX_SZERZ_ADAT_MODOSITAS">
+      <soap:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_IDX_SZERZ_ADAT_MODOSITAS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gfb_Ajanlat_veglegesites">
+      <soap:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/Gfb_Ajanlat_veglegesites" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GfbSoap12" type="tns:GfbSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GFB_KEKKH">
+      <soap12:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_KEKKH" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_KEKKH_Dijkalk">
+      <soap12:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_KEKKH_Dijkalk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Dijkalk">
+      <soap12:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_Dijkalk" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Ajanlat">
+      <soap12:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_Ajanlat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IndexaltDij">
+      <soap12:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_IndexaltDij" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Evfordulos_felmondas">
+      <soap12:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/Evfordulos_felmondas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IDX_SZERZ_ADAT_MODOSITAS">
+      <soap12:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/GFB_IDX_SZERZ_ADAT_MODOSITAS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gfb_Ajanlat_veglegesites">
+      <soap12:operation soapAction="http://tempuri.org/dijkalk_webservice/gfb/Gfb_Ajanlat_veglegesites" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GfbHttpGet" type="tns:GfbHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GFB_KEKKH">
+      <http:operation location="/GFB_KEKKH" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_KEKKH_Dijkalk">
+      <http:operation location="/GFB_KEKKH_Dijkalk" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Dijkalk">
+      <http:operation location="/GFB_Dijkalk" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Ajanlat">
+      <http:operation location="/GFB_Ajanlat" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IndexaltDij">
+      <http:operation location="/GFB_IndexaltDij" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Evfordulos_felmondas">
+      <http:operation location="/Evfordulos_felmondas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IDX_SZERZ_ADAT_MODOSITAS">
+      <http:operation location="/GFB_IDX_SZERZ_ADAT_MODOSITAS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gfb_Ajanlat_veglegesites">
+      <http:operation location="/Gfb_Ajanlat_veglegesites" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GfbHttpPost" type="tns:GfbHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GFB_KEKKH">
+      <http:operation location="/GFB_KEKKH" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_KEKKH_Dijkalk">
+      <http:operation location="/GFB_KEKKH_Dijkalk" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Dijkalk">
+      <http:operation location="/GFB_Dijkalk" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_Ajanlat">
+      <http:operation location="/GFB_Ajanlat" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IndexaltDij">
+      <http:operation location="/GFB_IndexaltDij" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Evfordulos_felmondas">
+      <http:operation location="/Evfordulos_felmondas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GFB_IDX_SZERZ_ADAT_MODOSITAS">
+      <http:operation location="/GFB_IDX_SZERZ_ADAT_MODOSITAS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Gfb_Ajanlat_veglegesites">
+      <http:operation location="/Gfb_Ajanlat_veglegesites" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Gfb">
+    <wsdl:port name="GfbSoap" binding="tns:GfbSoap">
+      <soap:address location="http://tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GfbSoap12" binding="tns:GfbSoap12">
+      <soap12:address location="http://tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GfbHttpGet" binding="tns:GfbHttpGet">
+      <http:address location="http://tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GfbHttpPost" binding="tns:GfbHttpPost">
+      <http:address location="http://tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

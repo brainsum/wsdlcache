@@ -23,11 +23,12 @@
     <div class="col-md-10">
       <div class="row">
         <div class="col-md-12">
+          <h1>Mabiasz WSDL Cache status</h1>
           <table class="table table-responsive table-bordered table-striped">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Name</th>
+                <th>WSDL</th>
                 <th>Status</th>
                 <th>Last Check Date</th>
                 <th>Last Modification Date</th>
@@ -51,6 +52,14 @@
             </tbody>
           </table>
         </div>
+      </div>
+      <div class="row">
+        test: https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx?WSDL
+      </div>
+      <div class="row">
+        <?php
+          echo app()->basePath();
+        ?>
       </div>
     </div>
     <div class="col-md-1"></div>

@@ -11,10 +11,10 @@
 |
 */
 
-$app->get('/', function () {
-    return view("index");
-});
+$app->get('/', "MainController@indexAction");
 
 $app->get('/info', function () {
     return view("info");
 });
+
+$app->get('/test/get', "MainController@testGetAction");
