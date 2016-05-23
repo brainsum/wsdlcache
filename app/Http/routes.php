@@ -18,3 +18,5 @@ $app->get('/info', function () {
 });
 
 $app->get('/test/get', "MainController@testGetAction");
+
+$app->get('/debug', "MainController@parseTestAction");

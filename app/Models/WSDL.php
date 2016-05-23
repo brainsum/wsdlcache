@@ -9,19 +9,17 @@
 
 namespace App\Models;
 
-use Artisaninweb\SoapWrapper\Extension\SoapService;
-
-class WSDL extends SoapService {
+class WSDL {
 
   /**
    * @var String $name
    */
-  private $name;
+  protected $name;
 
   /**
    * @var String $wsdl
    */
-  private $wsdl;
+  protected $wsdl;
 
   /**
    * @var Boolean $status
@@ -38,10 +36,9 @@ class WSDL extends SoapService {
    */
   private $lastModification;
 
-  /**
-   * @var boolean
-   */
-  private $trace = true;
+  public function __construct($wsdl) {
+    $this->wsdl = $wsdl;
+  }
 
   /**
    * @return \DateTime
@@ -105,36 +102,4 @@ class WSDL extends SoapService {
   public function getWsdl() {
     return $this->wsdl;
   }
-
-  /**
-   * @param $wsdl
-   */
-  public function setWsdl($wsdl) {
-    $this->wsdl = $wsdl;
-  }
-
-  /**
-   * @return bool
-   */
-  public function hasTrace() {
-    return $this->trace;
-  }
-
-  /**
-   * @param $trace
-   */
-  public function setTrace($trace) {
-    $this->trace = $trace;
-  }
-
-  /**
-   * Get all the available functions
-   *
-   * @return mixed
-   */
-  public function functions()
-  {
-    return $this->getFunctions();
-  }
-
 }

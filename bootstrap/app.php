@@ -82,6 +82,11 @@ $app->singleton(
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Artisaninweb\SoapWrapper\ServiceProvider::class);
+$app->register(Nathanmac\Utilities\Parser\ParserServiceProvider::class);
+$app->register(Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+
+class_alias('Artisaninweb\SoapWrapper\Facades\SoapWrapper', 'SoapWrapper');
+class_alias('Nathanmac\Utilities\Parser\Facades\Parser', 'Parser');
 
 /*
 |--------------------------------------------------------------------------

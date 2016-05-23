@@ -20,8 +20,10 @@
 Catalog
 * We need to store WSDL data in a file
 * Create a map file like an xml
+* checks should run from cron: https://laravel.com/docs/master/scheduling
      
     
     
 ### Used dependencies
-* laravel-soap: https://github.com/artisaninweb/laravel-soap#usage
+* laravel-soap: https://github.com/artisaninweb/laravel-soap
+* Nathanmac parser: https://github.com/nathanmac/Parser

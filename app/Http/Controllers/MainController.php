@@ -10,11 +10,16 @@ namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Models as Models;
+use App\Custom as Custom;
 
 class MainController extends BaseController {
 
   public function indexAction() {
-      return view("index");
+      $wsdlMap = Custom\getWsdlMapAsArray();
+
+      return view("index", array(
+        'wsdlList' => $wsdlMap
+      ));
   }
 
   /**
@@ -52,6 +57,11 @@ class MainController extends BaseController {
     curl_exec($ch);
     curl_close($ch);
     fclose($fp);
+  }
+
+  public function parseTestAction() {
+    dump(Custom\getWsdlMapAsArray());
+    return view("debug");
   }
 
 

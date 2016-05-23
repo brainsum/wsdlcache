@@ -28,6 +28,7 @@
             <thead>
               <tr>
                 <th>#</th>
+                <th>Name</th>
                 <th>WSDL</th>
                 <th>Status</th>
                 <th>Last Check Date</th>
@@ -35,20 +36,23 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Dummy1</td>
-                <td>off</td>
-                <td>now</td>
-                <td>now</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Dummy2</td>
-                <td>off</td>
-                <td>now</td>
-                <td>now</td>
-              </tr>
+              @if (empty($wsdlList))
+                <tr>
+                  <td colspan="5">No WSDL data found.</td>
+                </tr>
+              @else
+                <?php $i = 0 ?>
+                @foreach ($wsdlList as $wsdl)
+                <tr>
+                  <td>{{ ++$i }}</td>
+                  <td>{{ $wsdl->getName() }}</td>
+                  <td>{{ $wsdl->getWsdl() }}</td>
+                  <td>{{ $wsdl->isAvailable() ? "Yes" : "No" }}</td>
+                  <td>{{ $wsdl->getLastCheck() }}</td>
+                  <td>{{ $wsdl->getLastModification() }}</td>
+                </tr>
+                @endforeach
+              @endif
             </tbody>
           </table>
         </div>
@@ -71,3 +75,4 @@
     crossorigin="anonymous"></script>
   </body>
 </html>
+}
