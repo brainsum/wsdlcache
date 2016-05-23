@@ -35,9 +35,10 @@ class MainController extends BaseController {
    * @route("/getwsdl/{name}")
    */
   public function getWSDLAction(String $WSDL_name) {
-    Custom\downloadWsdlFileByName($WSDL_name);
+    $WSDL = Custom\getWsdlInfoByName($WSDL_name);
+    dump($WSDL);
 
-    dump($WSDL_name);
+    Custom\downloadWsdlFileByName($WSDL_name);
 
     return view("debug");
   }

@@ -6,11 +6,15 @@
  * Time: 14:47
  */
 
+/**
+ * @todo: Parse ok, but we need to be able to update the map.
+ * @todo: Maybe add a DownloadByWsdlObject function. (for easier persist)
+ */
+
 namespace App\Custom;
 
 use Nathanmac\Utilities\Parser\Parser;
 use App\Models\WSDL;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 /**
@@ -120,6 +124,13 @@ function downloadWsdlFileByName($WSDL_name, $filename = null) {
  * @param $filename
  */
 function downloadWsdlFileByUrl($WSDL_url, $filename) {
+  /*
+   * @todo: logging at the level of HTTP request, SSL handshake, etc.
+   *
+   * @try http://stackoverflow.com/questions/17092677/how-to-get-info-on-sent-php-curl-request
+   * @try http://stackoverflow.com/questions/3757071/php-debugging-curl
+   */
+
   $basePath = app()->basePath();
   $cachePath = "container/WSDL/cache";
 

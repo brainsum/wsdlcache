@@ -15,6 +15,7 @@
   * When WSDL is modified (== is different from the cache), send an email about it with the diff
   * Logging for each WSDL
      * Go down to this level: HTTP request, SSL handshake, etc.
+
      
 ### Planning     
 Catalog
@@ -22,7 +23,8 @@ Catalog
 * Create a map file like an xml
 * checks should run from cron: https://laravel.com/docs/master/scheduling
      
-    
+### Others
+* SoapUI    
     
 ### Used dependencies
 * laravel-soap: https://github.com/artisaninweb/laravel-soap
