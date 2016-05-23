@@ -56,11 +56,6 @@
       <div class="row">
         test: https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx?WSDL
       </div>
-      <div class="row">
-        <?php
-          echo app()->basePath();
-        ?>
-      </div>
     </div>
     <div class="col-md-1"></div>
   </div>

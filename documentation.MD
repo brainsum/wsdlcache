@@ -22,3 +22,6 @@ Catalog
 * Create a map file like an xml
      
     
+    
+### Used dependencies
+* laravel-soap: https://github.com/artisaninweb/laravel-soap#usage
