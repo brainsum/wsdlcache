@@ -10,6 +10,8 @@ namespace App\Custom;
 
 use Nathanmac\Utilities\Parser\Parser;
 use App\Models\WSDL;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 /**
  * @param string $pathFromRoot
@@ -63,4 +65,71 @@ function parseWsdlFromArrayToObject($wsdlDataArray) {
   $wsdl->setType($wsdlDataArray["type"]);
 
   return $wsdl;
+}
+
+/**
+ * Helper function to get a WSDL object from the map or given array.
+ * Returns false when no match has been found.
+ *
+ * @param $name
+ * @param null $container
+ *    Can be used to increase performance (by eliminating the need to re-parse the map) or load a different WSDL-source.
+ * @return \App\Models\WSDL|bool
+ */
+function getWsdlInfoByName($name, $container = null) {
+  $wsdlList = (empty($container) ? getWsdlMapAsArray() : $container);
+
+  /** @var WSDL $wsdl */
+  foreach ($wsdlList as $wsdl) {
+    if ($name == $wsdl->getName()) {
+      return $wsdl;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Downloads a WSDL by its name as the given filename.
+ *  If no filename has been given we generate one based on the name and type.
+ *
+ * @param $WSDL_name
+ *  Case sensitive.
+ * @param null $filename
+ *  The name of the desired file. Must contain the extension!
+ *
+ * @throws NotFoundResourceException
+ *  When the name is not in he wsdl map.
+ */
+function downloadWsdlFileByName($WSDL_name, $filename = null) {
+  $WSDL = getWsdlInfoByName($WSDL_name);
+
+  if ($WSDL !== false) {
+    $finalFileName = empty($filename) ? $WSDL->generateFileName() : $filename;
+
+    downloadWsdlFileByUrl($WSDL->getWsdl(), $finalFileName);
+  } else {
+    throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
+  }
+}
+
+/**
+ * Downloads the WSDL from the supplied URL and saves it to the given filename.
+ *
+ * @param $WSDL_url
+ * @param $filename
+ */
+function downloadWsdlFileByUrl($WSDL_url, $filename) {
+  $basePath = app()->basePath();
+  $cachePath = "container/WSDL/cache";
+
+  $ch = curl_init($WSDL_url);
+  $fp = fopen("$basePath/$cachePath/$filename", "w+");
+
+  curl_setopt($ch, CURLOPT_FILE, $fp);
+  curl_setopt($ch, CURLOPT_HEADER, 0);
+
+  curl_exec($ch);
+  curl_close($ch);
+  fclose($fp);
 }

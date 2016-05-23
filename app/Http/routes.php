@@ -17,6 +17,4 @@ $app->get('/info', function () {
     return view("info");
 });
 
-$app->get('/test/get', "MainController@testGetAction");
-
-$app->get('/debug', "MainController@parseTestAction");
+$app->get('/getwsdl/{name}', "MainController@getWSDLAction");

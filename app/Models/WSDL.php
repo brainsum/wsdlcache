@@ -121,4 +121,13 @@ class WSDL {
   public function getType() {
     return $this->type;
   }
+
+  /**
+   * Generates a filename based on the name and type.
+   *
+   * @return string
+   */
+  public function generateFileName() {
+    return ($this->getName().".".$this->getType().".xml");
+  }
 }

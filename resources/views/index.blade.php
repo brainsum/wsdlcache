@@ -24,7 +24,7 @@
       <div class="row">
         <div class="col-md-12">
           <h1>Mabiasz WSDL Cache status</h1>
-          <table class="table table-responsive table-bordered table-striped text-center">
+          <table style="vertical-align: middle;" class="table table-responsive table-bordered table-striped text-center">
             <thead>
               <tr>
                 <th>#</th>
@@ -39,7 +39,7 @@
             <tbody>
               @if (empty($wsdlList))
                 <tr>
-                  <td colspan="5">No WSDL data found.</td>
+                  <td colspan="7">No WSDL data found.</td>
                 </tr>
               @else
                 <?php $i = 0 ?>
@@ -62,9 +62,6 @@
             </tbody>
           </table>
         </div>
-      </div>
-      <div class="row">
-        test: https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx?WSDL
       </div>
     </div>
     <div class="col-md-1"></div>

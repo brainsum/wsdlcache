@@ -18,13 +18,4 @@
     <checkDate>2016-05-20 17:00:00</checkDate>
     <modificationDate>2016-05-20 16:00:10</modificationDate>
   </wsdl>
-  <wsdl>
-    <fileName>aegon.test.xml</fileName>
-    <name>Aegon</name>
-    <type>Test</type>
-    <url>https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx?WSDL</url>
-    <lastStatus>0</lastStatus>
-    <checkDate>2016-05-20 17:00:00</checkDate>
-    <modificationDate>2016-05-20 16:00:10</modificationDate>
-  </wsdl>
 </content>

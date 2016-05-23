@@ -14,6 +14,11 @@ use App\Custom as Custom;
 
 class MainController extends BaseController {
 
+  /**
+   * Display the managed WSDLs
+   *
+   * @return \Illuminate\View\View
+   */
   public function indexAction() {
       $wsdlMap = Custom\getWsdlMapAsArray();
 
@@ -24,45 +29,16 @@ class MainController extends BaseController {
 
   /**
    * @param \App\Http\Controllers\String $WSDL_name
-   * @postponed
+   *
+   * @return \Illuminate\View\View
+   *
+   * @route("/getwsdl/{name}")
    */
   public function getWSDLAction(String $WSDL_name) {
-    $basePath = app()->basePath();
-    $cachePath = "container/WSDL/cache";
+    Custom\downloadWsdlFileByName($WSDL_name);
 
-    // @todo: getWsdlDataByName($WSDL_name) {
-    // open wsdlMap.xml
-    // search for name
-    // return WSDL object (defined in WSDL.php)
-    //}
-    $WSDL_url = "https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx?WSDL";
+    dump($WSDL_name);
 
-    $ch = curl_init($WSDL_url);
-    $fp = fopen("$basePath/$cachePath/aegon.test.xml", "w");
-
-  }
-
-  public function testGetAction() {
-    $basePath = app()->basePath();
-    $cachePath = "container/WSDL/cache";
-
-    $WSDL_url = "https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx?WSDL";
-
-    $ch = curl_init($WSDL_url);
-    $fp = fopen("$basePath/$cachePath/aegon.test.xml", "w+");
-
-    curl_setopt($ch, CURLOPT_FILE, $fp);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-
-    curl_exec($ch);
-    curl_close($ch);
-    fclose($fp);
-  }
-
-  public function parseTestAction() {
-    dump(Custom\getWsdlMapAsArray());
     return view("debug");
   }
-
-
 }
