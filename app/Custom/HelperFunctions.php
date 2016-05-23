@@ -59,6 +59,8 @@ function parseWsdlFromArrayToObject($wsdlDataArray) {
   $wsdl->setAvailable(FALSE);
   $wsdl->setLastCheck($wsdlDataArray["checkDate"]);
   $wsdl->setLastModification($wsdlDataArray["modificationDate"]);
+  $wsdl->setAvailable($wsdlDataArray["lastStatus"] == 1 ? true : false);
+  $wsdl->setType($wsdlDataArray["type"]);
 
   return $wsdl;
 }

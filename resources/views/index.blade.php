@@ -24,11 +24,12 @@
       <div class="row">
         <div class="col-md-12">
           <h1>Mabiasz WSDL Cache status</h1>
-          <table class="table table-responsive table-bordered table-striped">
+          <table class="table table-responsive table-bordered table-striped text-center">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Type</th>
                 <th>WSDL</th>
                 <th>Status</th>
                 <th>Last Check Date</th>
@@ -46,8 +47,13 @@
                 <tr>
                   <td>{{ ++$i }}</td>
                   <td>{{ $wsdl->getName() }}</td>
+                  <td>{{ $wsdl->getType() }}</td>
                   <td>{{ $wsdl->getWsdl() }}</td>
-                  <td>{{ $wsdl->isAvailable() ? "Yes" : "No" }}</td>
+                  @if ($wsdl->isAvailable())
+                    <td class="success"><span style="font-size:1.8em;" class="glyphicon glyphicon-ok-circle"></span></td>
+                  @else
+                    <td class="danger"><span style="font-size:1.8em;" class="glyphicon glyphicon-remove-circle"></span></td>
+                  @endif
                   <td>{{ $wsdl->getLastCheck() }}</td>
                   <td>{{ $wsdl->getLastModification() }}</td>
                 </tr>

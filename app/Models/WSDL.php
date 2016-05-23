@@ -14,12 +14,17 @@ class WSDL {
   /**
    * @var String $name
    */
-  protected $name;
+  private $name;
 
   /**
    * @var String $wsdl
    */
-  protected $wsdl;
+  private $wsdl;
+
+  /**
+   * @var String
+   */
+  private $type;
 
   /**
    * @var Boolean $status
@@ -101,5 +106,19 @@ class WSDL {
    */
   public function getWsdl() {
     return $this->wsdl;
+  }
+
+  /**
+   * @param $type
+   */
+  public function setType($type) {
+    $this->type = $type;
+  }
+
+  /**
+   * @return String
+   */
+  public function getType() {
+    return $this->type;
   }
 }
