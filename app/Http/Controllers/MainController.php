@@ -34,7 +34,7 @@ class MainController extends BaseController {
    *
    * @route("/getwsdl/{name}")
    */
-  public function getWSDLAction(String $WSDL_name) {
+  public function getWSDLByNameAction(String $WSDL_name) {
     $WSDL = Custom\getWsdlInfoByName($WSDL_name);
     dump($WSDL);
 
@@ -42,4 +42,18 @@ class MainController extends BaseController {
 
     return view("debug");
   }
+
+  public function getWSDLByUrlAction(String $WSDL_url) {
+    /** @var Models\WSDL $WSDL */
+    $WSDL = Custom\getWsdlInfoByUrl(urldecode($WSDL_url));
+
+    dump($WSDL);
+
+    // We use the filename one so we don't have to worry about additional info
+    // like the filename
+    Custom\downloadWsdlFileByName($WSDL->getName());
+
+    return view("debug");
+  }
+
 }

@@ -15,13 +15,17 @@
   * When WSDL is modified (== is different from the cache), send an email about it with the diff
   * Logging for each WSDL
      * Go down to this level: HTTP request, SSL handshake, etc.
-
      
 ### Planning     
 Catalog
 * We need to store WSDL data in a file
 * Create a map file like an xml
 * checks should run from cron: https://laravel.com/docs/master/scheduling
+     
+### First test trial
+* plain php soap service
+* request to lumen client
+* lumen proxy
      
 ### Others
 * SoapUI    

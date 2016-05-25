@@ -93,6 +93,19 @@ function getWsdlInfoByName($name, $container = null) {
   return false;
 }
 
+function getWsdlInfoByUrl($url, $container = null) {
+  $wsdlList = (empty($container) ? getWsdlMapAsArray() : $container);
+
+  /** @var WSDL $wsdl */
+  foreach ($wsdlList as $wsdl) {
+    if ($url == $wsdl->getWsdl()) {
+      return $wsdl;
+    }
+  }
+
+  return false;
+}
+
 /**
  * Downloads a WSDL by its name as the given filename.
  *  If no filename has been given we generate one based on the name and type.
