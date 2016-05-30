@@ -32,17 +32,38 @@ class MainController extends BaseController {
    *
    * @return \Illuminate\View\View
    *
-   * @route("/getwsdl/{name}")
+   * @route("/wsdl/name/{name}")
    */
   public function getWSDLByNameAction(String $WSDL_name) {
     $WSDL = Custom\getWsdlInfoByName($WSDL_name);
     dump($WSDL);
 
-    Custom\downloadWsdlFileByName($WSDL_name);
+    $mode = "wget";
 
+    try {
+      switch ($mode) {
+        case "curl":
+          Custom\downloadWsdlFileByName($WSDL_name);
+          break;
+        case "get_content":
+          Custom\getWsdlContentByName($WSDL_name);
+          break;
+        case "wget":
+          Custom\wgetWsdlFileByName($WSDL_name);
+          break;
+        default:
+          Custom\downloadWsdlFileByName($WSDL_name);
+      }
+    } catch(\Exception $exc) {
+      dump($exc);
+    }
     return view("debug");
   }
 
+  /**
+   * @route("/wsdl/url/{url}")
+   *
+   */
   public function getWSDLByUrlAction(String $WSDL_url) {
     /** @var Models\WSDL $WSDL */
     $WSDL = Custom\getWsdlInfoByUrl(urldecode($WSDL_url));

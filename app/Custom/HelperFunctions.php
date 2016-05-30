@@ -124,7 +124,7 @@ function downloadWsdlFileByName($WSDL_name, $filename = null) {
   if ($WSDL !== false) {
     $finalFileName = empty($filename) ? $WSDL->generateFileName() : $filename;
 
-    downloadWsdlFileByUrl($WSDL->getWsdl(), $finalFileName);
+    downloadWsdlFileByUrlWithCurl($WSDL->getWsdl(), $finalFileName);
   } else {
     throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
   }
@@ -136,7 +136,7 @@ function downloadWsdlFileByName($WSDL_name, $filename = null) {
  * @param $WSDL_url
  * @param $filename
  */
-function downloadWsdlFileByUrl($WSDL_url, $filename) {
+function downloadWsdlFileByUrlWithCurl($WSDL_url, $filename) {
   /*
    * @todo: logging at the level of HTTP request, SSL handshake, etc.
    *
@@ -146,14 +146,63 @@ function downloadWsdlFileByUrl($WSDL_url, $filename) {
 
   $basePath = app()->basePath();
   $cachePath = "container/WSDL/cache";
+  $logPath = "container/WSDL/logs";
 
   $ch = curl_init($WSDL_url);
   $fp = fopen("$basePath/$cachePath/$filename", "w+");
+  $lp = fopen("$basePath/$logPath/$filename-log.txt", "w+");
 
   curl_setopt($ch, CURLOPT_FILE, $fp);
   curl_setopt($ch, CURLOPT_HEADER, 0);
+  curl_setopt($ch, CURLOPT_STDERR, $lp);
+  curl_setopt($ch, CURLOPT_VERBOSE, true);
+  curl_setopt($ch, CURLOPT_SSLVERSION,3);
 
   curl_exec($ch);
   curl_close($ch);
   fclose($fp);
+}
+
+function getWsdlContentByName($WSDL_name, $filename = null) {
+  $WSDL = getWsdlInfoByName($WSDL_name);
+
+  if ($WSDL !== false) {
+    $finalFileName = empty($filename) ? $WSDL->generateFileName() : $filename;
+
+    downloadWsdlFileByUrlWithFileGetContents($WSDL->getWsdl(), $finalFileName);
+  } else {
+    throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
+  }
+}
+
+function downloadWsdlFileByUrlWithFileGetContents($WSDL_url, $filename) {
+  $data = file_get_contents($WSDL_url);
+
+  if ($data === FALSE) {
+    throw new NotFoundResourceException("$WSDL_url failed to open.");
+  }
+
+  $basePath = app()->basePath();
+  $cachePath = "container/WSDL/cache";
+
+  file_put_contents("$basePath/$cachePath/$filename", $data);
+}
+
+function wgetWsdlFileByName($WSDL_name, $filename = null) {
+  $WSDL = getWsdlInfoByName($WSDL_name);
+
+  if ($WSDL !== false) {
+    $finalFileName = empty($filename) ? $WSDL->generateFileName() : $filename;
+
+    downloadWsdlFileByUrlWithWget($WSDL->getWsdl(), $finalFileName);
+  } else {
+    throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
+  }
+}
+
+function downloadWsdlFileByUrlWithWget($WSDL_url, $filename) {
+  exec("wget -S $WSDL_url", $data, $response);
+
+  dump($response);
+  dump($data);
 }

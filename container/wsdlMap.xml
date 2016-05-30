@@ -10,11 +10,11 @@
     <modificationDate>2016-05-20 16:00:10</modificationDate>
   </wsdl>
   <wsdl>
-    <fileName>aegon.test.xml</fileName>
-    <name>Aegon</name>
+    <fileName>kandh.test.xml</fileName>
+    <name>KandH</name>
     <type>Test</type>
-    <url>https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx?WSDL</url>
-    <lastStatus>1</lastStatus>
+    <url>https://ws.atollgroup.eu/secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/CascoCalculatorBeanService.xml</url>
+    <lastStatus>0</lastStatus>
     <checkDate>2016-05-20 17:00:00</checkDate>
     <modificationDate>2016-05-20 16:00:10</modificationDate>
   </wsdl>

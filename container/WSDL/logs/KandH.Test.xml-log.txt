@@ -1,0 +1,9 @@
+* Hostname was found in DNS cache
+* Hostname in DNS cache was stale, zapped
+*   Trying 89.135.105.58...
+* Connected to ws.atollgroup.eu (89.135.105.58) port 443 (#1)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* Unknown SSL protocol error in connection to ws.atollgroup.eu:443 
+* Closing connection 1
