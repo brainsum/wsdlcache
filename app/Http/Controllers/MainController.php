@@ -38,7 +38,7 @@ class MainController extends BaseController {
     $WSDL = Custom\getWsdlInfoByName($WSDL_name);
     dump($WSDL);
 
-    $mode = "wget";
+    $mode = "curl";
 
     try {
       switch ($mode) {
@@ -73,6 +73,22 @@ class MainController extends BaseController {
     // We use the filename one so we don't have to worry about additional info
     // like the filename
     Custom\downloadWsdlFileByName($WSDL->getName());
+
+    return view("debug");
+  }
+
+  /**
+   * @route("/sandbox")
+   * @return \Illuminate\View\View
+   */
+  public function sandboxAction() {
+    $str = "kiscica";
+    $encoded = base64_encode($str);
+    $decoded = base64_decode($encoded);
+
+    dump($str);
+    dump($encoded);
+    dump($decoded);
 
     return view("debug");
   }

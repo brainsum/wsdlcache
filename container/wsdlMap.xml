@@ -1,19 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  @critical @todo @fixme
+     plaintext passwords ;_;
+-->
 <content>
   <wsdl>
     <fileName>aegon.test.xml</fileName>
     <name>Aegon</name>
     <type>Test</type>
     <url>https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx?WSDL</url>
+    <userName></userName>
+    <password></password>
     <lastStatus>0</lastStatus>
     <checkDate>2016-05-20 17:00:00</checkDate>
     <modificationDate>2016-05-20 16:00:10</modificationDate>
   </wsdl>
   <wsdl>
-    <fileName>kandh.test.xml</fileName>
-    <name>KandH</name>
+    <fileName>kandh.casco.test.xml</fileName>
+    <name>KandH-casco</name>
     <type>Test</type>
     <url>https://ws.atollgroup.eu/secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/CascoCalculatorBeanService.xml</url>
+    <userName></userName>
+    <password></password>
+    <lastStatus>0</lastStatus>
+    <checkDate>2016-05-20 17:00:00</checkDate>
+    <modificationDate>2016-05-20 16:00:10</modificationDate>
+  </wsdl>
+  <wsdl>
+    <fileName>kandh.kgfb.test.xml</fileName>
+    <name>KandH-kgfb</name>
+    <type>Test</type>
+    <url>https://ws.atollgroup.eu/secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/GFBCalculatorBeanService.xml</url>
+    <userName>soron_test</userName>
+    <password>Gonta72</password>
+    <lastStatus>0</lastStatus>
+    <checkDate>2016-05-20 17:00:00</checkDate>
+    <modificationDate>2016-05-20 16:00:10</modificationDate>
+  </wsdl>
+  <wsdl>
+    <fileName>generali.test.xml</fileName>
+    <name>Generali</name>
+    <type>Test</type>
+    <url>https://test.calculate.generali.hu/CalculateNS.asmx</url>
+    <userName>soron_test</userName>
+    <password>Gonta72</password>
     <lastStatus>0</lastStatus>
     <checkDate>2016-05-20 17:00:00</checkDate>
     <modificationDate>2016-05-20 16:00:10</modificationDate>

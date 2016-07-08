@@ -1,0 +1,8 @@
+* Hostname was NOT found in DNS cache
+*   Trying 171.24.216.11...
+* Connected to test.calculate.generali.hu (171.24.216.11) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* Unknown SSL protocol error in connection to test.calculate.generali.hu:443 
+* Closing connection 0

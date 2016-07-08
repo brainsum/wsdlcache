@@ -67,6 +67,8 @@ function parseWsdlFromArrayToObject($wsdlDataArray) {
   $wsdl->setLastModification($wsdlDataArray["modificationDate"]);
   $wsdl->setAvailable($wsdlDataArray["lastStatus"] == 1 ? true : false);
   $wsdl->setType($wsdlDataArray["type"]);
+  $wsdl->setUserName($wsdlDataArray["userName"]);
+  $wsdl->setPassword($wsdlDataArray["password"]);
 
   return $wsdl;
 }
@@ -122,45 +124,67 @@ function downloadWsdlFileByName($WSDL_name, $filename = null) {
   $WSDL = getWsdlInfoByName($WSDL_name);
 
   if ($WSDL !== false) {
-    $finalFileName = empty($filename) ? $WSDL->generateFileName() : $filename;
+    if (empty($filename)) {
+      $WSDL->generateFileName();
+    } else {
+      $WSDL->setFilename($filename);
+    }
 
-    downloadWsdlFileByUrlWithCurl($WSDL->getWsdl(), $finalFileName);
+    downloadWsdlFileByUrlWithCurl($WSDL);
   } else {
     throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
   }
 }
 
 /**
- * Downloads the WSDL from the supplied URL and saves it to the given filename.
+ * Downloads the supplied WSDL to the given filename.
  *
- * @param $WSDL_url
- * @param $filename
+ * @param WSDL $WSDL
  */
-function downloadWsdlFileByUrlWithCurl($WSDL_url, $filename) {
+function downloadWsdlFileByUrlWithCurl($WSDL) {
   /*
    * @todo: logging at the level of HTTP request, SSL handshake, etc.
    *
    * @try http://stackoverflow.com/questions/17092677/how-to-get-info-on-sent-php-curl-request
    * @try http://stackoverflow.com/questions/3757071/php-debugging-curl
    */
+  dump($WSDL);
 
   $basePath = app()->basePath();
   $cachePath = "container/WSDL/cache";
   $logPath = "container/WSDL/logs";
 
-  $ch = curl_init($WSDL_url);
-  $fp = fopen("$basePath/$cachePath/$filename", "w+");
-  $lp = fopen("$basePath/$logPath/$filename-log.txt", "w+");
+  $ch = curl_init($WSDL->getWsdl());
+  $fp = fopen("$basePath/$cachePath/" . $WSDL->getFilename(), "w+");
+  $lp = fopen("$basePath/$logPath/" . $WSDL->getFilename() . "-log.txt", "w+");
+
+  $headers = array(
+    'Authorization: Basic '. base64_encode($WSDL->getUserName() . ":" . $WSDL->getPassword())
+  );
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
   curl_setopt($ch, CURLOPT_FILE, $fp);
-  curl_setopt($ch, CURLOPT_HEADER, 0);
+  curl_setopt($ch, CURLOPT_HEADER, true);
   curl_setopt($ch, CURLOPT_STDERR, $lp);
+  curl_setopt($ch, CURLOPT_URL, $WSDL->getWsdl());
   curl_setopt($ch, CURLOPT_VERBOSE, true);
-  curl_setopt($ch, CURLOPT_SSLVERSION,3);
+  curl_setopt($ch, CURLOPT_HTTPGET, true);
+  curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
+  curl_setopt($ch, CURLOPT_FILETIME, true);
+  curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+  curl_setopt($ch, CURLOPT_SSLVERSION, 4); // 4 is the answer for KandH
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+  // curl_setopt($ch, CURLOPT_CERTINFO, true);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Needed!!
+  curl_setopt($ch, CURLOPT_USERPWD, base64_encode($WSDL->getUserName() . ":" . $WSDL->getPassword()));
 
-  curl_exec($ch);
+  $result = curl_exec($ch);
+  dump($ch);
   curl_close($ch);
   fclose($fp);
+
+  print "<pre>" . ($result) . "</pre>";
 }
 
 function getWsdlContentByName($WSDL_name, $filename = null) {
@@ -176,7 +200,16 @@ function getWsdlContentByName($WSDL_name, $filename = null) {
 }
 
 function downloadWsdlFileByUrlWithFileGetContents($WSDL_url, $filename) {
-  $data = file_get_contents($WSDL_url);
+  $context = stream_context_create(array(
+    'ssl' => array(
+      // set some SSL/TLS specific options
+      'verify_peer' => false,
+      'verify_peer_name' => false,
+      'allow_self_signed' => true
+    )
+  ));
+
+  $data = file_get_contents($WSDL_url, null, $context);
 
   if ($data === FALSE) {
     throw new NotFoundResourceException("$WSDL_url failed to open.");

@@ -20,3 +20,5 @@ $app->get('/info', function () {
 $app->get('/wsdl/name/{name}', "MainController@getWSDLByNameAction");
 
 $app->get('/wsdl/url/{url}', "MainController@getWSDLByUrlAction");
+
+$app->get('/sandbox', "MainController@sandboxAction");

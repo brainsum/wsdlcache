@@ -27,6 +27,21 @@ class WSDL {
   private $type;
 
   /**
+   * @var String
+   */
+  private $userName;
+
+  /**
+   * @var String
+   */
+  private $password;
+
+  /**
+   * @var String
+   */
+  private $filename;
+
+  /**
    * @var Boolean $status
    */
   private $available;
@@ -122,12 +137,38 @@ class WSDL {
     return $this->type;
   }
 
+  public function getPassword() {
+    return $this->password;
+  }
+
+  public function setPassword($password) {
+    $this->password = $password;
+  }
+
+  public function getUserName() {
+    return $this->userName;
+  }
+
+  public function setUserName($userName) {
+    $this->userName = $userName;
+  }
+
+  public function getFilename() {
+    return $this->filename;
+  }
+
+  public function setFilename($filename) {
+    $this->filename = $filename;
+  }
+
   /**
    * Generates a filename based on the name and type.
    *
    * @return string
    */
   public function generateFileName() {
-    return ($this->getName().".".$this->getType().".xml");
+    $this->filename = ($this->getName().".".$this->getType().".xml");
+
+    return $this->filename;
   }
 }

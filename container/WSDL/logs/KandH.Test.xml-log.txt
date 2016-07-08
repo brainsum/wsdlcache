@@ -1,9 +1,148 @@
 * Hostname was found in DNS cache
 * Hostname in DNS cache was stale, zapped
 *   Trying 89.135.105.58...
-* Connected to ws.atollgroup.eu (89.135.105.58) port 443 (#1)
+* Connected to ws.atollgroup.eu (89.135.105.58) port 443 (#2)
 * successfully set certificate verify locations:
 *   CAfile: none
   CApath: /etc/ssl/certs
-* Unknown SSL protocol error in connection to ws.atollgroup.eu:443 
-* Closing connection 1
+* SSL connection using AES256-SHA
+* --- Certificate chain
+*  0 Subject: C=HU; ST=Budapest; L=Budapest; O=Atollgroup; OU=Atollgroup; CN=ws.atollgroup.eu
+*    Issuer: C=HU; ST=Budapest; L=Budapest; O=Atollgroup; OU=Atollgroup; CN=www.atollgroup.eu; emailAddress=support@atollgroup.eu
+*    Version: 3 (0x2)
+*    Serial Number: 
+*    Signature Algorithm: sha1WithRSAEncryption
+*    Start date: 2011-09-16 08:33:00 GMT
+*    Expire date: 2021-09-13 08:33:00 GMT
+*    Public Key Algorithm: rsaEncryption
+*    RSA Public Key (2048 bits)
+*    rsa(n): 93:85:99:ab:cc:44:9b:44:a4:cc:12:8f:26:72:b5:c3:f7:d4:a4:b8:ba:53:99:b1:2c:ee:52:42:46:87:6e:46:e9:27:6d:f8:3b:c6:54:ad:23:ac:a4:62:92:f0:65:85:3a:4d:2b:66:c2:9b:62:e2:07:2c:69:ba:d3:cf:8e:f8:86:fa:39:f0:a1:d2:ad:66:19:81:b1:d9:33:5f:aa:50:cb:5a:12:aa:88:00:8e:36:0f:db:9e:3b:c0:b6:da:82:57:11:24:8e:10:63:7a:3d:6e:70:e6:3a:d1:e6:c7:d1:0d:a2:86:10:dd:39:d1:b3:83:83:33:5a:8e:74:d3:24:95:86:e8:58:e1:c0:58:02:3c:fd:7d:08:51:d8:d9:7d:59:f3:3e:a4:58:47:36:44:1a:9b:76:b7:82:a4:9c:c7:e3:22:a4:93:e2:01:12:dc:8c:3b:d8:ae:50:f4:17:b9:a9:21:48:cb:2c:93:6c:9b:cb:ad:5a:3a:62:32:e5:10:41:42:74:ee:93:26:f0:1d:1a:f0:ad:ea:be:4f:97:e9:8e:68:e7:5d:10:50:e5:cb:80:f1:7d:ae:4a:b2:b9:e8:35:48:5c:73:c4:cb:09:6f:bf:a0:79:39:29:a0:f5:c3:2f:25:83:ea:bc:ac:5c:74:39:0f:cd:b8:e4:24:cb:13:
+*    rsa(e): 01:00:01:
+* X509v3 Basic Constraints: 
+*   CA:FALSE
+* Netscape Comment: 
+*   Certificateissuedbyhttps://www.atollgroup.eu/ssl/
+* X509v3 Subject Key Identifier: 
+*   F3:01:E7:3B:25:B7:13:B8:46:F1:6E:A3:5A:BF:8A:5D:0E:31:81:E9
+* X509v3 Authority Key Identifier: 
+*   keyid:95:BD:6A:DA:F3:D6:E9:4A:D0:D3:4F:21:23:7A:20:81:55:96:57:72, DirName:/C=HU/ST=Budapest/L=Budapest/O=Atollgroup/OU=Atollgroup/CN=www.atollgroup.eu/emailAddress=support@atollgroup.eu, serial:A1:9E:38:73:D1:6D:A6:7A
+*  Signature: 73:02:15:ec:ca:32:f9:26:b1:2c:24:91:ec:be:66:41:00:08:73:3c:4d:61:f8:2d:50:b9:e4:ae:58:16:7c:0b:33:62:71:26:b0:e6:6d:32:5d:98:7c:c7:43:ab:73:da:30:63:0c:81:30:15:61:bc:ca:17:85:fb:a8:57:01:fc:bb:15:d6:59:19:36:38:04:35:b8:84:11:74:14:43:07:58:9e:75:26:1d:f3:a8:7a:e3:d7:40:19:26:c2:ec:7e:f3:b3:8f:a8:c9:88:a0:e1:24:fa:86:57:17:b4:85:83:0e:a1:fd:81:f5:b9:6d:3c:f6:65:05:3f:ea:f1:01:3a:
+* -----BEGIN CERTIFICATE-----
+MIIEZjCCA8+gAwIBAgIJAKGeOHPRbabNMA0GCSqGSIb3DQEBBQUAMIGfMQswCQYD
+VQQGEwJIVTERMA8GA1UECBMIQnVkYXBlc3QxETAPBgNVBAcTCEJ1ZGFwZXN0MRMw
+EQYDVQQKEwpBdG9sbGdyb3VwMRMwEQYDVQQLEwpBdG9sbGdyb3VwMRowGAYDVQQD
+ExF3d3cuYXRvbGxncm91cC5ldTEkMCIGCSqGSIb3DQEJARYVc3VwcG9ydEBhdG9s
+bGdyb3VwLmV1MB4XDTExMDkxNjA4MzMwMFoXDTIxMDkxMzA4MzMwMFoweDELMAkG
+A1UEBhMCSFUxETAPBgNVBAgTCEJ1ZGFwZXN0MREwDwYDVQQHEwhCdWRhcGVzdDET
+MBEGA1UEChMKQXRvbGxncm91cDETMBEGA1UECxMKQXRvbGxncm91cDEZMBcGA1UE
+AxMQd3MuYXRvbGxncm91cC5ldTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC
+ggEBAJOFmavMRJtEpMwSjyZytcP31KS4ulOZsSzuUkJGh25G6Sdt+DvGVK0jrKRi
+kvBlhTpNK2bCm2LiByxputPPjviG+jnwodKtZhmBsdkzX6pQy1oSqogAjjYP2547
+wLbaglcRJI4QY3o9bnDmOtHmx9ENooYQ3TnRs4ODM1qOdNMklYboWOHAWAI8/X0I
+UdjZfVnzPqRYRzZEGpt2t4KknMfjIqST4gES3Iw72K5Q9Be5qSFIyyyTbJvLrVo6
+YjLlEEFCdO6TJvAdGvCt6r5Pl+mOaOddEFDly4Dxfa5KsrnoNUhcc8TLCW+/oHk5
+KaD1wy8lg+q8rFx0OQ/NuOQkyxMCAwEAAaOCAUowggFGMAkGA1UdEwQCMAAwQwYJ
+YIZIAYb4QgENBDYWNENlcnRpZmljYXRlIGlzc3VlZCBieSBodHRwczovL3d3dy5h
+dG9sbGdyb3VwLmV1L3NzbC8wHQYDVR0OBBYEFPMB5zsltxO4RvFuo1q/il0OMYHp
+MIHUBgNVHSMEgcwwgcmAFJW9atrz1ulK0NNPISN6IIFVlldyoYGlpIGiMIGfMQsw
+CQYDVQQGEwJIVTERMA8GA1UECBMIQnVkYXBlc3QxETAPBgNVBAcTCEJ1ZGFwZXN0
+MRMwEQYDVQQKEwpBdG9sbGdyb3VwMRMwEQYDVQQLEwpBdG9sbGdyb3VwMRowGAYD
+VQQDExF3d3cuYXRvbGxncm91cC5ldTEkMCIGCSqGSIb3DQEJARYVc3VwcG9ydEBh
+dG9sbGdyb3VwLmV1ggkAoZ44c9FtpnowDQYJKoZIhvcNAQEFBQADgYEAcwIV7Moy
++SaxLCSR7L5mQQAIczxNYfgtULnkrlgWfAszYnEmsOZtMl2YfMdDq3PaMGMMgTAV
+YbzKF4X7qFcB/LsV1lkZNjgENbiEEXQUQwdYnnUmHfOoeuPXQBkmwux+87OPqMmI
+oOEk+oZXF7SFgw6h/YH1uW089mUFP+rxATo=
+-----END CERTIFICATE-----
+
+*  1 Subject: C=HU; ST=Budapest; L=Budapest; O=Atollgroup; OU=Atollgroup; CN=www.atollgroup.eu; emailAddress=support@atollgroup.eu
+*    Issuer: C=HU; ST=Budapest; L=Budapest; O=Atollgroup; OU=Atollgroup; CN=www.atollgroup.eu; emailAddress=support@atollgroup.eu
+*    Version: 3 (0x2)
+*    Serial Number: 
+*    Signature Algorithm: sha1WithRSAEncryption
+*    Start date: 2011-04-06 15:11:34 GMT
+*    Expire date: 2021-04-03 15:11:34 GMT
+*    Public Key Algorithm: rsaEncryption
+*    RSA Public Key (1024 bits)
+*    rsa(n): a7:67:38:f4:17:d6:cf:63:a5:a8:ae:b8:21:06:09:bb:03:8e:72:98:22:75:18:fb:e6:98:50:1c:f1:b2:ac:31:16:03:66:75:66:a8:6b:c3:ad:59:53:b9:c4:0f:01:11:71:6d:80:01:93:5c:21:d2:88:6a:db:1a:ad:a2:56:29:5d:80:58:a7:9c:bd:06:49:05:79:e7:fe:ef:e7:c7:a0:bb:83:9d:89:8b:45:a5:3c:00:6e:8f:7a:cb:48:db:4b:47:f0:da:00:a3:d8:68:1a:de:9b:35:33:78:57:d5:b3:9e:63:6f:2b:ac:82:93:12:43:5d:7b:68:59:a9:9b:5f:
+*    rsa(e): 01:00:01:
+* X509v3 Subject Key Identifier: 
+*   95:BD:6A:DA:F3:D6:E9:4A:D0:D3:4F:21:23:7A:20:81:55:96:57:72
+* X509v3 Authority Key Identifier: 
+*   keyid:95:BD:6A:DA:F3:D6:E9:4A:D0:D3:4F:21:23:7A:20:81:55:96:57:72, DirName:/C=HU/ST=Budapest/L=Budapest/O=Atollgroup/OU=Atollgroup/CN=www.atollgroup.eu/emailAddress=support@atollgroup.eu, serial:A1:9E:38:73:D1:6D:A6:7A
+* X509v3 Basic Constraints: 
+*   CA:TRUE
+* Netscape Comment: 
+*   Certificateissuedbyhttps://www.atollsol.loc/ssl/
+* Netscape Base Url: 
+*   https://www.atollsol.loc/ssl/
+* Netscape CA Revocation Url: 
+*   https://www.atollsol.loc/ssl/atollsol-ca.crl
+* Netscape Revocation Url: 
+*   https://www.atollsol.loc/ssl/revocation.html?
+* Netscape Renewal Url: 
+*   https://www.atollsol.loc/ssl/renewal.html?
+* Netscape CA Policy Url: 
+*   https://www.atollsol.loc/ssl/policy.html
+* X509v3 Issuer Alternative Name: 
+*   URI:https://www.atollsol.loc/ssl/atollsol.crt
+* X509v3 CRL Distribution Points: 
+*   , FullName:, URI:https://www.atollsol.loc/ssl/atollsol-ca.crl
+*  Signature: 23:06:a4:e4:b5:2f:72:51:e9:6a:a0:41:0e:df:8c:51:2a:f1:af:a4:ef:1c:a5:b4:5f:c8:5b:f2:e9:91:c3:eb:01:38:c7:39:18:a9:39:f2:b3:64:71:e8:1a:f3:24:ea:20:91:46:94:64:70:c1:0b:79:71:54:8a:af:34:af:2a:e6:d4:88:90:c3:b7:24:19:16:d4:73:58:5e:5b:35:de:7f:f8:b3:bc:e0:df:d1:f7:49:84:c9:b8:c9:e5:29:fd:98:7d:20:78:db:7e:11:35:42:24:ab:0e:d2:b4:b3:db:f0:17:c4:76:64:53:09:8c:f8:9b:0a:bd:30:87:bd:5c:
+* -----BEGIN CERTIFICATE-----
+MIIFnjCCBQegAwIBAgIJAKGeOHPRbaZ6MA0GCSqGSIb3DQEBBQUAMIGfMQswCQYD
+VQQGEwJIVTERMA8GA1UECBMIQnVkYXBlc3QxETAPBgNVBAcTCEJ1ZGFwZXN0MRMw
+EQYDVQQKEwpBdG9sbGdyb3VwMRMwEQYDVQQLEwpBdG9sbGdyb3VwMRowGAYDVQQD
+ExF3d3cuYXRvbGxncm91cC5ldTEkMCIGCSqGSIb3DQEJARYVc3VwcG9ydEBhdG9s
+bGdyb3VwLmV1MB4XDTExMDQwNjE1MTEzNFoXDTIxMDQwMzE1MTEzNFowgZ8xCzAJ
+BgNVBAYTAkhVMREwDwYDVQQIEwhCdWRhcGVzdDERMA8GA1UEBxMIQnVkYXBlc3Qx
+EzARBgNVBAoTCkF0b2xsZ3JvdXAxEzARBgNVBAsTCkF0b2xsZ3JvdXAxGjAYBgNV
+BAMTEXd3dy5hdG9sbGdyb3VwLmV1MSQwIgYJKoZIhvcNAQkBFhVzdXBwb3J0QGF0
+b2xsZ3JvdXAuZXUwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKdnOPQX1s9j
+paiuuCEGCbsDjnKYInUY++aYUBzxsqwxFgNmdWaoa8OtWVO5xA8BEXFtgAGTXCHS
+iGrbGq2iVildgFinnL0GSQV55/7v58egu4OdiYtFpTwAbo96y0jbS0fw2gCj2Gga
+3ps1M3hX1bOeY28rrIKTEkNde2hZqZtfAgMBAAGjggLeMIIC2jAdBgNVHQ4EFgQU
+lb1q2vPW6UrQ008hI3oggVWWV3IwgdQGA1UdIwSBzDCByYAUlb1q2vPW6UrQ008h
+I3oggVWWV3KhgaWkgaIwgZ8xCzAJBgNVBAYTAkhVMREwDwYDVQQIEwhCdWRhcGVz
+dDERMA8GA1UEBxMIQnVkYXBlc3QxEzARBgNVBAoTCkF0b2xsZ3JvdXAxEzARBgNV
+BAsTCkF0b2xsZ3JvdXAxGjAYBgNVBAMTEXd3dy5hdG9sbGdyb3VwLmV1MSQwIgYJ
+KoZIhvcNAQkBFhVzdXBwb3J0QGF0b2xsZ3JvdXAuZXWCCQChnjhz0W2mejAMBgNV
+HRMEBTADAQH/MEIGCWCGSAGG+EIBDQQ1FjNDZXJ0aWZpY2F0ZSBpc3N1ZWQgYnkg
+aHR0cHM6Ly93d3cuYXRvbGxzb2wubG9jL3NzbC8wLAYJYIZIAYb4QgECBB8WHWh0
+dHBzOi8vd3d3LmF0b2xsc29sLmxvYy9zc2wvMDsGCWCGSAGG+EIBBAQuFixodHRw
+czovL3d3dy5hdG9sbHNvbC5sb2Mvc3NsL2F0b2xsc29sLWNhLmNybDA8BglghkgB
+hvhCAQMELxYtaHR0cHM6Ly93d3cuYXRvbGxzb2wubG9jL3NzbC9yZXZvY2F0aW9u
+Lmh0bWw/MDkGCWCGSAGG+EIBBwQsFipodHRwczovL3d3dy5hdG9sbHNvbC5sb2Mv
+c3NsL3JlbmV3YWwuaHRtbD8wNwYJYIZIAYb4QgEIBCoWKGh0dHBzOi8vd3d3LmF0
+b2xsc29sLmxvYy9zc2wvcG9saWN5Lmh0bWwwNAYDVR0SBC0wK4YpaHR0cHM6Ly93
+d3cuYXRvbGxzb2wubG9jL3NzbC9hdG9sbHNvbC5jcnQwPQYDVR0fBDYwNDAyoDCg
+LoYsaHR0cHM6Ly93d3cuYXRvbGxzb2wubG9jL3NzbC9hdG9sbHNvbC1jYS5jcmww
+DQYJKoZIhvcNAQEFBQADgYEAIwak5LUvclHpaqBBDt+MUSrxr6TvHKW0X8hb8umR
+w+sBOMc5GKk58rNkcega8yTqIJFGlGRwwQt5cVSKrzSvKubUiJDDtyQZFtRzWF5b
+Nd5/+LO84N/R90mEybjJ5Sn9mH0geNt+ETVCJKsO0rSz2/AXxHZkUwmM+JsKvTCH
+vVw=
+-----END CERTIFICATE-----
+
+* Server certificate:
+* 	 subject: C=HU; ST=Budapest; L=Budapest; O=Atollgroup; OU=Atollgroup; CN=ws.atollgroup.eu
+* 	 start date: 2011-09-16 08:33:00 GMT
+* 	 expire date: 2021-09-13 08:33:00 GMT
+* 	 common name: ws.atollgroup.eu (matched)
+* 	 issuer: C=HU; ST=Budapest; L=Budapest; O=Atollgroup; OU=Atollgroup; CN=www.atollgroup.eu; emailAddress=support@atollgroup.eu
+* 	 SSL certificate verify result: self signed certificate in certificate chain (19), continuing anyway.
+> GET /secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/CascoCalculatorBeanService.xml HTTP/1.1
+Host: ws.atollgroup.eu
+Accept: */*
+
+< HTTP/1.1 401 Unauthorized
+< content-length: 1244
+< content-type: text/html
+< date: Thu, 30 Jun 2016 09:58:35 GMT
+< p3p: CP="NON CUR OTPi OUR NOR UNI"
+* Server WebSEAL/6.0.0.3 (Build 060807) is not blacklisted
+< server: WebSEAL/6.0.0.3 (Build 060807)
+< www-authenticate: Basic realm="Access Manager for e-business"
+< pragma: no-cache
+< cache-control: no-cache
+< Set-Cookie: PD-S-SESSION-ID=2_HInozr6wJEBXghPvrglsQGywHmBiBHu6tFIhWkKA1ij7ypc0; Path=/; Secure
+< 
+* Closing connection 2
