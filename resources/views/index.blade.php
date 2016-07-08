@@ -34,6 +34,7 @@
                 <th>Status</th>
                 <th>Last Check Date</th>
                 <th>Last Modification Date</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -56,6 +57,7 @@
                   @endif
                   <td>{{ $wsdl->getLastCheck() }}</td>
                   <td>{{ $wsdl->getLastModification() }}</td>
+                  <td><a target="_blank" href="{{ route("getWSDLByName", array("name" => $wsdl->getName())) }}">Check</a></td>
                 </tr>
                 @endforeach
               @endif

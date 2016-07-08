@@ -1,0 +1,28 @@
+* Hostname was NOT found in DNS cache
+*   Trying 195.228.142.58...
+* Connected to tesztfe64.aegon.hu (195.228.142.58) port 443 (#3)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* SSL connection using AES256-SHA
+* Server certificate:
+* 	 subject: C=HU; ST=Budapest; L=Budapest; O=AEGON Magyarország Általános Biztosító Zrt.; CN=*.aegon.hu
+* 	 start date: 2016-01-19 14:48:19 GMT
+* 	 expire date: 2017-01-18 14:48:19 GMT
+* 	 subjectAltName: tesztfe64.aegon.hu matched
+* 	 issuer: C=HU; L=Budapest; O=NetLock Kft.; OU=Tanúsítványkiadók (Certification Services); CN=NetLock Üzleti (Class B) Tanúsítványkiadó
+* 	 SSL certificate verify ok.
+* Server auth using Basic with user '0000922995'
+> GET /dijkalk_webservice/gfb.asmx?WSDL?WSDL HTTP/1.1
+Authorization: Basic MDAwMDkyMjk5NTpQa3I4MDAyMjk5NQ==
+Host: tesztfe64.aegon.hu
+Accept: */*
+
+* HTTP 1.0, assume close after body
+< HTTP/1.0 401 Unauthorized
+* Authentication problem. Ignoring this.
+< WWW-Authenticate: Basic realm="FW-1 (password).      Reason: Access denied - wrong user name or password         Server "
+< Content-Type: text/html
+< Content-Length: 169
+< 
+* Closing connection 3

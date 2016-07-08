@@ -69,6 +69,7 @@ function parseWsdlFromArrayToObject($wsdlDataArray) {
   $wsdl->setType($wsdlDataArray["type"]);
   $wsdl->setUserName($wsdlDataArray["userName"]);
   $wsdl->setPassword($wsdlDataArray["password"]);
+  $wsdl->setCurlSslVersion($wsdlDataArray["curlSslVersion"]);
 
   return $wsdl;
 }
@@ -150,41 +151,54 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
    */
   dump($WSDL);
 
+  $PASS_AS_ENCODED = TRUE;
+  $APPENDED_URL = TRUE;
+  $DEBUG_MODE = FALSE;
+
   $basePath = app()->basePath();
   $cachePath = "container/WSDL/cache";
   $logPath = "container/WSDL/logs";
 
-  $ch = curl_init($WSDL->getWsdl());
+  $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
   $fp = fopen("$basePath/$cachePath/" . $WSDL->getFilename(), "w+");
   $lp = fopen("$basePath/$logPath/" . $WSDL->getFilename() . "-log.txt", "w+");
 
-  $headers = array(
-    'Authorization: Basic '. base64_encode($WSDL->getUserName() . ":" . $WSDL->getPassword())
-  );
-  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  $headers = array();
 
+  if (!empty($WSDL->getUserName())) {
+    $headers[] = 'Authorization: Basic '. $WSDL->combinedUserPass($PASS_AS_ENCODED);
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_setopt($ch, CURLOPT_USERPWD, $WSDL->combinedUserPass($PASS_AS_ENCODED));
+  }
+
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   curl_setopt($ch, CURLOPT_FILE, $fp);
-  curl_setopt($ch, CURLOPT_HEADER, true);
   curl_setopt($ch, CURLOPT_STDERR, $lp);
-  curl_setopt($ch, CURLOPT_URL, $WSDL->getWsdl());
+  curl_setopt($ch, CURLOPT_URL, $WSDL->getWsdl($APPENDED_URL));
   curl_setopt($ch, CURLOPT_VERBOSE, true);
   curl_setopt($ch, CURLOPT_HTTPGET, true);
   curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
   curl_setopt($ch, CURLOPT_FILETIME, true);
   curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-  curl_setopt($ch, CURLOPT_SSLVERSION, 4); // 4 is the answer for KandH
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-  // curl_setopt($ch, CURLOPT_CERTINFO, true);
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Needed!!
-  curl_setopt($ch, CURLOPT_USERPWD, base64_encode($WSDL->getUserName() . ":" . $WSDL->getPassword()));
+  curl_setopt($ch, CURLOPT_SSLVERSION, $WSDL->getCurlSslVersion()); // 4 is the answer for KandH
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Needed!! Mb for k&h only
+
+  if (TRUE === $DEBUG_MODE) {
+    curl_setopt($ch, CURLOPT_CERTINFO, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HEADER, true);
+  }
 
   $result = curl_exec($ch);
-  dump($ch);
+  // dump($ch);
   curl_close($ch);
   fclose($fp);
 
-  print "<pre>" . ($result) . "</pre>";
+  if (TRUE === $DEBUG_MODE) {
+    print "<pre>$result</pre>";
+  }
+
+  print "<pre>" . (($result == TRUE) ? "SUCCESS" : "ERROR") . "</pre>";
 }
 
 function getWsdlContentByName($WSDL_name, $filename = null) {

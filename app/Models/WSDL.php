@@ -42,6 +42,11 @@ class WSDL {
   private $filename;
 
   /**
+   * @var Integer
+   */
+  private $curlSslVersion;
+
+  /**
    * @var Boolean $status
    */
   private $available;
@@ -119,7 +124,11 @@ class WSDL {
   /**
    * @return String
    */
-  public function getWsdl() {
+  public function getWsdl($appended = FALSE) {
+    if($appended) {
+      return ($this->wsdl . "?WSDL");
+    }
+
     return $this->wsdl;
   }
 
@@ -161,6 +170,14 @@ class WSDL {
     $this->filename = $filename;
   }
 
+  public function getCurlSslVersion() {
+    return $this->curlSslVersion;
+  }
+
+  public function setCurlSslVersion($curlSslVersion) {
+    $this->curlSslVersion = $curlSslVersion;
+  }
+
   /**
    * Generates a filename based on the name and type.
    *
@@ -170,5 +187,13 @@ class WSDL {
     $this->filename = ($this->getName().".".$this->getType().".xml");
 
     return $this->filename;
+  }
+
+  public function combinedUserPass($encoded = FALSE) {
+    if ($encoded) {
+      return base64_encode($this->getUserName() . ":" . $this->getPassword());
+    }
+
+    return ($this->getUserName() . ":" . $this->getPassword());
   }
 }

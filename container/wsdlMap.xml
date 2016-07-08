@@ -11,6 +11,7 @@
     <url>https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx?WSDL</url>
     <userName></userName>
     <password></password>
+    <curlSslVersion>0</curlSslVersion>
     <lastStatus>0</lastStatus>
     <checkDate>2016-05-20 17:00:00</checkDate>
     <modificationDate>2016-05-20 16:00:10</modificationDate>
@@ -20,8 +21,9 @@
     <name>KandH-casco</name>
     <type>Test</type>
     <url>https://ws.atollgroup.eu/secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/CascoCalculatorBeanService.xml</url>
-    <userName></userName>
-    <password></password>
+    <userName>soron_test</userName>
+    <password>Gonta72</password>
+    <curlSslVersion>4</curlSslVersion>
     <lastStatus>0</lastStatus>
     <checkDate>2016-05-20 17:00:00</checkDate>
     <modificationDate>2016-05-20 16:00:10</modificationDate>
@@ -33,6 +35,7 @@
     <url>https://ws.atollgroup.eu/secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/GFBCalculatorBeanService.xml</url>
     <userName>soron_test</userName>
     <password>Gonta72</password>
+    <curlSslVersion>4</curlSslVersion>
     <lastStatus>0</lastStatus>
     <checkDate>2016-05-20 17:00:00</checkDate>
     <modificationDate>2016-05-20 16:00:10</modificationDate>
@@ -41,9 +44,10 @@
     <fileName>generali.test.xml</fileName>
     <name>Generali</name>
     <type>Test</type>
-    <url>https://test.calculate.generali.hu/CalculateNS.asmx</url>
-    <userName>soron_test</userName>
-    <password>Gonta72</password>
+    <url>https://testcalculate.generali.hu/CalculateNS.asmx</url>
+    <userName></userName>
+    <password></password>
+    <curlSslVersion>0</curlSslVersion>
     <lastStatus>0</lastStatus>
     <checkDate>2016-05-20 17:00:00</checkDate>
     <modificationDate>2016-05-20 16:00:10</modificationDate>

@@ -17,7 +17,10 @@ $app->get('/info', function () {
     return view("info");
 });
 
-$app->get('/wsdl/name/{name}', "MainController@getWSDLByNameAction");
+$app->get('/wsdl/name/{name}', array(
+  'as' => "getWSDLByName",
+  'uses' => "MainController@getWSDLByNameAction"
+));
 
 $app->get('/wsdl/url/{url}', "MainController@getWSDLByUrlAction");
 

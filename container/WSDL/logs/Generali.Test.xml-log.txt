@@ -1,8 +1,29 @@
 * Hostname was NOT found in DNS cache
 *   Trying 171.24.216.11...
-* Connected to test.calculate.generali.hu (171.24.216.11) port 443 (#0)
+* Connected to testcalculate.generali.hu (171.24.216.11) port 443 (#4)
 * successfully set certificate verify locations:
 *   CAfile: none
   CApath: /etc/ssl/certs
-* Unknown SSL protocol error in connection to test.calculate.generali.hu:443 
-* Closing connection 0
+* SSL connection using ECDHE-RSA-AES256-GCM-SHA384
+* Server certificate:
+* 	 subject: C=HU; ST=Budapest; L=Budapest; O=Generali Biztosító Zrt.; CN=*.generali.hu
+* 	 start date: 2015-04-10 12:41:30 GMT
+* 	 expire date: 2017-04-09 12:41:30 GMT
+* 	 subjectAltName: testcalculate.generali.hu matched
+* 	 issuer: C=HU; L=Budapest; O=NetLock Kft.; OU=Tanúsítványkiadók (Certification Services); CN=NetLock Expressz (Class C) Tanúsítványkiadó
+* 	 SSL certificate verify ok.
+> GET /CalculateNS.asmx?WSDL HTTP/1.1
+Host: testcalculate.generali.hu
+Accept: */*
+
+< HTTP/1.1 200 OK
+< Cache-Control: private, max-age=0
+< Content-Length: 1102068
+< Content-Type: text/xml; charset=utf-8
+* Server Microsoft-IIS/7.5 is not blacklisted
+< Server: Microsoft-IIS/7.5
+< X-AspNet-Version: 4.0.30319
+< X-Powered-By: ASP.NET
+< Date: Fri, 08 Jul 2016 15:40:34 GMT
+< 
+* Closing connection 4
