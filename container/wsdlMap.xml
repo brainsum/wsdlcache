@@ -12,10 +12,10 @@
     <userName>null</userName>
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
-    <lastStatus>1</lastStatus>
-    <checkDate>2016-07-11 11:53:01</checkDate>
-    <modificationDate>2016-07-11 11:53:01</modificationDate>
-  </wsdl>
+    <statusCode>401</statusCode>
+    <checkDate>2016-07-11 12:50:08</checkDate>
+    <modificationDate>2016-07-11 12:50:08</modificationDate>
+  <lastStatus>1</lastStatus></wsdl>
   <wsdl>
     <fileName>kandh.casco.test.xml</fileName>
     <name>KandH-casco</name>
@@ -24,10 +24,10 @@
     <userName>soron_test</userName>
     <password>Gonta72</password>
     <curlSslVersion>4</curlSslVersion>
-    <lastStatus>1</lastStatus>
-    <checkDate>2016-07-11 11:53:01</checkDate>
-    <modificationDate>2016-07-11 11:53:01</modificationDate>
-  </wsdl>
+    <statusCode>200</statusCode>
+    <checkDate>2016-07-11 12:38:33</checkDate>
+    <modificationDate>2016-07-11 12:38:33</modificationDate>
+  <lastStatus>1</lastStatus></wsdl>
   <wsdl>
     <fileName>kandh.kgfb.test.xml</fileName>
     <name>KandH-kgfb</name>
@@ -36,10 +36,10 @@
     <userName>soron_test</userName>
     <password>Gonta72</password>
     <curlSslVersion>4</curlSslVersion>
-    <lastStatus>1</lastStatus>
-    <checkDate>2016-07-11 11:53:01</checkDate>
-    <modificationDate>2016-07-11 11:53:01</modificationDate>
-  </wsdl>
+    <statusCode>200</statusCode>
+    <checkDate>2016-07-11 12:50:47</checkDate>
+    <modificationDate>2016-07-11 12:50:47</modificationDate>
+  <lastStatus>1</lastStatus></wsdl>
   <wsdl>
     <fileName>generali.test.xml</fileName>
     <name>Generali</name>
@@ -48,8 +48,8 @@
     <userName>null</userName>
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
-    <lastStatus>1</lastStatus>
-    <checkDate>2016-07-11 11:53:01</checkDate>
-    <modificationDate>2016-07-11 11:53:01</modificationDate>
-  </wsdl>
+    <statusCode>200</statusCode>
+    <checkDate>2016-07-11 12:38:33</checkDate>
+    <modificationDate>2016-07-11 12:38:33</modificationDate>
+  <lastStatus>1</lastStatus></wsdl>
 </content>

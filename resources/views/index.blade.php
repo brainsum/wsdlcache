@@ -49,16 +49,20 @@
                 <td>{{ $wsdl->getType() }}</td>
                 <td>{{ $wsdl->getWsdl() }}</td>
                 @if ($wsdl->isAvailable())
-                  <td class="success"><span style="font-size:1.8em;" class="glyphicon glyphicon-ok-circle"></span></td>
+                  <?php $tdClass = "success"; $spanClass = "ok"; ?>
                 @else
-                  <td class="danger"><span style="font-size:1.8em;" class="glyphicon glyphicon-remove-circle"></span></td>
+                  <?php $tdClass = "danger"; $spanClass = "remove"; ?>
                 @endif
+                <td class="{{ $tdClass }}" title="Status code: {{ $wsdl->getStatusCode() }}">
+                  <span style="font-size:1.8em;" class="glyphicon glyphicon-{{ $spanClass }}-circle"></span>
+                  <span>{{ $wsdl->getStatusCode() }}</span>
+                </td>
                 <td>{{ $wsdl->getLastCheck() }}</td>
                 <td>{{ $wsdl->getLastModification() }}</td>
                 <td>
-                  <ul>
-                    <li><a target="_blank" href="{{ route("getWSDLByName", array("name" => $wsdl->getName())) }}">Check</a></li>
-                    <li><a href="{{ route("getWSDLLogByName", array("name" => $wsdl->getName())) }}">Get logs</a></li>
+                  <ul class="list-inline">
+                    <li>* <a target="_blank" href="{{ route("getWSDLByName", array("name" => $wsdl->getName())) }}">Check</a></li>
+                    <li>* <a href="{{ route("getWSDLLogByName", array("name" => $wsdl->getName())) }}">Get logs</a></li>
                   </ul>
                 </td>
               </tr>

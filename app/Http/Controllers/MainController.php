@@ -42,16 +42,13 @@ class MainController extends BaseController {
 
     try {
       switch ($mode) {
-        case "curl":
-          Custom\downloadWsdlFileByName($WSDL_name);
-          break;
         case "get_content":
           Custom\getWsdlContentByName($WSDL_name);
           break;
         case "wget":
           Custom\wgetWsdlFileByName($WSDL_name);
           break;
-        default:
+        default: // When mode is curl
           Custom\downloadWsdlFileByName($WSDL_name);
       }
     } catch(\Exception $exc) {
@@ -85,12 +82,10 @@ class MainController extends BaseController {
 
       for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
         dump(array(
-          $mapObject->wsdl[$i]->lastStatus,
           $mapObject->wsdl[$i]->checkDate,
           $mapObject->wsdl[$i]->modificationDate
         ));
 
-        $mapObject->wsdl[$i]->lastStatus = 1;
         $mapObject->wsdl[$i]->checkDate = date("Y-m-d H:i:s");
         $mapObject->wsdl[$i]->modificationDate = date("Y-m-d H:i:s");
 

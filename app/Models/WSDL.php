@@ -52,6 +52,11 @@ class WSDL {
   private $available;
 
   /**
+   * @var Integer
+   */
+  private $statusCode;
+
+  /**
    * @var \DateTime $lastCheck
    */
   private $lastCheck;
@@ -176,6 +181,16 @@ class WSDL {
 
   public function setCurlSslVersion($curlSslVersion) {
     $this->curlSslVersion = $curlSslVersion;
+  }
+
+  public function getStatusCode() {
+    return $this->statusCode;
+  }
+
+  public function setStatusCode($statusCode) {
+    $this->statusCode = $statusCode;
+
+    $this->available = ($this->statusCode === 200) ? true : false;
   }
 
   /**

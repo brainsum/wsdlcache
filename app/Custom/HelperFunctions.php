@@ -106,7 +106,7 @@ function parseWsdlFromArrayToObject($wsdlDataArray) {
   $wsdl->setAvailable(FALSE);
   $wsdl->setLastCheck($wsdlDataArray["checkDate"]);
   $wsdl->setLastModification($wsdlDataArray["modificationDate"]);
-  $wsdl->setAvailable($wsdlDataArray["lastStatus"] == 1 ? true : false);
+  $wsdl->setStatusCode((int) $wsdlDataArray["statusCode"]);
   $wsdl->setType($wsdlDataArray["type"]);
   $wsdl->setUserName($wsdlDataArray["userName"]);
   $wsdl->setPassword($wsdlDataArray["password"]);
@@ -192,23 +192,44 @@ function getWsdlLogPath($WSDL_name, $filename = null) {
 function downloadWsdlFileByName($WSDL_name, $filename = null) {
   $WSDL = getWsdlInfoByName($WSDL_name);
 
-  if ($WSDL !== false) {
-    if (empty($filename)) {
-      $WSDL->generateFileName();
-    } else {
-      $WSDL->setFilename($filename);
-    }
-
-    downloadWsdlFileByUrlWithCurl($WSDL);
-  } else {
+  if ($WSDL === false) {
     throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
   }
+
+  if (empty($filename)) {
+    $WSDL->generateFileName();
+  } else {
+    $WSDL->setFilename($filename);
+  }
+
+  $httpStatus = downloadWsdlFileByUrlWithCurl($WSDL);
+
+  try {
+    /** @var \SimpleXMLElement $mapObject */
+    $mapObject = getWsdlMapAsSimpleXML();
+  } catch (\Dotenv\Exception\InvalidFileException $exc) {
+    dump($exc->getMessage());
+    return;
+  }
+
+  for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
+    if ((string) $mapObject->wsdl[$i]->name == $WSDL->getName()) {
+      $mapObject->wsdl[$i]->statusCode = $httpStatus;
+      $mapObject->wsdl[$i]->checkDate = date("Y-m-d H:i:s");
+      $mapObject->wsdl[$i]->modificationDate = date("Y-m-d H:i:s");
+
+      break;
+    }
+  }
+
+  updateWsdlMap($mapObject);
 }
 
 /**
  * Downloads the supplied WSDL to the given filename.
  *
  * @param WSDL $WSDL
+ * @return Int $responseCode
  */
 function downloadWsdlFileByUrlWithCurl($WSDL) {
   /*
@@ -258,6 +279,8 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   }
 
   $result = curl_exec($ch);
+  $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  dump($responseCode);
   // dump($ch);
   curl_close($ch);
   fclose($fp);
@@ -267,6 +290,8 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   }
 
   print "<pre>" . (($result == TRUE) ? "SUCCESS" : "ERROR") . "</pre>";
+
+  return $responseCode;
 }
 
 function getWsdlContentByName($WSDL_name, $filename = null) {
