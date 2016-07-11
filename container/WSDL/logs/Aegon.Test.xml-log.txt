@@ -1,6 +1,6 @@
 * Hostname was NOT found in DNS cache
 *   Trying 195.228.142.58...
-* Connected to tesztfe64.aegon.hu (195.228.142.58) port 443 (#3)
+* Connected to tesztfe64.aegon.hu (195.228.142.58) port 443 (#0)
 * successfully set certificate verify locations:
 *   CAfile: none
   CApath: /etc/ssl/certs
@@ -12,11 +12,10 @@
 * 	 subjectAltName: tesztfe64.aegon.hu matched
 * 	 issuer: C=HU; L=Budapest; O=NetLock Kft.; OU=Tanúsítványkiadók (Certification Services); CN=NetLock Üzleti (Class B) Tanúsítványkiadó
 * 	 SSL certificate verify ok.
-* Server auth using Basic with user '0000922995'
-> GET /dijkalk_webservice/gfb.asmx?WSDL?WSDL HTTP/1.1
-Authorization: Basic MDAwMDkyMjk5NTpQa3I4MDAyMjk5NQ==
+> GET /dijkalk_webservice/gfb.asmx?WSDL HTTP/1.1
 Host: tesztfe64.aegon.hu
 Accept: */*
+Authorization: Basic bnVsbDpudWxs
 
 * HTTP 1.0, assume close after body
 < HTTP/1.0 401 Unauthorized
@@ -25,4 +24,4 @@ Accept: */*
 < Content-Type: text/html
 < Content-Length: 169
 < 
-* Closing connection 3
+* Closing connection 0

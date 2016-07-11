@@ -22,6 +22,16 @@ $app->get('/wsdl/name/{name}', array(
   'uses' => "MainController@getWSDLByNameAction"
 ));
 
+$app->get('/wsdl/name/{name}', array(
+  'as' => "getWSDLByName",
+  'uses' => "MainController@getWSDLByNameAction"
+));
+
+$app->get('/log/{name}/download', array(
+  'as' => "getWSDLLogByName",
+  'uses' => "MainController@getWSDLLogByNameAction"
+));
+
 $app->get('/wsdl/url/{url}', "MainController@getWSDLByUrlAction");
 
 $app->get('/sandbox', "MainController@sandboxAction");

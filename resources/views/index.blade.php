@@ -19,54 +19,55 @@
   <body>
   <!-- Start of Content -->
   <div class="container container-fluid">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-      <div class="row">
-        <div class="col-md-12">
-          <h1>Mabiasz WSDL Cache status</h1>
-          <table style="vertical-align: middle;" class="table table-responsive table-bordered table-striped text-center">
-            <thead>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Mabiasz WSDL Cache status</h1>
+        <table style="vertical-align: middle;" class="table table-responsive table-bordered table-striped text-center">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>WSDL</th>
+              <th>Status</th>
+              <th>Last Check Date</th>
+              <th>Last Modification Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (empty($wsdlList))
               <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>WSDL</th>
-                <th>Status</th>
-                <th>Last Check Date</th>
-                <th>Last Modification Date</th>
-                <th>Action</th>
+                <td colspan="7">No WSDL data found.</td>
               </tr>
-            </thead>
-            <tbody>
-              @if (empty($wsdlList))
-                <tr>
-                  <td colspan="7">No WSDL data found.</td>
-                </tr>
-              @else
-                <?php $i = 0 ?>
-                @foreach ($wsdlList as $wsdl)
-                <tr>
-                  <td>{{ ++$i }}</td>
-                  <td>{{ $wsdl->getName() }}</td>
-                  <td>{{ $wsdl->getType() }}</td>
-                  <td>{{ $wsdl->getWsdl() }}</td>
-                  @if ($wsdl->isAvailable())
-                    <td class="success"><span style="font-size:1.8em;" class="glyphicon glyphicon-ok-circle"></span></td>
-                  @else
-                    <td class="danger"><span style="font-size:1.8em;" class="glyphicon glyphicon-remove-circle"></span></td>
-                  @endif
-                  <td>{{ $wsdl->getLastCheck() }}</td>
-                  <td>{{ $wsdl->getLastModification() }}</td>
-                  <td><a target="_blank" href="{{ route("getWSDLByName", array("name" => $wsdl->getName())) }}">Check</a></td>
-                </tr>
-                @endforeach
-              @endif
-            </tbody>
-          </table>
-        </div>
+            @else
+              <?php $i = 0 ?>
+              @foreach ($wsdlList as $wsdl)
+              <tr>
+                <td>{{ ++$i }}</td>
+                <td>{{ $wsdl->getName() }}</td>
+                <td>{{ $wsdl->getType() }}</td>
+                <td>{{ $wsdl->getWsdl() }}</td>
+                @if ($wsdl->isAvailable())
+                  <td class="success"><span style="font-size:1.8em;" class="glyphicon glyphicon-ok-circle"></span></td>
+                @else
+                  <td class="danger"><span style="font-size:1.8em;" class="glyphicon glyphicon-remove-circle"></span></td>
+                @endif
+                <td>{{ $wsdl->getLastCheck() }}</td>
+                <td>{{ $wsdl->getLastModification() }}</td>
+                <td>
+                  <ul>
+                    <li><a target="_blank" href="{{ route("getWSDLByName", array("name" => $wsdl->getName())) }}">Check</a></li>
+                    <li><a href="{{ route("getWSDLLogByName", array("name" => $wsdl->getName())) }}">Get logs</a></li>
+                  </ul>
+                </td>
+              </tr>
+              @endforeach
+            @endif
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="col-md-1"></div>
   </div>
   <!-- End of Content -->
   <!-- jQuery -->
@@ -80,4 +81,3 @@
     crossorigin="anonymous"></script>
   </body>
 </html>
-}

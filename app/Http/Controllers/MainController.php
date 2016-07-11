@@ -60,21 +60,10 @@ class MainController extends BaseController {
     return view("debug");
   }
 
-  /**
-   * @route("/wsdl/url/{url}")
-   *
-   */
-  public function getWSDLByUrlAction(String $WSDL_url) {
-    /** @var Models\WSDL $WSDL */
-    $WSDL = Custom\getWsdlInfoByUrl(urldecode($WSDL_url));
+  public function getWSDLLogByNameAction(String $WSDL_name) {
+    $WSDL_log_path = Custom\getWsdlLogPath($WSDL_name);
 
-    dump($WSDL);
-
-    // We use the filename one so we don't have to worry about additional info
-    // like the filename
-    Custom\downloadWsdlFileByName($WSDL->getName());
-
-    return view("debug");
+    return response()->download($WSDL_log_path);
   }
 
   /**
@@ -82,13 +71,37 @@ class MainController extends BaseController {
    * @return \Illuminate\View\View
    */
   public function sandboxAction() {
-    $str = "kiscica";
-    $encoded = base64_encode($str);
-    $decoded = base64_decode($encoded);
+    try {
+      /** @var \SimpleXMLElement $mapObject */
+      $mapObject = Custom\getWsdlMapAsSimpleXML();
+    } catch (\Dotenv\Exception\InvalidFileException $exc) {
+      dump($exc->getMessage());
+    }
 
-    dump($str);
-    dump($encoded);
-    dump($decoded);
+    dump(Custom\getWsdlInfoByName("Aegon"));
+
+    if(!empty($mapObject)) {
+      dump($mapObject);
+
+      for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
+        dump(array(
+          $mapObject->wsdl[$i]->lastStatus,
+          $mapObject->wsdl[$i]->checkDate,
+          $mapObject->wsdl[$i]->modificationDate
+        ));
+
+        $mapObject->wsdl[$i]->lastStatus = 1;
+        $mapObject->wsdl[$i]->checkDate = date("Y-m-d H:i:s");
+        $mapObject->wsdl[$i]->modificationDate = date("Y-m-d H:i:s");
+
+      }
+
+      dump($mapObject);
+      Custom\updateWsdlMap($mapObject);
+    }
+
+    dump(Custom\getWsdlInfoByName("Aegon"));
+
 
     return view("debug");
   }

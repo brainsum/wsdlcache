@@ -13,6 +13,7 @@
 
 namespace App\Custom;
 
+use Dotenv\Exception\InvalidFileException;
 use Nathanmac\Utilities\Parser\Parser;
 use App\Models\WSDL;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
@@ -50,6 +51,46 @@ function getWsdlMapAsArray($pathFromRoot = "container", $file = "wsdlMap.xml") {
   }
 
   return $arrayOfWsdlObjects;
+}
+
+/**
+ * Gets the wsdlMap from the given path with the given filename.
+ *
+ * @param string $pathFromRoot
+ * @param string $file
+ * @return \SimpleXMLElement
+ */
+function getWsdlMapAsSimpleXML($pathFromRoot = "container", $file = "wsdlMap.xml") {
+  $basePath = app()->basePath();
+
+  $mapObject = simplexml_load_file("$basePath/$pathFromRoot/$file");
+
+  if (FALSE === $mapObject) {
+    throw new InvalidFileException("Loading the WSDL map failed.");
+  }
+
+  return $mapObject;
+}
+
+/**
+ * Saves the modified wsdlMap object to the given path with the given filename.
+ *
+ * @param \SimpleXMLElement $mapObject
+ * @param string $pathFromRoot
+ * @param string $file
+ * @return bool
+ */
+function updateWsdlMap(\SimpleXMLElement $mapObject, $pathFromRoot = "container", $file = "wsdlMap.xml") {
+  $basePath = app()->basePath();
+
+  try {
+    $mapObject->saveXML("$basePath/$pathFromRoot/$file");
+  } catch (\Exception $exc) {
+    dump($exc);
+    return false;
+  }
+
+  return true;
 }
 
 /**
@@ -110,6 +151,33 @@ function getWsdlInfoByUrl($url, $container = null) {
 }
 
 /**
+ * Gets an returns the path to the log for the WSDL
+ *
+ * @param $WSDL_name
+ * @param null $filename
+ * @return string
+ *  The path to the log file.
+ */
+function getWsdlLogPath($WSDL_name, $filename = null) {
+  $WSDL = getWsdlInfoByName($WSDL_name);
+
+  if ($WSDL !== false) {
+    if (empty($filename)) {
+      $WSDL->generateFileName();
+    } else {
+      $WSDL->setFilename($filename);
+    }
+
+    $basePath = app()->basePath();
+    $logPath = "container/WSDL/logs";
+
+    return "$basePath/$logPath/".$WSDL->getFilename() . "-log.txt";
+  } else {
+    throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
+  }
+}
+
+/**
  * Downloads a WSDL by its name as the given filename.
  *  If no filename has been given we generate one based on the name and type.
  *
@@ -165,7 +233,7 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
 
   $headers = array();
 
-  if (!empty($WSDL->getUserName())) {
+  if (!empty($WSDL->getUserName()) || $WSDL->getUserName() != "null") {
     $headers[] = 'Authorization: Basic '. $WSDL->combinedUserPass($PASS_AS_ENCODED);
     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     curl_setopt($ch, CURLOPT_USERPWD, $WSDL->combinedUserPass($PASS_AS_ENCODED));
@@ -180,7 +248,7 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
   curl_setopt($ch, CURLOPT_FILETIME, true);
   curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-  curl_setopt($ch, CURLOPT_SSLVERSION, $WSDL->getCurlSslVersion()); // 4 is the answer for KandH
+  curl_setopt($ch, CURLOPT_SSLVERSION, $WSDL->getCurlSslVersion());
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Needed!! Mb for k&h only
 
   if (TRUE === $DEBUG_MODE) {
