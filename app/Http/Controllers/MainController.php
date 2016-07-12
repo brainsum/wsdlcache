@@ -12,6 +12,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Models as Models;
 use App\Custom as Custom;
 use App\Custom\Diff as Diff;
+use SebastianBergmann\Diff\Differ;
 
 class MainController extends BaseController {
 
@@ -75,11 +76,16 @@ class MainController extends BaseController {
     dump($newFile);
 
     // @todo: https://github.com/chrisboulton/php-diff
-    // @todo: https://github.com/sebastianbergmann/diff
-
+/*
     $myDiff = Diff::compareFiles($oldFile, $newFile);
     dump(Diff::toString($myDiff));
 
+*/
+
+
+
+    $differ = new Differ;
+    dump($differ->diff('foo', 'bar'));
 
 /*
     $diffA = new Custom\Diff();
