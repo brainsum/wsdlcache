@@ -12,6 +12,11 @@ namespace App\Models;
 class WSDL {
 
   /**
+   * @var Integer $id
+   */
+  private $id;
+
+  /**
    * @var String $name
    */
   private $name;
@@ -68,6 +73,14 @@ class WSDL {
 
   public function __construct($wsdl) {
     $this->wsdl = $wsdl;
+  }
+
+  public function setId($id) {
+    $this->id = $id;
+  }
+
+  public function getId() {
+    return $this->id;
   }
 
   /**
@@ -127,6 +140,8 @@ class WSDL {
   }
 
   /**
+   * Returns the url with ?WSDL appended.
+   *
    * @return String
    */
   public function getWsdl($appended = FALSE) {

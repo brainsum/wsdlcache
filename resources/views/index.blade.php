@@ -64,7 +64,7 @@
                 <td>
                   <ul class="list-inline">
                     <li>* <a target="_blank" href="{{ route("getWSDLByName", array("name" => $wsdl->getName())) }}">Check</a></li>
-                    <li>* <a href="{{ route("getWSDLLogByName", array("name" => $wsdl->getName())) }}">Get logs</a></li>
+                    <li>* <a href="{{ route("downloadWSDLLogByName", array("name" => $wsdl->getName())) }}">Get logs</a></li>
                   </ul>
                 </td>
               </tr>

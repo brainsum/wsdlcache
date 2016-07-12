@@ -57,7 +57,7 @@ class MainController extends BaseController {
     return view("debug");
   }
 
-  public function getWSDLLogByNameAction(String $WSDL_name) {
+  public function downloadWSDLLogByNameAction(String $WSDL_name) {
     $WSDL_log_path = Custom\getWsdlLogPath($WSDL_name);
 
     return response()->download($WSDL_log_path);
@@ -96,7 +96,6 @@ class MainController extends BaseController {
     }
 
     dump(Custom\getWsdlInfoByName("Aegon"));
-
 
     return view("debug");
   }

@@ -13,6 +13,7 @@
 
 namespace App\Custom;
 
+use Doctrine\Instantiator\Exception\UnexpectedValueException;
 use Dotenv\Exception\InvalidFileException;
 use Nathanmac\Utilities\Parser\Parser;
 use App\Models\WSDL;
@@ -24,14 +25,14 @@ use Symfony\Component\Translation\Exception\NotFoundResourceException;
  *
  * @return array(WSDL)
  */
-function getWsdlMapAsArray($pathFromRoot = "container", $file = "wsdlMap.xml") {
+function getWsdlMapAsArray($pathFromRoot = "container", $mapFile = "wsdlMap.xml", $statusFile = "wsdlStatus.xml") {
   $basePath = app()->basePath();
 
-  $mapData = file_get_contents("$basePath/$pathFromRoot/$file");
-
+  $mapData = file_get_contents("$basePath/$pathFromRoot/$mapFile");
   $parser = new Parser();
   $mapAsArray = $parser->xml($mapData);
 
+  /** @var WSDL[] $arrayOfWsdlObjects */
   $arrayOfWsdlObjects = array();
 
   // The map stores each WSDL info between <wsdl></wsdl> tags
@@ -42,12 +43,44 @@ function getWsdlMapAsArray($pathFromRoot = "container", $file = "wsdlMap.xml") {
   // This means, we have to consider these two cases
   // So when the 0 numeric key exists, we have to deal with multiple wsdl descriptions
   // If 0 is not a key, we can be sure (based on the xml structure), that it's a single wsdl description
-  if (array_key_exists(0, $mapAsArray["wsdl"])) {
+
+  $mapContainsMultipleWsdlData = array_key_exists(0, $mapAsArray["wsdl"]);
+
+  if ($mapContainsMultipleWsdlData) {
     foreach ($mapAsArray["wsdl"] as $wsdl) {
       $arrayOfWsdlObjects[] = parseWsdlFromArrayToObject($wsdl);
     }
   } else {
     $arrayOfWsdlObjects[] = parseWsdlFromArrayToObject($mapAsArray["wsdl"]);
+  }
+
+  $statusData = file_get_contents("$basePath/$pathFromRoot/$statusFile");
+  $parser2 = new Parser();
+  $statusAsArray = $parser2->xml($statusData);
+
+  $statusContainsMultipleWsdlData = array_key_exists(0, $statusAsArray["wsdl"]);
+
+  if ($mapContainsMultipleWsdlData && $statusContainsMultipleWsdlData && count($statusAsArray["wsdl"]) !== count($mapAsArray["wsdl"])) {
+    throw new UnexpectedValueException("The count of wsdls in the map and statuses don't match!");
+  }
+
+  /**
+   * @fixme @todo refactor needed.
+   */
+  if ($mapContainsMultipleWsdlData && $statusContainsMultipleWsdlData) {
+    foreach($arrayOfWsdlObjects as $wsdl) {
+      foreach ($statusAsArray["wsdl"] as $status) {
+        if ($status["id"] == $wsdl->getId()) {
+          $wsdl->setLastCheck($status["checkDate"]);
+          $wsdl->setLastModification($status["modificationDate"]);
+          $wsdl->setStatusCode((int) $status["statusCode"]);
+        }
+      }
+    }
+  } else {
+    $arrayOfWsdlObjects[0]->setLastCheck($statusAsArray["wsdl"]["checkDate"]);
+    $arrayOfWsdlObjects[0]->setLastModification($statusAsArray["wsdl"]["modificationDate"]);
+    $arrayOfWsdlObjects[0]->setStatusCode((int) $statusAsArray["wsdl"]["statusCode"]);
   }
 
   return $arrayOfWsdlObjects;
@@ -60,13 +93,14 @@ function getWsdlMapAsArray($pathFromRoot = "container", $file = "wsdlMap.xml") {
  * @param string $file
  * @return \SimpleXMLElement
  */
-function getWsdlMapAsSimpleXML($pathFromRoot = "container", $file = "wsdlMap.xml") {
+function getWsdlMapAsSimpleXML($pathFromRoot = "container", $file = "wsdlStatus.xml") {
+  // @todo: wsdlStatus
   $basePath = app()->basePath();
 
   $mapObject = simplexml_load_file("$basePath/$pathFromRoot/$file");
 
   if (FALSE === $mapObject) {
-    throw new InvalidFileException("Loading the WSDL map failed.");
+    throw new InvalidFileException("Loading the WSDL status map failed.");
   }
 
   return $mapObject;
@@ -80,7 +114,7 @@ function getWsdlMapAsSimpleXML($pathFromRoot = "container", $file = "wsdlMap.xml
  * @param string $file
  * @return bool
  */
-function updateWsdlMap(\SimpleXMLElement $mapObject, $pathFromRoot = "container", $file = "wsdlMap.xml") {
+function updateWsdlMap(\SimpleXMLElement $mapObject, $pathFromRoot = "container", $file = "wsdlStatus.xml") {
   $basePath = app()->basePath();
 
   try {
@@ -102,11 +136,8 @@ function updateWsdlMap(\SimpleXMLElement $mapObject, $pathFromRoot = "container"
  */
 function parseWsdlFromArrayToObject($wsdlDataArray) {
   $wsdl = new WSDL($wsdlDataArray["url"]);
+  $wsdl->setId($wsdlDataArray["id"]);
   $wsdl->setName($wsdlDataArray["name"]);
-  $wsdl->setAvailable(FALSE);
-  $wsdl->setLastCheck($wsdlDataArray["checkDate"]);
-  $wsdl->setLastModification($wsdlDataArray["modificationDate"]);
-  $wsdl->setStatusCode((int) $wsdlDataArray["statusCode"]);
   $wsdl->setType($wsdlDataArray["type"]);
   $wsdl->setUserName($wsdlDataArray["userName"]);
   $wsdl->setPassword($wsdlDataArray["password"]);

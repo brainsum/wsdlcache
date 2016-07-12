@@ -28,8 +28,8 @@ $app->get('/wsdl/name/{name}', array(
 ));
 
 $app->get('/log/{name}/download', array(
-  'as' => "getWSDLLogByName",
-  'uses' => "MainController@getWSDLLogByNameAction"
+  'as' => "downloadWSDLLogByName",
+  'uses' => "MainController@downloadWSDLLogByNameAction"
 ));
 
 $app->get('/wsdl/url/{url}', "MainController@getWSDLByUrlAction");

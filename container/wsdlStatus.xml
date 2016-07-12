@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content>
+  <wsdl>
+    <id>1</id>
+    <statusCode>401</statusCode>
+    <checkDate>2016-07-12 10:03:45</checkDate>
+    <modificationDate>2016-07-12 10:03:45</modificationDate>
+  </wsdl>
+  <wsdl>
+    <id>2</id>
+    <statusCode>200</statusCode>
+    <checkDate>2016-07-12 10:03:45</checkDate>
+    <modificationDate>2016-07-12 10:03:45</modificationDate>
+  </wsdl>
+  <wsdl>
+    <id>3</id>
+    <statusCode>200</statusCode>
+    <checkDate>2016-07-12 10:03:45</checkDate>
+    <modificationDate>2016-07-12 10:03:45</modificationDate>
+  </wsdl>
+  <wsdl>
+    <id>4</id>
+    <statusCode>200</statusCode>
+    <checkDate>2016-07-12 10:03:45</checkDate>
+    <modificationDate>2016-07-12 10:03:45</modificationDate>
+  </wsdl>
+</content>

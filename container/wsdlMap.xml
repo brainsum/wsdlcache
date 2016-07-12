@@ -8,6 +8,7 @@
 -->
 <content>
   <wsdl>
+    <id>1</id>
     <fileName>aegon.test.xml</fileName>
     <name>Aegon</name>
     <type>Test</type>
@@ -18,8 +19,9 @@
     <statusCode>401</statusCode>
     <checkDate>2016-07-12 09:09:31</checkDate>
     <modificationDate>2016-07-12 09:09:31</modificationDate>
-  <lastStatus>1</lastStatus></wsdl>
+  </wsdl>
   <wsdl>
+    <id>2</id>
     <fileName>kandh.casco.test.xml</fileName>
     <name>KandH-casco</name>
     <type>Test</type>
@@ -30,8 +32,9 @@
     <statusCode>200</statusCode>
     <checkDate>2016-07-11 12:38:33</checkDate>
     <modificationDate>2016-07-11 12:38:33</modificationDate>
-  <lastStatus>1</lastStatus></wsdl>
+  </wsdl>
   <wsdl>
+    <id>3</id>
     <fileName>kandh.kgfb.test.xml</fileName>
     <name>KandH-kgfb</name>
     <type>Test</type>
@@ -42,8 +45,9 @@
     <statusCode>200</statusCode>
     <checkDate>2016-07-11 12:50:47</checkDate>
     <modificationDate>2016-07-11 12:50:47</modificationDate>
-  <lastStatus>1</lastStatus></wsdl>
+  </wsdl>
   <wsdl>
+    <id>4</id>
     <fileName>generali.test.xml</fileName>
     <name>Generali</name>
     <type>Test</type>
@@ -54,5 +58,5 @@
     <statusCode>200</statusCode>
     <checkDate>2016-07-11 12:38:33</checkDate>
     <modificationDate>2016-07-11 12:38:33</modificationDate>
-  <lastStatus>1</lastStatus></wsdl>
+  </wsdl>
 </content>
