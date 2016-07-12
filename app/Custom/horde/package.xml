@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.5" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Horde_Text_Diff</name>
+ <channel>pear.horde.org</channel>
+ <extends>Text_Diff</extends>
+ <summary>Engine for performing and rendering text diffs</summary>
+ <description>A text-based diff engine and renderers for multiple diff output formats.</description>
+ <lead>
+  <name>Chuck Hagenbuch</name>
+  <user>chuck</user>
+  <email>chuck@horde.org</email>
+  <active>yes</active>
+ </lead>
+ <lead>
+  <name>Jan Schneider</name>
+  <user>jan</user>
+  <email>jan@horde.org</email>
+  <active>yes</active>
+ </lead>
+ <date>2016-02-02</date>
+ <time>10:53:09</time>
+ <version>
+  <release>2.1.2</release>
+  <api>1.1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+ <notes>
+* [jan] Mark PHP 7 as supported.
+ </notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <file baseinstalldir="/" md5sum="5fbdf5388905ed07026b876126aeee5a" name="doc/Horde/Text/Diff/examples/1.txt" role="doc" />
+   <file baseinstalldir="/" md5sum="011c4dad4506a4843ded1f12cab69909" name="doc/Horde/Text/Diff/examples/2.txt" role="doc" />
+   <file baseinstalldir="/" md5sum="366fd89fb77bbd6e49f554e33c2cc54d" name="doc/Horde/Text/Diff/examples/diff.php" role="doc" />
+   <file baseinstalldir="/" md5sum="321bf41f280cf805086dd5a720b37785" name="doc/Horde/Text/Diff/COPYING" role="doc" />
+   <file baseinstalldir="/" md5sum="19d426cd3f80dbd33cdf65a90bcfefcf" name="lib/Horde/Text/Diff/Engine/Native.php" role="php" />
+   <file baseinstalldir="/" md5sum="f78c82ae11017920e9306425e6c482ae" name="lib/Horde/Text/Diff/Engine/Shell.php" role="php" />
+   <file baseinstalldir="/" md5sum="d648e81526a0e10bbddc27271028665e" name="lib/Horde/Text/Diff/Engine/String.php" role="php" />
+   <file baseinstalldir="/" md5sum="00b1c6e2ea9ba006490ee43887345574" name="lib/Horde/Text/Diff/Engine/Xdiff.php" role="php" />
+   <file baseinstalldir="/" md5sum="8b6fb98fa98612b8772db069166cb82e" name="lib/Horde/Text/Diff/Op/Add.php" role="php" />
+   <file baseinstalldir="/" md5sum="5104f056809bb591ce410b3a50aa29c5" name="lib/Horde/Text/Diff/Op/Base.php" role="php" />
+   <file baseinstalldir="/" md5sum="7b4e311f7486e492ab1ffd31963a3ab1" name="lib/Horde/Text/Diff/Op/Change.php" role="php" />
+   <file baseinstalldir="/" md5sum="7d13ca59ab10466fd8bc63166455fdea" name="lib/Horde/Text/Diff/Op/Copy.php" role="php" />
+   <file baseinstalldir="/" md5sum="162645c11d7d140584efae4830531b45" name="lib/Horde/Text/Diff/Op/Delete.php" role="php" />
+   <file baseinstalldir="/" md5sum="1cc98a246697b80be79c7ec582fdf449" name="lib/Horde/Text/Diff/Renderer/Context.php" role="php" />
+   <file baseinstalldir="/" md5sum="2c584084ff7a624a40e7c12c35052413" name="lib/Horde/Text/Diff/Renderer/Inline.php" role="php" />
+   <file baseinstalldir="/" md5sum="aa7c25e87ca1e6f282f861261810b692" name="lib/Horde/Text/Diff/Renderer/Unified.php" role="php" />
+   <file baseinstalldir="/" md5sum="e41a331e33db94a452c3aba791eee811" name="lib/Horde/Text/Diff/ThreeWay/Op/Base.php" role="php" />
+   <file baseinstalldir="/" md5sum="cae14edda765d0462c2a18b5ee583e97" name="lib/Horde/Text/Diff/ThreeWay/Op/Copy.php" role="php" />
+   <file baseinstalldir="/" md5sum="efb958a07b05b38a22d1433153a0225d" name="lib/Horde/Text/Diff/ThreeWay/BlockBuilder.php" role="php" />
+   <file baseinstalldir="/" md5sum="6bc959c647308ba9624bfd7664215d3d" name="lib/Horde/Text/Diff/Exception.php" role="php" />
+   <file baseinstalldir="/" md5sum="760b2565c01ec75744234a34f4905189" name="lib/Horde/Text/Diff/Mapped.php" role="php" />
+   <file baseinstalldir="/" md5sum="d396d3e62f10944a162dbf01ffef6482" name="lib/Horde/Text/Diff/Renderer.php" role="php" />
+   <file baseinstalldir="/" md5sum="253e167a486d71fff57150c8aad2b61c" name="lib/Horde/Text/Diff/ThreeWay.php" role="php" />
+   <file baseinstalldir="/" md5sum="0d0b40f868f54c9d194411e2ba695857" name="lib/Horde/Text/Diff.php" role="php" />
+   <file baseinstalldir="/" md5sum="5fbdf5388905ed07026b876126aeee5a" name="test/Horde/Text/Diff/fixtures/1.txt" role="test" />
+   <file baseinstalldir="/" md5sum="011c4dad4506a4843ded1f12cab69909" name="test/Horde/Text/Diff/fixtures/2.txt" role="test" />
+   <file baseinstalldir="/" md5sum="308bfdcfb801c46d41d5d24b9fe003f4" name="test/Horde/Text/Diff/fixtures/3.txt" role="test" />
+   <file baseinstalldir="/" md5sum="76af0d7919f307177aef831e62e48640" name="test/Horde/Text/Diff/fixtures/4.txt" role="test" />
+   <file baseinstalldir="/" md5sum="ea33106f5d970bf5dc318b752c95e343" name="test/Horde/Text/Diff/fixtures/5.txt" role="test" />
+   <file baseinstalldir="/" md5sum="38f7931505de496d7312a830b2880f2c" name="test/Horde/Text/Diff/fixtures/6.txt" role="test" />
+   <file baseinstalldir="/" md5sum="ea33106f5d970bf5dc318b752c95e343" name="test/Horde/Text/Diff/fixtures/7.txt" role="test" />
+   <file baseinstalldir="/" md5sum="38f7931505de496d7312a830b2880f2c" name="test/Horde/Text/Diff/fixtures/8.txt" role="test" />
+   <file baseinstalldir="/" md5sum="aa40a9c049e89eb8c6f5b0f47e1aabd9" name="test/Horde/Text/Diff/fixtures/context.patch" role="test" />
+   <file baseinstalldir="/" md5sum="359096964862ff26e28cc44609ca237f" name="test/Horde/Text/Diff/fixtures/unified.patch" role="test" />
+   <file baseinstalldir="/" md5sum="9120df0f2584ce9f23bb9ea5935d54dc" name="test/Horde/Text/Diff/fixtures/unified2.patch" role="test" />
+   <file baseinstalldir="/" md5sum="8bc9518b9c0576806c82d9413489d099" name="test/Horde/Text/Diff/AllTests.php" role="test" />
+   <file baseinstalldir="/" md5sum="0a5018f0726d4673850fece3ad4d72c0" name="test/Horde/Text/Diff/bootstrap.php" role="test" />
+   <file baseinstalldir="/" md5sum="cb3d0a4a346c39bf7b0e8b7357decf61" name="test/Horde/Text/Diff/EngineTest.php" role="test" />
+   <file baseinstalldir="/" md5sum="090ce475b8a9773a240e954334988c75" name="test/Horde/Text/Diff/phpunit.xml" role="test" />
+   <file baseinstalldir="/" md5sum="de015ea650f2f76c9bdca8fdd9babb57" name="test/Horde/Text/Diff/RendererTest.php" role="test" />
+   <file baseinstalldir="/" md5sum="a0bb388d3ef7e31a950e9cbdbfc5a429" name="test/Horde/Text/Diff/ThreeWayTest.php" role="test" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.3.0</min>
+    <max>8.0.0alpha1</max>
+    <exclude>8.0.0alpha1</exclude>
+   </php>
+   <pearinstaller>
+    <min>1.7.0</min>
+   </pearinstaller>
+   <package>
+    <name>Horde_Exception</name>
+    <channel>pear.horde.org</channel>
+    <min>2.0.0</min>
+    <max>3.0.0alpha1</max>
+    <exclude>3.0.0alpha1</exclude>
+   </package>
+   <package>
+    <name>Horde_Util</name>
+    <channel>pear.horde.org</channel>
+    <min>2.0.0</min>
+    <max>3.0.0alpha1</max>
+    <exclude>3.0.0alpha1</exclude>
+   </package>
+  </required>
+  <optional>
+   <package>
+    <name>Horde_Test</name>
+    <channel>pear.horde.org</channel>
+    <min>2.1.0</min>
+    <max>3.0.0alpha1</max>
+    <exclude>3.0.0alpha1</exclude>
+   </package>
+   <package>
+    <name>xdiff</name>
+    <channel>pecl.php.net</channel>
+    <providesextension>xdiff</providesextension>
+   </package>
+  </optional>
+ </dependencies>
+ <phprelease>
+  <filelist>
+   <install as="COPYING" name="doc/Horde/Text/Diff/COPYING" />
+   <install as="examples/1.txt" name="doc/Horde/Text/Diff/examples/1.txt" />
+   <install as="examples/2.txt" name="doc/Horde/Text/Diff/examples/2.txt" />
+   <install as="examples/diff.php" name="doc/Horde/Text/Diff/examples/diff.php" />
+   <install as="Horde/Text/Diff.php" name="lib/Horde/Text/Diff.php" />
+   <install as="Horde/Text/Diff/Exception.php" name="lib/Horde/Text/Diff/Exception.php" />
+   <install as="Horde/Text/Diff/Mapped.php" name="lib/Horde/Text/Diff/Mapped.php" />
+   <install as="Horde/Text/Diff/Renderer.php" name="lib/Horde/Text/Diff/Renderer.php" />
+   <install as="Horde/Text/Diff/ThreeWay.php" name="lib/Horde/Text/Diff/ThreeWay.php" />
+   <install as="Horde/Text/Diff/Engine/Native.php" name="lib/Horde/Text/Diff/Engine/Native.php" />
+   <install as="Horde/Text/Diff/Engine/Shell.php" name="lib/Horde/Text/Diff/Engine/Shell.php" />
+   <install as="Horde/Text/Diff/Engine/String.php" name="lib/Horde/Text/Diff/Engine/String.php" />
+   <install as="Horde/Text/Diff/Engine/Xdiff.php" name="lib/Horde/Text/Diff/Engine/Xdiff.php" />
+   <install as="Horde/Text/Diff/Op/Add.php" name="lib/Horde/Text/Diff/Op/Add.php" />
+   <install as="Horde/Text/Diff/Op/Base.php" name="lib/Horde/Text/Diff/Op/Base.php" />
+   <install as="Horde/Text/Diff/Op/Change.php" name="lib/Horde/Text/Diff/Op/Change.php" />
+   <install as="Horde/Text/Diff/Op/Copy.php" name="lib/Horde/Text/Diff/Op/Copy.php" />
+   <install as="Horde/Text/Diff/Op/Delete.php" name="lib/Horde/Text/Diff/Op/Delete.php" />
+   <install as="Horde/Text/Diff/Renderer/Context.php" name="lib/Horde/Text/Diff/Renderer/Context.php" />
+   <install as="Horde/Text/Diff/Renderer/Inline.php" name="lib/Horde/Text/Diff/Renderer/Inline.php" />
+   <install as="Horde/Text/Diff/Renderer/Unified.php" name="lib/Horde/Text/Diff/Renderer/Unified.php" />
+   <install as="Horde/Text/Diff/ThreeWay/BlockBuilder.php" name="lib/Horde/Text/Diff/ThreeWay/BlockBuilder.php" />
+   <install as="Horde/Text/Diff/ThreeWay/Op/Base.php" name="lib/Horde/Text/Diff/ThreeWay/Op/Base.php" />
+   <install as="Horde/Text/Diff/ThreeWay/Op/Copy.php" name="lib/Horde/Text/Diff/ThreeWay/Op/Copy.php" />
+   <install as="Horde/Text/Diff/AllTests.php" name="test/Horde/Text/Diff/AllTests.php" />
+   <install as="Horde/Text/Diff/bootstrap.php" name="test/Horde/Text/Diff/bootstrap.php" />
+   <install as="Horde/Text/Diff/EngineTest.php" name="test/Horde/Text/Diff/EngineTest.php" />
+   <install as="Horde/Text/Diff/phpunit.xml" name="test/Horde/Text/Diff/phpunit.xml" />
+   <install as="Horde/Text/Diff/RendererTest.php" name="test/Horde/Text/Diff/RendererTest.php" />
+   <install as="Horde/Text/Diff/ThreeWayTest.php" name="test/Horde/Text/Diff/ThreeWayTest.php" />
+   <install as="Horde/Text/Diff/fixtures/1.txt" name="test/Horde/Text/Diff/fixtures/1.txt" />
+   <install as="Horde/Text/Diff/fixtures/2.txt" name="test/Horde/Text/Diff/fixtures/2.txt" />
+   <install as="Horde/Text/Diff/fixtures/3.txt" name="test/Horde/Text/Diff/fixtures/3.txt" />
+   <install as="Horde/Text/Diff/fixtures/4.txt" name="test/Horde/Text/Diff/fixtures/4.txt" />
+   <install as="Horde/Text/Diff/fixtures/5.txt" name="test/Horde/Text/Diff/fixtures/5.txt" />
+   <install as="Horde/Text/Diff/fixtures/6.txt" name="test/Horde/Text/Diff/fixtures/6.txt" />
+   <install as="Horde/Text/Diff/fixtures/7.txt" name="test/Horde/Text/Diff/fixtures/7.txt" />
+   <install as="Horde/Text/Diff/fixtures/8.txt" name="test/Horde/Text/Diff/fixtures/8.txt" />
+   <install as="Horde/Text/Diff/fixtures/context.patch" name="test/Horde/Text/Diff/fixtures/context.patch" />
+   <install as="Horde/Text/Diff/fixtures/unified.patch" name="test/Horde/Text/Diff/fixtures/unified.patch" />
+   <install as="Horde/Text/Diff/fixtures/unified2.patch" name="test/Horde/Text/Diff/fixtures/unified2.patch" />
+  </filelist>
+ </phprelease>
+ <changelog>
+  <release>
+   <version>
+    <release>1.0.0alpha1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2011-03-08</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* First alpha release for Horde 4.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0alpha2</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2011-03-09</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* Fix package layout.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0beta1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2011-03-16</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* Convert to PHP 5 and Horde 4 package layout.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0RC1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2011-03-22</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* First release candidate for Horde 4.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0RC2</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2011-03-29</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* Second release candidate for Horde 4.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-04-06</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* First stable release for Horde 4.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-04-20</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* [jan] Fix creating temporary files with open_basedir restrictions.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.2</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-10-18</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* [jan] Fix class names in Horde_Text_Diff_ThreeWay merger (Bug #10548).
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.0alpha1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-07-06</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* First alpha release for Horde 5.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.0beta1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-07-19</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* First beta release for Horde 5.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-10-30</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* First stable release for Horde 5.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-11-19</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* [mms] Use new Horde_Test layout.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.0.2</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2013-03-05</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* [jan] Improve performance.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.1.0</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2014-06-17</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* [jan] Fixed inline renderer breaking line breaks. (Petr Kalivoda &lt;petr.kalivoda@gmail.com&gt;).
+* [jan] Assume Unicode input when splitting on character level (Petr Kalivoda &lt;petr.kalivoda@gmail.com&gt;).
+* [jan] Fix signature of Horde_Text_Diff_Mapped constructor (BC break!) (Bug #13253).
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.1.1</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2015-01-09</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* [jan] Improve PSR-2 compatibility.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>2.1.2</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2016-02-02</date>
+   <license uri="http://www.horde.org/licenses/lgpl21">LGPL-2.1</license>
+   <notes>
+* [jan] Mark PHP 7 as supported.
+   </notes>
+  </release>
+ </changelog>
+</package>

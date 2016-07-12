@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Models as Models;
 use App\Custom as Custom;
+use App\Custom\Diff as Diff;
 
 class MainController extends BaseController {
 
@@ -68,6 +69,32 @@ class MainController extends BaseController {
    * @return \Illuminate\View\View
    */
   public function sandboxAction() {
+    $oldFile = app()->basePath() . "/container/wsdlMap.xml";
+    $newFile = app()->basePath() . "/container/wsdlStatus.xml";
+    dump($oldFile);
+    dump($newFile);
+
+    // @todo: https://github.com/chrisboulton/php-diff
+    // @todo: https://github.com/sebastianbergmann/diff
+
+    $myDiff = Diff::compareFiles($oldFile, $newFile);
+    dump(Diff::toString($myDiff));
+
+
+/*
+    $diffA = new Custom\Diff();
+    $diffC = $diffA->compareFiles($oldFile, $newFile);
+
+    dump($diffC);
+
+    $diff = Custom\Diff::compareFiles($oldFile, $newFile);
+
+    dump($diff);
+*/
+    return view("debug");
+  }
+
+  public function placeholder() {
     try {
       /** @var \SimpleXMLElement $mapObject */
       $mapObject = Custom\getWsdlMapAsSimpleXML();
@@ -97,7 +124,8 @@ class MainController extends BaseController {
 
     dump(Custom\getWsdlInfoByName("Aegon"));
 
-    return view("debug");
+    dump("--------------------------");
+
   }
 
 }

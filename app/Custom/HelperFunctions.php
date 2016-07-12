@@ -6,11 +6,6 @@
  * Time: 14:47
  */
 
-/**
- * @todo: Parse ok, but we need to be able to update the map.
- * @todo: Maybe add a DownloadByWsdlObject function. (for easier persist)
- */
-
 namespace App\Custom;
 
 use Doctrine\Instantiator\Exception\UnexpectedValueException;
@@ -94,7 +89,6 @@ function getWsdlMapAsArray($pathFromRoot = "container", $mapFile = "wsdlMap.xml"
  * @return \SimpleXMLElement
  */
 function getWsdlMapAsSimpleXML($pathFromRoot = "container", $file = "wsdlStatus.xml") {
-  // @todo: wsdlStatus
   $basePath = app()->basePath();
 
   $mapObject = simplexml_load_file("$basePath/$pathFromRoot/$file");
