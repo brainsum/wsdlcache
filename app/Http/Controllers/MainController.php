@@ -71,30 +71,19 @@ class MainController extends BaseController {
   public function sandboxAction() {
     $oldFile = file_get_contents(app()->basePath() . "/container/wsdlMap.xml");
     $newFile = file_get_contents(app()->basePath() . "/container/wsdlStatus.xml");
+    /*
     dump($oldFile);
     dump($newFile);
+    */
 
     // @todo: https://github.com/chrisboulton/php-diff
-/*
-    $myDiff = Diff::compareFiles($oldFile, $newFile);
-    dump(Diff::toString($myDiff));
-
-*/
 
 
     $differ = new Diff\Differ;
-    dump($differ->diff($oldFile, $newFile));
+    $fileDiff = $differ->diff($oldFile, $newFile);
 
-/*
-    $diffA = new Custom\Diff();
-    $diffC = $diffA->compareFiles($oldFile, $newFile);
+    dump($fileDiff);
 
-    dump($diffC);
-
-    $diff = Custom\Diff::compareFiles($oldFile, $newFile);
-
-    dump($diff);
-*/
     return view("debug");
   }
 
