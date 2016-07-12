@@ -79,7 +79,7 @@ class MainController extends BaseController {
     // @todo: https://github.com/chrisboulton/php-diff
 
 
-    $differ = new Diff\Differ;
+    $differ = new Custom\CustomDiffer;
     $fileDiff = $differ->diff($oldFile, $newFile);
 
     dump($fileDiff);

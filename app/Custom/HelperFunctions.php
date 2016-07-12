@@ -272,13 +272,14 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   $APPENDED_URL = TRUE;
   $DEBUG_MODE = FALSE;
 
-  $basePath = app()->basePath();
-  $cachePath = "container/WSDL/cache";
-  $logPath = "container/WSDL/logs";
+  $basePath = app()->basePath() . "/container/WSDL";
+  $cachePath = "$basePath/cache";
+  $tmpPath = "$basePath/tmp";
+  $logPath = "$basePath/logs";
 
   $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
-  $fp = fopen("$basePath/$cachePath/" . $WSDL->getFilename(), "w+");
-  $lp = fopen("$basePath/$logPath/" . $WSDL->getFilename() . "-log.txt", "w+");
+  $fp = fopen("$tmpPath/" . $WSDL->getFilename(), "w+");
+  $lp = fopen("$logPath/" . $WSDL->getFilename() . "-log.txt", "w+");
 
   $headers = array();
 
@@ -318,6 +319,18 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   }
 
   print "<pre>" . (($result == TRUE) ? "SUCCESS" : "ERROR") . "</pre>";
+
+  /**
+   * Get diff.
+   */
+  $oldFile = file_get_contents("$tmpPath/" . $WSDL->getFilename());
+  $newFile = file_get_contents("$cachePath/" . $WSDL->getFilename());
+
+  $differ = new CustomDiffer;
+  $fileDiff = $differ->diff($oldFile, $newFile);
+
+  dump($fileDiff);
+  dump("Diffcount is: " . $differ->getDiffCount());
 
   return $responseCode;
 }
