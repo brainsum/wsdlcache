@@ -217,6 +217,9 @@ function downloadWsdlFileByName($WSDL_name, $filename = null) {
       $mapObject->wsdl[$i]->statusCode = $httpStatus;
       $mapObject->wsdl[$i]->checkDate = date("Y-m-d H:i:s");
       $mapObject->wsdl[$i]->modificationDate = date("Y-m-d H:i:s");
+      // @todo: only updated this if there has been a diff between wsdl and cache
+      // @todo: diff feature
+      //      save WSDL as {{name}}-tmp, diff with {{name}} if same, skip else update and email
 
       break;
     }
