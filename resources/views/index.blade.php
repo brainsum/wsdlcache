@@ -32,7 +32,7 @@
               <th>Status</th>
               <th>Last Check Date</th>
               <th>Last Modification Date</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>

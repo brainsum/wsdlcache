@@ -190,7 +190,7 @@ class WSDL {
   public function setStatusCode($statusCode) {
     $this->statusCode = $statusCode;
 
-    $this->available = ($this->statusCode === 200) ? true : false;
+    $this->available = ((int) $this->statusCode < 400) ? true : false;
   }
 
   /**
