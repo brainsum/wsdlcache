@@ -16,9 +16,6 @@
     <userName>null</userName>
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
-    <statusCode>401</statusCode>
-    <checkDate>2016-07-12 09:09:31</checkDate>
-    <modificationDate>2016-07-12 09:09:31</modificationDate>
   </wsdl>
   <wsdl>
     <id>2</id>
@@ -29,9 +26,6 @@
     <userName>soron_test</userName>
     <password>Gonta72</password>
     <curlSslVersion>4</curlSslVersion>
-    <statusCode>200</statusCode>
-    <checkDate>2016-07-11 12:38:33</checkDate>
-    <modificationDate>2016-07-11 12:38:33</modificationDate>
   </wsdl>
   <wsdl>
     <id>3</id>
@@ -42,9 +36,6 @@
     <userName>soron_test</userName>
     <password>Gonta72</password>
     <curlSslVersion>4</curlSslVersion>
-    <statusCode>200</statusCode>
-    <checkDate>2016-07-11 12:50:47</checkDate>
-    <modificationDate>2016-07-11 12:50:47</modificationDate>
   </wsdl>
   <wsdl>
     <id>4</id>
@@ -55,8 +46,5 @@
     <userName>null</userName>
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
-    <statusCode>200</statusCode>
-    <checkDate>2016-07-11 12:38:33</checkDate>
-    <modificationDate>2016-07-11 12:38:33</modificationDate>
   </wsdl>
 </content>
