@@ -40,4 +40,4 @@
 <soap:address location="https://ws.atollgroup.eu/secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/CascoCalculatorService"/>
 </port>
 </service>
-</definitions>
+</definitions><!-- Test -->

@@ -289,6 +289,7 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
     curl_setopt($ch, CURLOPT_USERPWD, $WSDL->combinedUserPass($PASS_AS_ENCODED));
   }
 
+  // @todo: skip $fp write until no diff has been detected, so just in-memory iff, etc.
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   curl_setopt($ch, CURLOPT_FILE, $fp);
   curl_setopt($ch, CURLOPT_STDERR, $lp);
@@ -328,6 +329,20 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
 
   $differ = new CustomDiffer;
   $fileDiff = $differ->diff($oldFile, $newFile);
+
+  if (0 === $differ->getDiffCount()) {
+    try {
+      unlink("$tmpPath/" . $WSDL->getFilename());
+    } catch (\Exception $exc) {
+      dump($exc->getMessage());
+    }
+  } else {
+    // @todo: send mail with diff
+    dump("FILE CHANGED");
+    dump($fileDiff);
+    copy("$tmpPath/" . $WSDL->getFilename(), "$cachePath/" . $WSDL->getFilename());
+    unlink("$tmpPath/" . $WSDL->getFilename());
+  }
 
   dump($fileDiff);
   dump("Diffcount is: " . $differ->getDiffCount());

@@ -1,7 +1,7 @@
 * Hostname was found in DNS cache
 * Hostname in DNS cache was stale, zapped
 *   Trying 89.135.105.58...
-* Connected to ws.atollgroup.eu (89.135.105.58) port 443 (#16)
+* Connected to ws.atollgroup.eu (89.135.105.58) port 443 (#14)
 * successfully set certificate verify locations:
 *   CAfile: none
   CApath: /etc/ssl/certs
@@ -21,10 +21,10 @@ Authorization: Basic c29yb25fdGVzdDpHb250YTcy
 < HTTP/1.1 200 OK
 < accept-ranges: bytes
 < content-length: 2761
-< date: Tue, 12 Jul 2016 15:37:43 GMT
+< date: Tue, 12 Jul 2016 15:49:46 GMT
 < last-modified: Thu, 23 Jun 2016 19:38:24 GMT
 < p3p: CP="NON CUR OTPi OUR NOR UNI"
 < x-powered-by: Servlet/3.0 JSP/2.2
-< Set-Cookie: PD-S-SESSION-ID=2_bQog4zL9cWcgHu9v0iUrBODFFF0SXErs7P0w9j225J8A1tuz; Path=/; Secure
+< Set-Cookie: PD-S-SESSION-ID=2_kFysKhENOkRGCz5hOXrtV6S-E7SHOTWwiTyuHMVafDJAkCv-; Path=/; Secure
 < 
-* Closing connection 16
+* Closing connection 14
