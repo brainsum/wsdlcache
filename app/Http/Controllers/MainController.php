@@ -11,8 +11,7 @@ namespace App\Http\Controllers;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Models as Models;
 use App\Custom as Custom;
-use App\Custom\Diff as Diff;
-use SebastianBergmann\Diff\Differ;
+use SebastianBergmann\Diff;
 
 class MainController extends BaseController {
 
@@ -70,8 +69,8 @@ class MainController extends BaseController {
    * @return \Illuminate\View\View
    */
   public function sandboxAction() {
-    $oldFile = app()->basePath() . "/container/wsdlMap.xml";
-    $newFile = app()->basePath() . "/container/wsdlStatus.xml";
+    $oldFile = file_get_contents(app()->basePath() . "/container/wsdlMap.xml");
+    $newFile = file_get_contents(app()->basePath() . "/container/wsdlStatus.xml");
     dump($oldFile);
     dump($newFile);
 
@@ -83,9 +82,8 @@ class MainController extends BaseController {
 */
 
 
-
-    $differ = new Differ;
-    dump($differ->diff('foo', 'bar'));
+    $differ = new Diff\Differ;
+    dump($differ->diff($oldFile, $newFile));
 
 /*
     $diffA = new Custom\Diff();
