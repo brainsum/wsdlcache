@@ -54,8 +54,10 @@
                   <?php $tdClass = "danger"; $spanClass = "remove"; ?>
                 @endif
                 <td class="{{ $tdClass }}" title="Status code: {{ $wsdl->getStatusCode() }}">
+                  <a target="_blank" href="https://http.cat/{{ $wsdl->getStatusCode() }}">
                   <span style="font-size:1.8em;" class="glyphicon glyphicon-{{ $spanClass }}-circle"></span>
                   <span>{{ $wsdl->getStatusCode() }}</span>
+                  </a>
                 </td>
                 <td>{{ $wsdl->getLastCheck() }}</td>
                 <td>{{ $wsdl->getLastModification() }}</td>
