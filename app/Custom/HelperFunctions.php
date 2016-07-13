@@ -226,7 +226,7 @@ function downloadWsdlFileByName($WSDL_name, $filename = null) {
     $WSDL->setFilename($filename);
   }
 
-  $httpStatus = downloadWsdlFileByUrlWithCurl($WSDL);
+  $httpStatus = checkAndUpdateWSDLFileWithCurl($WSDL);
 }
 
 /**
@@ -235,7 +235,7 @@ function downloadWsdlFileByName($WSDL_name, $filename = null) {
  * @param WSDL $WSDL
  * @return Int $responseCode
  */
-function downloadWsdlFileByUrlWithCurl($WSDL) {
+function checkAndUpdateWSDLFileWithCurl($WSDL) {
   /*
    * @todo: logging at the level of HTTP request, SSL handshake, etc.
    *
@@ -319,6 +319,7 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
     if (0 < $differ->getDiffCount()) {
       // So we save the new file in the cache
       // @todo: maybe check response codes, etc, so we don't overwrite the cache with smth like 401
+      dump($cachedWsdlPath);
       $newCache = fopen($cachedWsdlPath, "w+");
       fwrite($newCache, $result);
       fclose($newCache);

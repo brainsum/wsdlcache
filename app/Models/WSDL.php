@@ -183,6 +183,10 @@ class WSDL {
   }
 
   public function getFilename() {
+    if (empty($this->filename)) {
+      $this->generateFileName();
+    }
+
     return $this->filename;
   }
 

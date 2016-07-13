@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
+use App\Custom;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,6 +25,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        $schedule->call($this->wsdlUpdateJob())->everyFiveMinutes();
+    }
+
+    private function wsdlUpdateJob() {
+        $fullMap = Custom\getWsdlMapAsArray();
+
+        foreach ($fullMap as $WSDL) {
+            Custom\checkAndUpdateWSDLFileWithCurl($WSDL);
+        }
+
+        return true;
     }
 }

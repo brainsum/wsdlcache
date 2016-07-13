@@ -58,7 +58,11 @@ class MainController extends BaseController {
    * @return \Illuminate\View\View
    */
   public function sandboxAction() {
+    $fullMap = Custom\getWsdlMapAsArray();
 
+    foreach ($fullMap as $WSDL) {
+      Custom\checkAndUpdateWSDLFileWithCurl($WSDL);
+    }
 
     return view("debug");
   }

@@ -33,3 +33,9 @@ Catalog
 ### Used dependencies
 * laravel-soap: https://github.com/artisaninweb/laravel-soap
 * Nathanmac parser: https://github.com/nathanmac/Parser
+
+### Cron job
+* crontab -e
+* Add this to crontab: " * * * * * php /path/to/project-folder/artisan schedule:run >> /dev/null 2>&1 "
+* Note: this runs every minute, use the schedule to config each command separately.
+* Note2: we could also refine this, but task-based intervals are ok

@@ -1,6 +1,6 @@
 * Hostname was NOT found in DNS cache
 *   Trying 195.228.142.58...
-* Connected to tesztfe64.aegon.hu (195.228.142.58) port 443 (#4)
+* Connected to tesztfe64.aegon.hu (195.228.142.58) port 443 (#0)
 * successfully set certificate verify locations:
 *   CAfile: none
   CApath: /etc/ssl/certs
@@ -18,7 +18,7 @@ Accept: */*
 Authorization: Basic MDAwMDkyMjk5NTpQa3I5MDAyMjk5NQ==
 
 < HTTP/1.1 200 OK
-< Date: Wed, 13 Jul 2016 11:56:43 GMT
+< Date: Wed, 13 Jul 2016 15:05:01 GMT
 * Server Microsoft-IIS/7.5 is not blacklisted
 < Server: Microsoft-IIS/7.5
 < Cache-Control: private, max-age=0
@@ -29,4 +29,4 @@ Authorization: Basic MDAwMDkyMjk5NTpQa3I5MDAyMjk5NQ==
 < Via: 1.1 tesztfe64.aegon.hu
 < Vary: Accept-Encoding
 < 
-* Closing connection 4
+* Closing connection 0
