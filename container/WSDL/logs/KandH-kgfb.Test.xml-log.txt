@@ -1,0 +1,30 @@
+* Hostname was found in DNS cache
+* Hostname in DNS cache was stale, zapped
+*   Trying 89.135.105.58...
+* Connected to ws.atollgroup.eu (89.135.105.58) port 443 (#3)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* SSL connection using AES256-SHA
+* Server certificate:
+* 	 subject: C=HU; ST=Budapest; L=Budapest; O=Atollgroup; OU=Atollgroup; CN=ws.atollgroup.eu
+* 	 start date: 2011-09-16 08:33:00 GMT
+* 	 expire date: 2021-09-13 08:33:00 GMT
+* 	 common name: ws.atollgroup.eu (matched)
+* 	 issuer: C=HU; ST=Budapest; L=Budapest; O=Atollgroup; OU=Atollgroup; CN=www.atollgroup.eu; emailAddress=support@atollgroup.eu
+* 	 SSL certificate verify result: self signed certificate in certificate chain (19), continuing anyway.
+> GET /secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/GFBCalculatorBeanService.xml?WSDL HTTP/1.1
+Host: ws.atollgroup.eu
+Accept: */*
+Authorization: Basic c29yb25fdGVzdDpHb250YTcy
+
+< HTTP/1.1 200 OK
+< accept-ranges: bytes
+< date: Wed, 13 Jul 2016 09:45:11 GMT
+< last-modified: Thu, 23 Jun 2016 19:38:24 GMT
+< p3p: CP="NON CUR OTPi OUR NOR UNI"
+< transfer-encoding: chunked
+< x-powered-by: Servlet/3.0 JSP/2.2
+< Set-Cookie: PD-S-SESSION-ID=2_vPJPEXMHXsfcJ8ROObedJF3s3DeJpxs7CJho9PHEriIPAJAy; Path=/; Secure
+< 
+* Closing connection 3

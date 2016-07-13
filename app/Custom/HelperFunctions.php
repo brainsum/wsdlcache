@@ -274,15 +274,16 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
 
   $basePath = app()->basePath() . "/container/WSDL";
   $cachePath = "$basePath/cache";
-  $tmpPath = "$basePath/tmp";
+  //$tmpPath = "$basePath/tmp";
   $logPath = "$basePath/logs";
 
-  $tmpWsdlPath = "$tmpPath/" . $WSDL->getFilename();
+  //$tmpWsdlPath = "$tmpPath/" . $WSDL->getFilename();
   $cachedWsdlPath = "$cachePath/" . $WSDL->getFilename();
+  $logWsdlPath = $logPath . "/" . $WSDL->getFilename() . "-log.txt";
 
   $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
-  $fp = fopen($tmpWsdlPath, "w+");
-  $lp = fopen($cachedWsdlPath . "-log.txt", "w+");
+  // $fp = fopen($tmpWsdlPath, "w+");
+  $lp = fopen($logWsdlPath, "w+");
 
   $headers = array();
 
@@ -294,7 +295,7 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
 
   // @todo: skip $fp write until no diff has been detected, so just in-memory iff, etc.
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-  curl_setopt($ch, CURLOPT_FILE, $fp);
+  // curl_setopt($ch, CURLOPT_FILE, $fp);
   curl_setopt($ch, CURLOPT_STDERR, $lp);
   curl_setopt($ch, CURLOPT_URL, $WSDL->getWsdl($APPENDED_URL));
   curl_setopt($ch, CURLOPT_VERBOSE, true);
@@ -304,25 +305,17 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
   curl_setopt($ch, CURLOPT_SSLVERSION, $WSDL->getCurlSslVersion());
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Needed!! Mb for k&h only
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
   if (TRUE === $DEBUG_MODE) {
     curl_setopt($ch, CURLOPT_CERTINFO, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HEADER, true);
   }
 
   $result = curl_exec($ch);
   $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-  dump($responseCode);
-  // dump($ch);
   curl_close($ch);
-  fclose($fp);
-
-  if (TRUE === $DEBUG_MODE) {
-    print "<pre>$result</pre>";
-  }
-
-  print "<pre>" . (($result == TRUE) ? "SUCCESS" : "ERROR") . "</pre>";
+  // fclose($fp);
 
   /**
    * Get diff.
@@ -333,31 +326,31 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
     // Try to get the old file.
     $oldFile = file_get_contents($cachedWsdlPath);
   } catch (\Exception $exc) {
-    // @todo: save response to cache
+    $newCache = fopen($cachedWsdlPath, "w+");
+    fwrite($newCache, $result);
+    fclose($newCache);
+
     dump("New WSDL file!");
     $wsdlIsAlreadyInCache = FALSE;
-    moveFile($tmpWsdlPath, $cachedWsdlPath); // @todo: check if tmp is available
   }
 
   if (TRUE === $wsdlIsAlreadyInCache)  {
-    $newFile = file_get_contents($tmpWsdlPath); // @todo: check if tmp is available
+    // $oldFile = file_get_contents($cachedWsdlPath);
 
     $differ = new CustomDiffer;
     $differ->setOldFilePath($cachedWsdlPath);
-    $differ->setNewFilePath($tmpWsdlPath);
-    $fileDiff = $differ->diff($oldFile, $newFile);
+    $differ->setNewFilePath("File from remote server");
+    $fileDiff = $differ->diff($oldFile, $result);
 
-    if (0 === $differ->getDiffCount()) {
-      try {
-        unlink($tmpWsdlPath);
-      } catch (\Exception $exc) {
-        dump($exc->getMessage());
-      }
-    } else {
-      // @todo: send mail with diff
+    if (0 < $differ->getDiffCount()) {
       dump("FILE CHANGED");
       dump($fileDiff);
-      moveFile($tmpWsdlPath, $cachedWsdlPath);
+
+      $newCache = fopen($cachedWsdlPath, "w+");
+      fwrite($newCache, $result);
+      fclose($newCache);
+
+      // @todo: send mail with diff
     }
 
     dump("Diffcount is: " . $differ->getDiffCount());
@@ -366,11 +359,6 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
 
   return $responseCode;
 }
-
-function moveFile($from, $to) {
-  copy($from, $to);
-  unlink($from);
-};
 
 function getWsdlContentByName($WSDL_name, $filename = null) {
   $WSDL = getWsdlInfoByName($WSDL_name);
