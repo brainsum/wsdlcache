@@ -88,7 +88,7 @@ function getWsdlMapAsArray($pathFromRoot = "container", $mapFile = "wsdlMap.xml"
  * @param string $file
  * @return \SimpleXMLElement
  */
-function getWsdlMapAsSimpleXML($pathFromRoot = "container", $file = "wsdlStatus.xml") {
+function getXMLAsSimpleXML($pathFromRoot = "container", $file = "wsdlStatus.xml") {
   $basePath = app()->basePath();
 
   $mapObject = simplexml_load_file("$basePath/$pathFromRoot/$file");
@@ -110,7 +110,6 @@ function getWsdlMapAsSimpleXML($pathFromRoot = "container", $file = "wsdlStatus.
  */
 function updateWsdlMap(\SimpleXMLElement $mapObject, $pathFromRoot = "container", $file = "wsdlStatus.xml") {
   $basePath = app()->basePath();
-
   try {
     $mapObject->saveXML("$basePath/$pathFromRoot/$file");
   } catch (\Exception $exc) {
@@ -228,29 +227,6 @@ function downloadWsdlFileByName($WSDL_name, $filename = null) {
   }
 
   $httpStatus = downloadWsdlFileByUrlWithCurl($WSDL);
-
-  try {
-    /** @var \SimpleXMLElement $mapObject */
-    $mapObject = getWsdlMapAsSimpleXML();
-  } catch (\Dotenv\Exception\InvalidFileException $exc) {
-    dump($exc->getMessage());
-    return;
-  }
-
-  for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
-    if ((string) $mapObject->wsdl[$i]->name == $WSDL->getName()) {
-      $mapObject->wsdl[$i]->statusCode = $httpStatus;
-      $mapObject->wsdl[$i]->checkDate = date("Y-m-d H:i:s");
-      $mapObject->wsdl[$i]->modificationDate = date("Y-m-d H:i:s");
-      // @todo: only updated this if there has been a diff between wsdl and cache
-      // @todo: diff feature
-      //      save WSDL as {{name}}-tmp, diff with {{name}} if same, skip else update and email
-
-      break;
-    }
-  }
-
-  updateWsdlMap($mapObject);
 }
 
 /**
@@ -266,7 +242,6 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
    * @try http://stackoverflow.com/questions/17092677/how-to-get-info-on-sent-php-curl-request
    * @try http://stackoverflow.com/questions/3757071/php-debugging-curl
    */
-  dump($WSDL);
 
   $PASS_AS_ENCODED = TRUE;
   $APPENDED_URL = TRUE;
@@ -327,11 +302,14 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
     fwrite($newCache, $result);
     fclose($newCache);
 
+    // Diffcount is 1 (> 0) so we set the modification date as well for new files.
+    wsdlStatusUpdateWrapper($WSDL->getId(), 1, $responseCode);
+
     $wsdlIsAlreadyInCache = FALSE;
   }
 
   // When the file already exists in the cache.
-  if (TRUE === $wsdlIsAlreadyInCache)  {
+  if (TRUE === $wsdlIsAlreadyInCache) {
     $differ = new CustomDiffer;
     $differ->setOldFilePath($cachedWsdlPath);
     $differ->setNewFilePath("File from remote server");
@@ -348,60 +326,37 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
       // We also have to send a mail about the differences.
       // @todo: send mail with diff
     }
-  }
 
+    wsdlStatusUpdateWrapper($WSDL->getId(), $differ->getDiffCount(), $responseCode);
+  }
   return $responseCode;
 }
 
-function getWsdlContentByName($WSDL_name, $filename = null) {
-  $WSDL = getWsdlInfoByName($WSDL_name);
+function wsdlStatusUpdateWrapper($wsdlId, $responseCode, $diffCount) {
+  try {
+    /** @var \SimpleXMLElement $mapObject */
+    $mapObject = getXMLAsSimpleXML();
+  } catch (\Dotenv\Exception\InvalidFileException $exc) {
+    dump($exc->getMessage());
+    return;
+  }
 
-  if ($WSDL !== false) {
-    $finalFileName = empty($filename) ? $WSDL->generateFileName() : $filename;
+  for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
+    if ((string) $mapObject->wsdl[$i]->id == $wsdlId) {
+      $mapObject->wsdl[$i]->statusCode = $responseCode;
+      $mapObject->wsdl[$i]->checkDate = date("Y-m-d H:i:s");
 
-    downloadWsdlFileByUrlWithFileGetContents($WSDL->getWsdl(), $finalFileName);
-  } else {
-    throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
+      if (0 < $diffCount) {
+        $mapObject->wsdl[$i]->modificationDate = date("Y-m-d H:i:s");
+      }
+
+      break;
+    }
+  }
+
+  if (FALSE === updateWsdlMap($mapObject)) {
+    dump("update failed");
   }
 }
 
-function downloadWsdlFileByUrlWithFileGetContents($WSDL_url, $filename) {
-  $context = stream_context_create(array(
-    'ssl' => array(
-      // set some SSL/TLS specific options
-      'verify_peer' => false,
-      'verify_peer_name' => false,
-      'allow_self_signed' => true
-    )
-  ));
 
-  $data = file_get_contents($WSDL_url, null, $context);
-
-  if ($data === FALSE) {
-    throw new NotFoundResourceException("$WSDL_url failed to open.");
-  }
-
-  $basePath = app()->basePath();
-  $cachePath = "container/WSDL/cache";
-
-  file_put_contents("$basePath/$cachePath/$filename", $data);
-}
-
-function wgetWsdlFileByName($WSDL_name, $filename = null) {
-  $WSDL = getWsdlInfoByName($WSDL_name);
-
-  if ($WSDL !== false) {
-    $finalFileName = empty($filename) ? $WSDL->generateFileName() : $filename;
-
-    downloadWsdlFileByUrlWithWget($WSDL->getWsdl(), $finalFileName);
-  } else {
-    throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
-  }
-}
-
-function downloadWsdlFileByUrlWithWget($WSDL_url, $filename) {
-  exec("wget -S $WSDL_url", $data, $response);
-
-  dump($response);
-  dump($data);
-}

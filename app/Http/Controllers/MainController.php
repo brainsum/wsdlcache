@@ -39,19 +39,8 @@ class MainController extends BaseController {
     $WSDL = Custom\getWsdlInfoByName($WSDL_name);
     dump($WSDL);
 
-    $mode = "curl";
-
     try {
-      switch ($mode) {
-        case "get_content":
-          Custom\getWsdlContentByName($WSDL_name);
-          break;
-        case "wget":
-          Custom\wgetWsdlFileByName($WSDL_name);
-          break;
-        default: // When mode is curl
-          Custom\downloadWsdlFileByName($WSDL_name);
-      }
+      Custom\downloadWsdlFileByName($WSDL_name);
     } catch(\Exception $exc) {
       dump($exc);
     }
@@ -69,56 +58,8 @@ class MainController extends BaseController {
    * @return \Illuminate\View\View
    */
   public function sandboxAction() {
-    $oldFile = file_get_contents(app()->basePath() . "/container/wsdlMap.xml");
-    $newFile = file_get_contents(app()->basePath() . "/container/wsdlStatus.xml");
-    /*
-    dump($oldFile);
-    dump($newFile);
-    */
 
-    // @todo: https://github.com/chrisboulton/php-diff
-
-
-    $differ = new Custom\CustomDiffer;
-    $fileDiff = $differ->diff($oldFile, $newFile);
-
-    dump($fileDiff);
 
     return view("debug");
   }
-
-  public function placeholder() {
-    try {
-      /** @var \SimpleXMLElement $mapObject */
-      $mapObject = Custom\getWsdlMapAsSimpleXML();
-    } catch (\Dotenv\Exception\InvalidFileException $exc) {
-      dump($exc->getMessage());
-    }
-
-    dump(Custom\getWsdlInfoByName("Aegon"));
-
-    if(!empty($mapObject)) {
-      dump($mapObject);
-
-      for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
-        dump(array(
-          $mapObject->wsdl[$i]->checkDate,
-          $mapObject->wsdl[$i]->modificationDate
-        ));
-
-        $mapObject->wsdl[$i]->checkDate = date("Y-m-d H:i:s");
-        $mapObject->wsdl[$i]->modificationDate = date("Y-m-d H:i:s");
-
-      }
-
-      dump($mapObject);
-      Custom\updateWsdlMap($mapObject);
-    }
-
-    dump(Custom\getWsdlInfoByName("Aegon"));
-
-    dump("--------------------------");
-
-  }
-
 }
