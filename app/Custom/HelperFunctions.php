@@ -277,9 +277,12 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   $tmpPath = "$basePath/tmp";
   $logPath = "$basePath/logs";
 
+  $tmpWsdlPath = "$tmpPath/" . $WSDL->getFilename();
+  $cachedWsdlPath = "$cachePath/" . $WSDL->getFilename();
+
   $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
-  $fp = fopen("$tmpPath/" . $WSDL->getFilename(), "w+");
-  $lp = fopen("$logPath/" . $WSDL->getFilename() . "-log.txt", "w+");
+  $fp = fopen($tmpWsdlPath, "w+");
+  $lp = fopen($cachedWsdlPath . "-log.txt", "w+");
 
   $headers = array();
 
@@ -324,31 +327,50 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   /**
    * Get diff.
    */
-  $oldFile = file_get_contents("$tmpPath/" . $WSDL->getFilename());
-  $newFile = file_get_contents("$cachePath/" . $WSDL->getFilename());
+  $wsdlIsAlreadyInCache = TRUE;
 
-  $differ = new CustomDiffer;
-  $fileDiff = $differ->diff($oldFile, $newFile);
-
-  if (0 === $differ->getDiffCount()) {
-    try {
-      unlink("$tmpPath/" . $WSDL->getFilename());
-    } catch (\Exception $exc) {
-      dump($exc->getMessage());
-    }
-  } else {
-    // @todo: send mail with diff
-    dump("FILE CHANGED");
-    dump($fileDiff);
-    copy("$tmpPath/" . $WSDL->getFilename(), "$cachePath/" . $WSDL->getFilename());
-    unlink("$tmpPath/" . $WSDL->getFilename());
+  try {
+    // Try to get the old file.
+    $oldFile = file_get_contents($cachedWsdlPath);
+  } catch (\Exception $exc) {
+    // @todo: save response to cache
+    dump("New WSDL file!");
+    $wsdlIsAlreadyInCache = FALSE;
+    moveFile($tmpWsdlPath, $cachedWsdlPath); // @todo: check if tmp is available
   }
 
-  dump($fileDiff);
-  dump("Diffcount is: " . $differ->getDiffCount());
+  if (TRUE === $wsdlIsAlreadyInCache)  {
+    $newFile = file_get_contents($tmpWsdlPath); // @todo: check if tmp is available
+
+    $differ = new CustomDiffer;
+    $differ->setOldFilePath($cachedWsdlPath);
+    $differ->setNewFilePath($tmpWsdlPath);
+    $fileDiff = $differ->diff($oldFile, $newFile);
+
+    if (0 === $differ->getDiffCount()) {
+      try {
+        unlink($tmpWsdlPath);
+      } catch (\Exception $exc) {
+        dump($exc->getMessage());
+      }
+    } else {
+      // @todo: send mail with diff
+      dump("FILE CHANGED");
+      dump($fileDiff);
+      moveFile($tmpWsdlPath, $cachedWsdlPath);
+    }
+
+    dump("Diffcount is: " . $differ->getDiffCount());
+    dump($fileDiff);
+  }
 
   return $responseCode;
 }
+
+function moveFile($from, $to) {
+  copy($from, $to);
+  unlink($from);
+};
 
 function getWsdlContentByName($WSDL_name, $filename = null) {
   $WSDL = getWsdlInfoByName($WSDL_name);

@@ -30,6 +30,10 @@ class CustomDiffer extends Differ{
    */
   private $diffCount = 0;
 
+  private $oldFilePath = null;
+
+  private $newFilePath = null;
+
   /**
    * @param string $header
    */
@@ -63,7 +67,13 @@ class CustomDiffer extends Differ{
       $to = (string) $to;
     }
 
-    $buffer = (!empty($this->header) ? $this->header : "");
+    if (!empty($this->oldFilePath) && !empty($this->newFilePath)) {
+      $buffer = "--- " . $this->oldFilePath . "\n";
+      $buffer .= "+++ " . $this->newFilePath . "\n";
+    } else {
+      $buffer = (!empty($this->header) ? $this->header : "");
+    }
+
     $diff   = $this->diffToArray($from, $to, $lcs);
 
     $inOld = false;
@@ -154,5 +164,21 @@ class CustomDiffer extends Differ{
 
   public function getDiffCount() {
     return $this->diffCount;
+  }
+
+  public function setNewFilePath($newFilePath) {
+    $this->newFilePath = $newFilePath;
+  }
+
+  public function setOldFilePath($oldFilePath) {
+    $this->oldFilePath = $oldFilePath;
+  }
+
+  public function getNewFilePath() {
+    return $this->newFilePath;
+  }
+
+  public function getOldFilePath() {
+    return $this->oldFilePath;
   }
 }

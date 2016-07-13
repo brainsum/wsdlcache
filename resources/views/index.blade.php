@@ -75,18 +75,28 @@
       </div>
     </div>
     <div class="random">
-      <h2>major todo:</h2> go live as fast as possible:<br>
-            todo: php version might be blocker (5.6 on server, 7.0 on local)<br>
-            todo: Write server API so outsiders can access the cached WSDL files<br>
-      <br><br>
-      <h3>Standard todo</h3>
-      todo: restructure logs (watchdog style)<br>
-      todo: research: standard log formats<br>
-      todo: try monolog logger<br>
-      <br><br>
-      <h4>Minor todo</h4>
-      Refactor the code <br>
-      <br><br>
+      <table class="table table-responsive table-bordered table-striped text-center">
+        <tbody>
+          <tr>
+            <th>MAJOR</th>
+            <td>go live as fast as possible</td>
+            <td>php version might be blocker (5.6 on server, 7.0 on local)</td>
+          </tr>
+          <tr>
+            <th>MAJOR</th>
+            <td>Write server API so outsiders can access the cached WSDL files</td>
+          </tr>
+          <tr>
+            <th>Standard</th>
+            <td>restructure logs (watchdog style)</td>
+            <td>research: standard log formats [try monolog logger]</td>
+          </tr>
+          <tr>
+            <th>minor</th>
+            <td>Refactor the code</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <!-- End of Content -->
