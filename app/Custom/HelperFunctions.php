@@ -303,7 +303,7 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
     fclose($newCache);
 
     // Diffcount is 1 (> 0) so we set the modification date as well for new files.
-    wsdlStatusUpdateWrapper($WSDL->getId(), 1, $responseCode);
+    wsdlStatusUpdateWrapper($WSDL->getId(), $responseCode, 1);
 
     $wsdlIsAlreadyInCache = FALSE;
   }
@@ -327,7 +327,7 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
       // @todo: send mail with diff
     }
 
-    wsdlStatusUpdateWrapper($WSDL->getId(), $differ->getDiffCount(), $responseCode);
+    wsdlStatusUpdateWrapper($WSDL->getId(), $responseCode, $differ->getDiffCount());
   }
   return $responseCode;
 }

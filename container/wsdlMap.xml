@@ -12,9 +12,9 @@
     <fileName>aegon.test.xml</fileName>
     <name>Aegon</name>
     <type>Test</type>
-    <url>https://0000922995:Pkr80022995@tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx</url>
-    <userName>null</userName>
-    <password>null</password>
+    <url>https://tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx</url>
+    <userName>0000922995</userName>
+    <password>Pkr90022995</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
   <wsdl>

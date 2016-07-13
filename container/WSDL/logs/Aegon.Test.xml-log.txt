@@ -1,6 +1,7 @@
-* Hostname was NOT found in DNS cache
+* Hostname was found in DNS cache
+* Hostname in DNS cache was stale, zapped
 *   Trying 195.228.142.58...
-* Connected to tesztfe64.aegon.hu (195.228.142.58) port 443 (#0)
+* Connected to tesztfe64.aegon.hu (195.228.142.58) port 443 (#1)
 * successfully set certificate verify locations:
 *   CAfile: none
   CApath: /etc/ssl/certs
@@ -15,13 +16,18 @@
 > GET /dijkalk_webservice/gfb.asmx?WSDL HTTP/1.1
 Host: tesztfe64.aegon.hu
 Accept: */*
-Authorization: Basic bnVsbDpudWxs
+Authorization: Basic MDAwMDkyMjk5NTpQa3I5MDAyMjk5NQ==
 
-* HTTP 1.0, assume close after body
-< HTTP/1.0 401 Unauthorized
-* Authentication problem. Ignoring this.
-< WWW-Authenticate: Basic realm="FW-1 (password).      Reason: Access denied - wrong user name or password         Server "
-< Content-Type: text/html
-< Content-Length: 169
+< HTTP/1.1 200 OK
+< Date: Wed, 13 Jul 2016 11:47:22 GMT
+* Server Microsoft-IIS/7.5 is not blacklisted
+< Server: Microsoft-IIS/7.5
+< Cache-Control: private, max-age=0
+< Content-Type: text/xml; charset=utf-8
+< X-AspNet-Version: 4.0.30319
+< X-Powered-By: ASP.NET
+< Content-Length: 33919
+< Via: 1.1 tesztfe64.aegon.hu
+< Vary: Accept-Encoding
 < 
-* Closing connection 0
+* Closing connection 1

@@ -2,9 +2,9 @@
 <content>
   <wsdl>
     <id>1</id>
-    <statusCode>0</statusCode>
-    <checkDate>2016-07-13 11:29:37</checkDate>
-    <modificationDate>2016-07-13 11:29:37</modificationDate>
+    <statusCode>200</statusCode>
+    <checkDate>2016-07-13 11:47:23</checkDate>
+    <modificationDate>2016-07-13 11:46:11</modificationDate>
   </wsdl>
   <wsdl>
     <id>2</id>
