@@ -29,6 +29,8 @@ class MainController extends BaseController {
   }
 
   /**
+   * Helper action for testing and debugging the download functions.
+   *
    * @param \App\Http\Controllers\String $WSDL_name
    *
    * @return \Illuminate\View\View
@@ -47,6 +49,12 @@ class MainController extends BaseController {
     return view("debug");
   }
 
+  /**
+   * Action which gives back the log file for the given WSDL
+   *
+   * @param \App\Http\Controllers\String $WSDL_name
+   * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+   */
   public function downloadWSDLLogByNameAction(String $WSDL_name) {
     $WSDL_log_path = Custom\getWsdlLogPath($WSDL_name);
 
@@ -54,15 +62,13 @@ class MainController extends BaseController {
   }
 
   /**
+   * Sandbox action for r&d and testing
+   *
    * @route("/sandbox")
    * @return \Illuminate\View\View
    */
   public function sandboxAction() {
-    $fullMap = Custom\getWsdlMapAsArray();
 
-    foreach ($fullMap as $WSDL) {
-      Custom\checkAndUpdateWSDLFileWithCurl($WSDL);
-    }
 
     return view("debug");
   }

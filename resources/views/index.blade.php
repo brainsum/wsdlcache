@@ -88,6 +88,11 @@
           </tr>
           <tr>
             <th>Standard</th>
+            <td>Before overwriting a cached wsdl with a new one, back it up</td>
+            <td>Format: {name}_from_[Y-m-d_H-i-s of last modification date]_to_[Y-m-d_H-i-s of current date]</td>
+          </tr>
+          <tr>
+            <th>Standard</th>
             <td>restructure logs (watchdog style)</td>
             <td>research: standard log formats [try monolog logger]</td>
           </tr>
