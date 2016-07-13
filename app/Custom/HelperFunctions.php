@@ -274,15 +274,12 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
 
   $basePath = app()->basePath() . "/container/WSDL";
   $cachePath = "$basePath/cache";
-  //$tmpPath = "$basePath/tmp";
   $logPath = "$basePath/logs";
 
-  //$tmpWsdlPath = "$tmpPath/" . $WSDL->getFilename();
   $cachedWsdlPath = "$cachePath/" . $WSDL->getFilename();
   $logWsdlPath = $logPath . "/" . $WSDL->getFilename() . "-log.txt";
 
   $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
-  // $fp = fopen($tmpWsdlPath, "w+");
   $lp = fopen($logWsdlPath, "w+");
 
   $headers = array();
@@ -293,9 +290,7 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
     curl_setopt($ch, CURLOPT_USERPWD, $WSDL->combinedUserPass($PASS_AS_ENCODED));
   }
 
-  // @todo: skip $fp write until no diff has been detected, so just in-memory iff, etc.
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-  // curl_setopt($ch, CURLOPT_FILE, $fp);
   curl_setopt($ch, CURLOPT_STDERR, $lp);
   curl_setopt($ch, CURLOPT_URL, $WSDL->getWsdl($APPENDED_URL));
   curl_setopt($ch, CURLOPT_VERBOSE, true);
@@ -306,6 +301,7 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   curl_setopt($ch, CURLOPT_SSLVERSION, $WSDL->getCurlSslVersion());
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Needed!! Mb for k&h only
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
 
   if (TRUE === $DEBUG_MODE) {
     curl_setopt($ch, CURLOPT_CERTINFO, true);
@@ -315,7 +311,6 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
   $result = curl_exec($ch);
   $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
   curl_close($ch);
-  // fclose($fp);
 
   /**
    * Get diff.
@@ -326,35 +321,33 @@ function downloadWsdlFileByUrlWithCurl($WSDL) {
     // Try to get the old file.
     $oldFile = file_get_contents($cachedWsdlPath);
   } catch (\Exception $exc) {
+    // When we can't open the old file, it's probably because it's new.
+    // So we create the cached file for it.
     $newCache = fopen($cachedWsdlPath, "w+");
     fwrite($newCache, $result);
     fclose($newCache);
 
-    dump("New WSDL file!");
     $wsdlIsAlreadyInCache = FALSE;
   }
 
+  // When the file already exists in the cache.
   if (TRUE === $wsdlIsAlreadyInCache)  {
-    // $oldFile = file_get_contents($cachedWsdlPath);
-
     $differ = new CustomDiffer;
     $differ->setOldFilePath($cachedWsdlPath);
     $differ->setNewFilePath("File from remote server");
     $fileDiff = $differ->diff($oldFile, $result);
 
+    // If there are diffs, the cache and remote files are not in sync
     if (0 < $differ->getDiffCount()) {
-      dump("FILE CHANGED");
-      dump($fileDiff);
-
+      // So we save the new file in the cache
+      // @todo: maybe check response codes, etc, so we don't overwrite the cache with smth like 401
       $newCache = fopen($cachedWsdlPath, "w+");
       fwrite($newCache, $result);
       fclose($newCache);
 
+      // We also have to send a mail about the differences.
       // @todo: send mail with diff
     }
-
-    dump("Diffcount is: " . $differ->getDiffCount());
-    dump($fileDiff);
   }
 
   return $responseCode;

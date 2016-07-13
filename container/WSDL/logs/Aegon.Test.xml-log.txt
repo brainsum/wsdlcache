@@ -1,6 +1,6 @@
-* Hostname was NOT found in DNS cache
+* Hostname was found in DNS cache
 *   Trying 195.228.142.58...
-* Connected to tesztfe64.aegon.hu (195.228.142.58) port 443 (#0)
+* Connected to tesztfe64.aegon.hu (195.228.142.58) port 443 (#5)
 * successfully set certificate verify locations:
 *   CAfile: none
   CApath: /etc/ssl/certs
@@ -24,4 +24,4 @@ Authorization: Basic bnVsbDpudWxs
 < Content-Type: text/html
 < Content-Length: 169
 < 
-* Closing connection 0
+* Closing connection 5
