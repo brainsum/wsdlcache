@@ -25,7 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call($this->wsdlUpdateJob())->everyFiveMinutes();
+        $schedule->call(function() {
+            $this->wsdlUpdateJob();
+        })->everyFiveMinutes();
     }
 
     private function wsdlUpdateJob() {
@@ -34,7 +36,5 @@ class Kernel extends ConsoleKernel
         foreach ($fullMap as $WSDL) {
             Custom\checkAndUpdateWSDLFileWithCurl($WSDL);
         }
-
-        return true;
     }
 }
