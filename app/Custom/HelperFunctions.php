@@ -317,8 +317,9 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
 
     // If there are diffs, the cache and remote files are not in sync
     if (0 < $differ->getDiffCount()) {
+      // @todo: create backup of previous
+
       // So we save the new file in the cache
-      // @todo: maybe check response codes, etc, so we don't overwrite the cache with smth like 401
       dump($cachedWsdlPath);
       $newCache = fopen($cachedWsdlPath, "w+");
       fwrite($newCache, $result);

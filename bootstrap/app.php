@@ -25,6 +25,8 @@ $app = new Laravel\Lumen\Application(
 
 $app->withFacades();
 
+// Set timezone to the proper one
+date_default_timezone_set("Europe/Budapest");
 // $app->withEloquent();
 
 /*
