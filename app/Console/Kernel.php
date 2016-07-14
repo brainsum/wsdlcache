@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 use App\Custom;
+use Illuminate\Contracts\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -27,7 +28,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function() {
             $this->wsdlUpdateJob();
-        })->everyThirtyMinutes();
+        })
+        ->everyThirtyMinutes()
+        ->withoutOverlapping();
 
         // @todo: add reminder to update vendor stuff
     }

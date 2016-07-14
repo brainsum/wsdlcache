@@ -100,6 +100,16 @@
             <th>minor</th>
             <td>Refactor the code</td>
           </tr>
+        <tr>
+          <td></td>
+        </tr>
+        <tr>
+          <td>NOTES</td>
+          <td>illuminate/mail suggests installing aws/aws-sdk-php (Required to use the SES mail driver (~3.0).)
+            illuminate/mail suggests installing guzzlehttp/guzzle (Required to use the Mailgun and Mandrill mail drivers (~5.3|~6.0).)
+            illuminate/mail suggests installing jeremeamia/superclosure (Required to be able to serialize closures (~2.0).)
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>

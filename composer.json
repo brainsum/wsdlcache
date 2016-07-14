@@ -12,7 +12,8 @@
         "artisaninweb/laravel-soap": "0.2.*",
         "Nathanmac/Parser": "3.*",
         "symfony/var-dumper": "^3.0",
-        "sebastian/diff": "*"
+        "sebastian/diff": "*",
+        "illuminate/mail": "5.2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
