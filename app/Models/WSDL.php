@@ -209,7 +209,7 @@ class WSDL {
   public function setStatusCode($statusCode) {
     $this->statusCode = $statusCode;
 
-    $this->available = ((int) $this->statusCode < 400) ? true : false;
+    $this->available = (100 <= (int) $this->statusCode && (int) $this->statusCode < 400) ? true : false;
   }
 
   /**
@@ -223,7 +223,7 @@ class WSDL {
     return $this->filename;
   }
 
-  public function combinedUserPass($encoded = FALSE) {
+  public function getCombinedUserPass($encoded = FALSE) {
     if ($encoded) {
       return base64_encode($this->getUserName() . ":" . $this->getPassword());
     }

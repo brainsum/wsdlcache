@@ -260,9 +260,9 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
   $headers = array();
 
   if (!empty($WSDL->getUserName()) || $WSDL->getUserName() != "null") {
-    $headers[] = 'Authorization: Basic '. $WSDL->combinedUserPass($PASS_AS_ENCODED);
+    $headers[] = 'Authorization: Basic '. $WSDL->getCombinedUserPass($PASS_AS_ENCODED);
     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    curl_setopt($ch, CURLOPT_USERPWD, $WSDL->combinedUserPass($PASS_AS_ENCODED));
+    curl_setopt($ch, CURLOPT_USERPWD, $WSDL->getCombinedUserPass($PASS_AS_ENCODED));
   }
 
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);

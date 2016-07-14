@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s3="Calculate/UniversalDocument" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://WebService.GeneraliGroup.hu/Calculate" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://WebService.GeneraliGroup.hu/Calculate/SoapHeaders" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://WebService.GeneraliGroup.hu/Calculate/Schema/UniversalDocument" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://WebService.GeneraliGroup.hu/Calculate" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s3="http://WebService.GeneraliGroup.hu/Calculate/Schema/UniversalDocument" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://WebService.GeneraliGroup.hu/Calculate" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://WebService.GeneraliGroup.hu/Calculate/SoapHeaders" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="Calculate/UniversalDocument" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://WebService.GeneraliGroup.hu/Calculate" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://WebService.GeneraliGroup.hu/Calculate">
       <s:import namespace="http://WebService.GeneraliGroup.hu/Calculate/Schema/UniversalDocument" />
@@ -8,14 +8,14 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UserAccount" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s2:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s3:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="UniversalFullNSResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -50,14 +50,14 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UserAccount" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s2:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s3:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="CheckOfferFullNSResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -191,7 +191,7 @@
       <s:element name="DeleteTempOfferFullNSResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -207,7 +207,7 @@
       <s:element name="GetOfferPDFFullNSResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -246,7 +246,7 @@
       <s:element name="SetOfferClientSignatureFullNSResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -277,14 +277,14 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UserAccount" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s2:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s3:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="SetCarNumbersFullNSResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -373,7 +373,7 @@
       <s:element name="GetOfferPDFResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -413,7 +413,7 @@
       <s:element name="SetOfferClientSignatureResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -448,14 +448,14 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UserAccount" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="SetCarNumbersResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -493,7 +493,7 @@
       <s:element name="DeleteTempOfferResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -609,14 +609,14 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="userAccount" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="universalXmlDoc" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="universalXmlDoc" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="UniversalCombinedWithEOfferResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="UniversalCombinedWithEOfferResult" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniversalCombinedWithEOfferResult" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -651,14 +651,14 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UserAccount" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="CheckOfferResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -969,14 +969,14 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="UserAccount" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Request" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="UniversalResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s3:UniversalDocumentRoot" />
+            <s:element minOccurs="0" maxOccurs="1" name="Reply" type="s2:UniversalDocumentRoot" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1120,7 +1120,7 @@
         <s:anyAttribute />
       </s:complexType>
     </s:schema>
-    <xs:schema xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:univ="http://WebService.GeneraliGroup.hu/Calculate/Schema/UniversalDocument" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://WebService.GeneraliGroup.hu/Calculate/Schema/UniversalDocument" version="2016-06-14" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:univ="Calculate/UniversalDocument" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="Calculate/UniversalDocument" version="2016-06-14" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="UniversalDocumentRoot">
         <xs:sequence>
           <xs:element ref="univ:UniversalDocument" />
@@ -1400,12 +1400,11 @@
       <xs:complexType name="typeVARIABLE_output">
         <xs:annotation>
           <xs:appinfo>
-            <!-- ez itt Schematron-t igényelne ... -->
-            <sch:pattern xmlns="http://www.ascc.net/xml/schematron" name="AttributenameRequired" xmlns:sch="http://www.ascc.net/xml/schematron">
-              <sch:rule context="//VARIABLE[@id='?']">
-                <sch:assert test="@attributename">Ha az @id='?', akkor a @attributename kötelezően töltendő!</sch:assert>
-              </sch:rule>
-            </sch:pattern>
+            <sch:pattern xmlns="http://www.ascc.net/xml/schematron" name="AttributenameRequired">
+					<sch:rule context="//VARIABLE[@id='?']">
+						<sch:assert test="@attributename">Ha az @id='?', akkor a @attributename kötelezően töltendő!</sch:assert>
+					</sch:rule>
+				</sch:pattern>
           </xs:appinfo>
           <xs:documentation xml:lang="hu">Az output képernyőelem/változó definiálása.</xs:documentation>
         </xs:annotation>
@@ -7061,7 +7060,7 @@
         </xs:restriction>
       </xs:simpleType>
     </xs:schema>
-    <xs:schema xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:univ="Calculate/UniversalDocument" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="Calculate/UniversalDocument" version="2016-06-14" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:univ="http://WebService.GeneraliGroup.hu/Calculate/Schema/UniversalDocument" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://WebService.GeneraliGroup.hu/Calculate/Schema/UniversalDocument" version="2016-06-14" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="UniversalDocumentRoot">
         <xs:sequence>
           <xs:element ref="univ:UniversalDocument" />
@@ -7341,11 +7340,12 @@
       <xs:complexType name="typeVARIABLE_output">
         <xs:annotation>
           <xs:appinfo>
-            <sch:pattern xmlns="http://www.ascc.net/xml/schematron" name="AttributenameRequired">
-					<sch:rule context="//VARIABLE[@id='?']">
-						<sch:assert test="@attributename">Ha az @id='?', akkor a @attributename kötelezően töltendő!</sch:assert>
-					</sch:rule>
-				</sch:pattern>
+            <!-- ez itt Schematron-t igényelne ... -->
+            <sch:pattern xmlns="http://www.ascc.net/xml/schematron" name="AttributenameRequired" xmlns:sch="http://www.ascc.net/xml/schematron">
+              <sch:rule context="//VARIABLE[@id='?']">
+                <sch:assert test="@attributename">Ha az @id='?', akkor a @attributename kötelezően töltendő!</sch:assert>
+              </sch:rule>
+            </sch:pattern>
           </xs:appinfo>
           <xs:documentation xml:lang="hu">Az output képernyőelem/változó definiálása.</xs:documentation>
         </xs:annotation>
