@@ -12,6 +12,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Models as Models;
 use App\Custom as Custom;
 use SebastianBergmann\Diff;
+use Illuminate\Mail as Mail;
 
 class MainController extends BaseController {
 
@@ -68,6 +69,15 @@ class MainController extends BaseController {
    * @return \Illuminate\View\View
    */
   public function sandboxAction() {
+    /**
+     * url encoded route kell
+     * a route url alapján egy check
+     *  ha cache-ben van, akkor return file
+     *  különben letölt + return
+     *
+     * bonus:
+     *  pl gifet ne engejen leszedni
+     */
 
 
 
