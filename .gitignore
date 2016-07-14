@@ -1,5 +1,6 @@
 /vendor
 .env
 container/WSDL/logs/*
+container/WSDL/cache/*
 container/wsdlStatus.xml
 tmp/*
