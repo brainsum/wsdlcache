@@ -47,4 +47,14 @@
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
+  <wsdl>
+    <id>5</id>
+    <fileName>groupama.test.xml</fileName>
+    <name>Groupama</name>
+    <type>Test</type>
+    <url>https://www.garancia-online.hu/Kalkulatorok/PDFTarolasWS</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
 </content>
