@@ -91,6 +91,11 @@
           </tr>
           <tr>
             <th>Standard</th>
+            <td>What if we add smth to the map but not to the status part?</td>
+            <td>We should create a status in this case (automation rules)</td>
+          </tr>
+          <tr>
+            <th>Standard</th>
             <td>restructure logs (watchdog style)</td>
             <td>research: standard log formats [try monolog logger]</td>
           </tr>
