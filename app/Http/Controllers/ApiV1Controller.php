@@ -35,7 +35,7 @@ class ApiV1Controller extends BaseController {
       return response("WSDL not found.", 404);
     }
 
-
+    // @todo: path, basepath, etc should come from the WSDL class
     $CachedWsdlPath = app()->basePath() . "/container/WSDL/cache/" . $WSDL->getFilename();
 
     return response()->download($CachedWsdlPath);
