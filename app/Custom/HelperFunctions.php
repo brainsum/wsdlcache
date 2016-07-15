@@ -63,7 +63,7 @@ function getWsdlMapAsArray($pathFromRoot = "container", $mapFile = "wsdlMap.xml"
   /**
    * @fixme @todo refactor needed.
    */
-  if ($mapContainsMultipleWsdlData && $statusContainsMultipleWsdlData) {
+  if (TRUE === $mapContainsMultipleWsdlData && TRUE === $statusContainsMultipleWsdlData) {
     foreach($arrayOfWsdlObjects as $wsdl) {
       foreach ($statusAsArray["wsdl"] as $status) {
         if ($status["id"] == $wsdl->getId()) {
@@ -297,7 +297,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
 
   try {
     // Try to get the old file.
-    $oldFile = file_get_contents($cachedWsdlPath);
+    $oldFileContents = file_get_contents($cachedWsdlPath);
   } catch (\Exception $exc) {
     // When we can't open the old file, it's probably because it's new.
     // So we create the cached file for it.
@@ -316,13 +316,13 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
     $differ = new CustomDiffer;
     $differ->setOldFilePath($cachedWsdlPath);
     $differ->setNewFilePath("File from remote server");
-    $fileDiff = $differ->diff($oldFile, $result);
+    $fileDiff = $differ->diff($oldFileContents, $result);
 
     // If there are diffs, the cache and remote files are not in sync
     if (0 < $differ->getDiffCount()) {
       // So we create a backup of the old file
       $backup = fopen($backupFilePath, "w+");
-      fwrite($backup, $oldFile);
+      fwrite($backup, $oldFileContents);
       fclose($backup);
 
       // So we save the new file in the cache
