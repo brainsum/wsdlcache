@@ -13,6 +13,7 @@ use Dotenv\Exception\InvalidFileException;
 use Nathanmac\Utilities\Parser\Parser;
 use App\Models\WSDL;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * @param string $pathFromRoot
@@ -326,7 +327,17 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
       fclose($newCache);
 
       // We also have to send a mail about the differences.
-      // @todo: send mail with diff
+      Mail::send("Emails.wsdl_modification_info",
+        array(
+          "datetimeOfCheck" => date("Y-m-d H:i:s"),
+          "WSDLDiff" => htmlentities($fileDiff),
+          "WSDLName" => $WSDL->getName(),
+          "WSDLUrl" => $WSDL->getWsdl(TRUE)
+        ),
+        function($msg) {
+          $msg->to("mhavelant+lumen2@brainsum.com")
+            ->subject("test");
+        });
     }
 
     wsdlStatusUpdateWrapper($WSDL->getId(), $responseCode, $differ->getDiffCount());
@@ -343,6 +354,7 @@ function wsdlStatusUpdateWrapper($wsdlId, $responseCode, $diffCount) {
     return;
   }
 
+  /* We only update the current wsdl object data. */
   for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
     if ((string) $mapObject->wsdl[$i]->id == $wsdlId) {
       $mapObject->wsdl[$i]->statusCode = $responseCode;

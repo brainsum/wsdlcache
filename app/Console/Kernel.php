@@ -5,7 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
 use App\Custom;
-use Illuminate\Contracts\Mail;
+use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -40,5 +40,12 @@ class Kernel extends ConsoleKernel
         foreach ($fullMap as $WSDL) {
             Custom\checkAndUpdateWSDLFileWithCurl($WSDL);
         }
+
+        Mail::send("Emails.wsdl_check_info",
+          ["datetimeOfCheck" => date("Y-m-d H:i:s")],
+          function($msg) {
+              $msg->to("mhavelant+lumen2@brainsum.com")
+                ->subject("test");
+          });
     }
 }

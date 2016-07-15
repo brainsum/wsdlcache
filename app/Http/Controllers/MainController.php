@@ -79,9 +79,8 @@ class MainController extends BaseController {
      *  pl gifet ne engejen leszedni
      */
 
-
     Mail::send("Emails.update_reminder",
-      ["testVar" => "TEST"],
+      ["testVar" => date("Y-m-d H:i:s")],
       function($msg) {
         $msg->to("mhavelant+lumen2@brainsum.com")
           ->subject("test");
