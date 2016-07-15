@@ -305,7 +305,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
     fwrite($newCache, $result);
     fclose($newCache);
 
-    // Diffcount is 1 (> 0) so we set the modification date as well for new files.
+    // Diffcount is set to 1 (> 0) so we set the modification date as well for new files.
     wsdlStatusUpdateWrapper($WSDL->getId(), $responseCode, 1);
 
     $wsdlIsAlreadyInCache = FALSE;
