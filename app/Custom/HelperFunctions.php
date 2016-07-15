@@ -251,9 +251,11 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
   $basePath = app()->basePath() . "/container/WSDL";
   $cachePath = "$basePath/cache";
   $logPath = "$basePath/logs";
+  $backupPath = "$basePath/backup";
 
   $cachedWsdlPath = "$cachePath/" . $WSDL->getFilename();
   $logWsdlPath = $logPath . "/" . $WSDL->getFilename() . "-log.txt";
+  $backupFilePath = $backupPath . "/bu-" . $WSDL->getFilename();
 
   $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
   $lp = fopen($logWsdlPath, "w+");
@@ -318,10 +320,12 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
 
     // If there are diffs, the cache and remote files are not in sync
     if (0 < $differ->getDiffCount()) {
-      // @todo: create backup of previous
+      // So we create a backup of the old file
+      $backup = fopen($backupFilePath, "w+");
+      fwrite($backup, $oldFile);
+      fclose($backup);
 
       // So we save the new file in the cache
-      dump($cachedWsdlPath);
       $newCache = fopen($cachedWsdlPath, "w+");
       fwrite($newCache, $result);
       fclose($newCache);
