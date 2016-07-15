@@ -388,7 +388,7 @@ function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
         ),
         function($msg) use ($WSDL) {
           $msg->to("mhavelant+lumen2@brainsum.com")
-            ->subject("WARNING! The " . $WSDL->getName() . " WSDL file is unavailable!");
+            ->subject("WARNING! The " . $WSDL->getName() . " WSDL host is unavailable!");
         });
       }
 

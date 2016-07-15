@@ -1,5 +1,21 @@
 <h1>Dear admin!</h1>
-<p>The WSDL for {{ $WSDLName }} at {{ $WSDLUrl }} is currently unavailable. HTTP status code: {{ $WSDLStatusCode }}</p>
+<p>An unavailable WSDL host has been detected.</p>
+<table>
+    <tbody>
+        <tr>
+            <th scope="row">Name</th>
+            <td>{{ $WSDLName }}</td>
+        </tr>
+        <tr>
+            <th scope="row">URL</th>
+            <td>{{ $WSDLUrl }}</td>
+        </tr>
+        <tr>
+            <th scope="row">HTTP Status Code</th>
+            <td>{{ $WSDLStatusCode }}</td>
+        </tr>
+    </tbody>
+</table>
 <p>Greetings,<br>
     WSDLcache cron
 </p>
