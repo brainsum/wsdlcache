@@ -11,6 +11,8 @@
 |
 */
 
+/** Main */
+
 $app->get('/', "MainController@indexAction");
 
 $app->get('/info', function () {
@@ -35,3 +37,10 @@ $app->get('/log/{name}/download', array(
 $app->get('/wsdl/url/{url}', "MainController@getWSDLByUrlAction");
 
 $app->get('/sandbox', "MainController@sandboxAction");
+
+/** API v1 */
+
+$app->get('/api/v1/get/wsdl', array(
+  'as' => "apiV1GetWsdlByUrl",
+  'uses' => "ApiV1Controller@getWSDLByUrlAction"
+));

@@ -11,8 +11,6 @@ namespace App\Http\Controllers;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Models as Models;
 use App\Custom as Custom;
-use SebastianBergmann\Diff;
-use Illuminate\Support\Facades\Mail;
 
 class MainController extends BaseController {
 
@@ -82,9 +80,9 @@ class MainController extends BaseController {
     /** @var $wsdlMap Models\WSDL[] */
     dump($wsdlMap = Custom\getWsdlMapAsArray());
 
-    dump($wsdlMap[0]->getBackupFilename());
-
-    dump(str_random(32));
+    foreach($wsdlMap as $WSDL) {
+      dump(urlencode($WSDL->getWsdl(true)));
+    }
 
     return view("debug");
   }

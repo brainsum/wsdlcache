@@ -167,7 +167,7 @@ function getWsdlInfoByUrl($url, $container = null) {
 
   /** @var WSDL $wsdl */
   foreach ($wsdlList as $wsdl) {
-    if ($url == $wsdl->getWsdl()) {
+    if ($url == $wsdl->getWsdl() || $url == $wsdl->getWsdl(true)) {
       return $wsdl;
     }
   }
