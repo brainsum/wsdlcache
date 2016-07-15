@@ -291,6 +291,8 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
   $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
   curl_close($ch);
 
+  $WSDL->setStatusCode($responseCode);
+
   /**
    * Get diff.
    */
@@ -307,7 +309,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
     fclose($newCache);
 
     // Diffcount is set to 1 (> 0) so we set the modification date as well for new files.
-    wsdlStatusUpdateWrapper($WSDL->getId(), $responseCode, 1);
+    wsdlStatusUpdateWrapper($WSDL, 1);
 
     $wsdlIsAlreadyInCache = FALSE;
   }
@@ -339,18 +341,22 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
           "WSDLName" => $WSDL->getName(),
           "WSDLUrl" => $WSDL->getWsdl(TRUE)
         ),
-        function($msg) {
+        function($msg) use ($WSDL) {
           $msg->to("mhavelant+lumen2@brainsum.com")
-            ->subject("test");
+            ->subject("Attention! The " . $WSDL->getName() . " WSDL file has been updated!");
         });
     }
 
-    wsdlStatusUpdateWrapper($WSDL->getId(), $responseCode, $differ->getDiffCount());
+    wsdlStatusUpdateWrapper($WSDL, $differ->getDiffCount());
   }
   return $responseCode;
 }
 
-function wsdlStatusUpdateWrapper($wsdlId, $responseCode, $diffCount) {
+/**
+ * @param WSDL $WSDL
+ * @param $diffCount
+ */
+function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
   try {
     /** @var \SimpleXMLElement $mapObject */
     $mapObject = getXMLAsSimpleXML();
@@ -363,12 +369,27 @@ function wsdlStatusUpdateWrapper($wsdlId, $responseCode, $diffCount) {
 
   /* We only update the current wsdl object data. */
   for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
-    if ((string) $mapObject->wsdl[$i]->id == $wsdlId) {
-      $mapObject->wsdl[$i]->statusCode = $responseCode;
+    if ((string) $mapObject->wsdl[$i]->id == $WSDL->getId()) {
+      $mapObject->wsdl[$i]->statusCode = $WSDL->getStatusCode();
       $mapObject->wsdl[$i]->checkDate = $currDate->format("Y-m-d H:i:s");
 
       if (0 < $diffCount) {
         $mapObject->wsdl[$i]->modificationDate = $currDate->format("Y-m-d H:i:s");
+      }
+
+      // When a modification has been done and the status is an error, we send an email
+      // When a host becomes unavailable, the file gets overwritten even when the result is empty.
+      if (strtotime($mapObject->wsdl[$i]->modificationDate) == $currDate->getTimestamp() && !$WSDL->isAvailable()) {
+        Mail::send("Emails.wsdl_unavailable",
+        array(
+          "WSDLStatusCode" => $WSDL->getStatusCode(),
+          "WSDLName" => $WSDL->getName(),
+          "WSDLUrl" => $WSDL->getWsdl(TRUE)
+        ),
+        function($msg) use ($WSDL) {
+          $msg->to("mhavelant+lumen2@brainsum.com")
+            ->subject("WARNING! The " . $WSDL->getName() . " WSDL file is unavailable!");
+        });
       }
 
       break;

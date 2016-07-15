@@ -22,6 +22,9 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Mabiasz WSDL Cache status</h1>
+
+        <span>E-mail log here: <a target="_blank" href="https://mailtrap.io/inboxes/124612/messages/223731773/html">Open</a></span>
+
         <table style="vertical-align: middle;" class="table table-responsive table-bordered table-striped text-center">
           <thead>
             <tr>

@@ -28,6 +28,18 @@ class MainController extends BaseController {
   }
 
   /**
+   * Action which gives back the log file for the given WSDL
+   *
+   * @param \App\Http\Controllers\String $WSDL_name
+   * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+   */
+  public function downloadWSDLLogByNameAction(String $WSDL_name) {
+    $WSDL_log_path = Custom\getWsdlLogPath($WSDL_name);
+
+    return response()->download($WSDL_log_path);
+  }
+
+  /**
    * Helper action for testing and debugging the download functions.
    *
    * @param \App\Http\Controllers\String $WSDL_name
@@ -49,40 +61,12 @@ class MainController extends BaseController {
   }
 
   /**
-   * Action which gives back the log file for the given WSDL
-   *
-   * @param \App\Http\Controllers\String $WSDL_name
-   * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-   */
-  public function downloadWSDLLogByNameAction(String $WSDL_name) {
-    $WSDL_log_path = Custom\getWsdlLogPath($WSDL_name);
-
-    return response()->download($WSDL_log_path);
-  }
-
-  /**
    * Sandbox action for r&d and testing
    *
    * @route("/sandbox")
    * @return \Illuminate\View\View
    */
   public function sandboxAction() {
-    /**
-     * url encoded route kell
-     * a route url alapján egy check
-     *  ha cache-ben van, akkor return file
-     *  különben letölt + return
-     *
-     * bonus:
-     *  pl gifet ne engejen leszedni
-     */
-
-    /** @var $wsdlMap Models\WSDL[] */
-    dump($wsdlMap = Custom\getWsdlMapAsArray());
-
-    foreach($wsdlMap as $WSDL) {
-      dump(urlencode($WSDL->getWsdl(true)));
-    }
 
     return view("debug");
   }
