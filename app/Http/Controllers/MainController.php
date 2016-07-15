@@ -79,6 +79,13 @@ class MainController extends BaseController {
      *  pl gifet ne engejen leszedni
      */
 
+    /** @var $wsdlMap Models\WSDL[] */
+    dump($wsdlMap = Custom\getWsdlMapAsArray());
+
+    dump($wsdlMap[0]->getBackupFilename());
+
+    dump(str_random(32));
+
     return view("debug");
   }
 }

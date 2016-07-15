@@ -5,7 +5,13 @@ require_once __DIR__.'/../vendor/autoload.php';
 try {
     (new Dotenv\Dotenv(__DIR__.'/../'))->load();
 } catch (Dotenv\Exception\InvalidPathException $e) {
-    //
+    $myLog = __DIR__.'/../myLog.txt';
+
+    $logHander = fopen($myLog, "a+");
+    fwrite($logHander, "\n[".date("Y-m-d H:i:s")."]\n");
+    fwrite($logHander, "Dotenv exception!\n");
+    fwrite($logHander, $e->getMessage());
+    fclose($logHander);
 }
 
 /*

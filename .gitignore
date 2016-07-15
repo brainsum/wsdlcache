@@ -2,5 +2,6 @@
 .env
 container/WSDL/logs/*
 container/WSDL/cache/*
+container/WSDL/backup/*
 container/wsdlStatus.xml
 tmp/

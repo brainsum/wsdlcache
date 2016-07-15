@@ -67,8 +67,8 @@ function getWsdlMapAsArray($pathFromRoot = "container", $mapFile = "wsdlMap.xml"
     foreach($arrayOfWsdlObjects as $wsdl) {
       foreach ($statusAsArray["wsdl"] as $status) {
         if ($status["id"] == $wsdl->getId()) {
-          $wsdl->setLastCheck($status["checkDate"]);
-          $wsdl->setLastModification($status["modificationDate"]);
+          $wsdl->setLastCheck(new \DateTime($status["checkDate"]));
+          $wsdl->setLastModification(new \DateTime($status["modificationDate"]));
           $wsdl->setStatusCode((int) $status["statusCode"]);
         }
       }
@@ -255,10 +255,11 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
 
   $cachedWsdlPath = "$cachePath/" . $WSDL->getFilename();
   $logWsdlPath = $logPath . "/" . $WSDL->getFilename() . "-log.txt";
-  $backupFilePath = $backupPath . "/bu-" . $WSDL->getFilename();
+  $backupFilePath = $backupPath . "/" . $WSDL->getBackupFilename();
 
   $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
-  $lp = fopen($logWsdlPath, "w+");
+  $lp = fopen($logWsdlPath, "a+");
+  fwrite($lp, "\n[".date("Y-m-d H:i:s")."]\n");
 
   $headers = array();
 
@@ -358,14 +359,16 @@ function wsdlStatusUpdateWrapper($wsdlId, $responseCode, $diffCount) {
     return;
   }
 
+  $currDate = new \DateTime();
+
   /* We only update the current wsdl object data. */
   for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
     if ((string) $mapObject->wsdl[$i]->id == $wsdlId) {
       $mapObject->wsdl[$i]->statusCode = $responseCode;
-      $mapObject->wsdl[$i]->checkDate = date("Y-m-d H:i:s");
+      $mapObject->wsdl[$i]->checkDate = $currDate->format("Y-m-d H:i:s");
 
       if (0 < $diffCount) {
-        $mapObject->wsdl[$i]->modificationDate = date("Y-m-d H:i:s");
+        $mapObject->wsdl[$i]->modificationDate = $currDate->format("Y-m-d H:i:s");
       }
 
       break;

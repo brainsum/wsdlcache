@@ -190,6 +190,10 @@ class WSDL {
     return $this->filename;
   }
 
+  public function getBackupFilename() {
+    return ($this->getName() . "." . $this->getType() . ".backup.from_" . $this->getLastModification()->format("Y-m-d_H-i-s") . "_to_" . date("Y-m-d_H-i-s") . ".xml");
+  }
+
   public function setFilename($filename) {
     $this->filename = $filename;
   }

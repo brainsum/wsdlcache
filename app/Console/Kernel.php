@@ -29,7 +29,8 @@ class Kernel extends ConsoleKernel
         $schedule->call(function() {
             $this->wsdlUpdateJob();
         })
-        ->everyThirtyMinutes();
+          ->everyMinute();
+        //->everyThirtyMinutes();
 
         // @todo: add reminder to update vendor stuff
     }

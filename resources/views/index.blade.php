@@ -59,8 +59,8 @@
                   <span>{{ $wsdl->getStatusCode() }}</span>
                   </a>
                 </td>
-                <td>{{ $wsdl->getLastCheck() }}</td>
-                <td>{{ $wsdl->getLastModification() }}</td>
+                <td>{{ $wsdl->getLastCheck()->format("Y-m-d H:i:s") }}</td>
+                <td>{{ $wsdl->getLastModification()->format("Y-m-d H:i:s") }}</td>
                 <td>
                   <ul class="list-inline">
                     <li>* <a target="_blank" href="{{ route("getWSDLByName", array("name" => $wsdl->getName())) }}">Check</a></li>
