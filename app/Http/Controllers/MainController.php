@@ -12,7 +12,7 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 use App\Models as Models;
 use App\Custom as Custom;
 use SebastianBergmann\Diff;
-use Illuminate\Mail as Mail;
+use Illuminate\Support\Facades\Mail;
 
 class MainController extends BaseController {
 
@@ -80,6 +80,12 @@ class MainController extends BaseController {
      */
 
 
+    Mail::send("Emails.update_reminder",
+      ["testVar" => "TEST"],
+      function($msg) {
+        $msg->to("mhavelant+lumen2@brainsum.com")
+          ->subject("test");
+      });
 
     return view("debug");
   }

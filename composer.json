@@ -14,7 +14,8 @@
         "symfony/var-dumper": "^3.0",
         "sebastian/diff": "*",
         "illuminate/mail": "5.2.*",
-        "guzzlehttp/guzzle": "~5.3|~6.0"
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "vluzrmos/tinker": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
