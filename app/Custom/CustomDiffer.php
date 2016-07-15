@@ -37,7 +37,7 @@ class CustomDiffer extends Differ{
   /**
    * @param string $header
    */
-  public function __construct($header = "--- Original\n+++ New\n", $showNonDiffLines = true)
+  public function __construct($header = "--- Original\n+++ New\n", $showNonDiffLines = false)
   {
     $this->header           = $header;
     $this->showNonDiffLines = $showNonDiffLines;
@@ -138,7 +138,7 @@ class CustomDiffer extends Differ{
           $sumOfDiffedLines += $currLineDifference;
           $lineNumber = ($i + ($currLineDifference - $sumOfDiffedLines) + 1);
 
-          $buffer .= "\n@@ $lineNumber @@\n";
+          $buffer .= "\n@@ Line $lineNumber @@\n";
 
           $lineWritten = TRUE;
         }

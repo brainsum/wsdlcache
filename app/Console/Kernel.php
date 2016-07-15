@@ -29,10 +29,11 @@ class Kernel extends ConsoleKernel
         $schedule->call(function() {
             $this->wsdlUpdateJob();
         })
-          ->everyMinute();
-        //->everyThirtyMinutes();
+        ->everyThirtyMinutes();
 
-        // @todo: add reminder to update vendor stuff
+        $schedule->call(function() {
+            $this->reminderForAppUpdate();
+        })->monthly();
     }
 
     private function wsdlUpdateJob() {
@@ -41,12 +42,13 @@ class Kernel extends ConsoleKernel
         foreach ($fullMap as $WSDL) {
             Custom\checkAndUpdateWSDLFileWithCurl($WSDL);
         }
+    }
 
-        Mail::send("Emails.wsdl_check_info",
-          ["datetimeOfCheck" => date("Y-m-d H:i:s")],
+    private function reminderForAppUpdate() {
+        Mail::send("Emails.update_reminder",
           function($msg) {
               $msg->to("mhavelant+lumen2@brainsum.com")
-                ->subject("test");
+                ->subject("Reminder - Check for updates!");
           });
     }
 }
