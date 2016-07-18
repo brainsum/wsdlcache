@@ -261,6 +261,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
   $lp = fopen($logWsdlPath, "a+");
   fwrite($lp, "\n[".date("Y-m-d H:i:s")."]\n");
 
+  /** @todo: set this at a WSDL level */
   $curl_settings = array(
     CURLOPT_STDERR => $lp,
     CURLOPT_URL => $WSDL->getWsdl($APPENDED_URL),
@@ -283,32 +284,19 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
     $curl_settings[CURLOPT_HTTPHEADER] = $headers;
   }
 
-  curl_setopt_array($ch, $curl_settings);
-/*
-  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-  curl_setopt($ch, CURLOPT_STDERR, $lp);
-  curl_setopt($ch, CURLOPT_URL, $WSDL->getWsdl($APPENDED_URL));
-  curl_setopt($ch, CURLOPT_VERBOSE, true);
-  curl_setopt($ch, CURLOPT_HTTPGET, true);
-  curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
-  curl_setopt($ch, CURLOPT_FILETIME, true);
-  curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-  curl_setopt($ch, CURLOPT_SSLVERSION, $WSDL->getCurlSslVersion());
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Needed!! Mb for k&h only
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-  */
-
   if (TRUE === $DEBUG_MODE) {
-    curl_setopt($ch, CURLOPT_CERTINFO, true);
-    curl_setopt($ch, CURLOPT_HEADER, true);
+    $curl_settings[CURLOPT_CERTINFO] = true;
+    $curl_settings[CURLOPT_HEADER] = true;
   }
+
+  curl_setopt_array($ch, $curl_settings);
 
   $result = curl_exec($ch);
   $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
   $err     = curl_errno($ch);
   $errmsg  = curl_error($ch) ;
   curl_close($ch);
+  fclose($lp);
 
   $WSDL->setStatusCode($responseCode);
 
