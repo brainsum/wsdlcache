@@ -261,14 +261,30 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
   $lp = fopen($logWsdlPath, "a+");
   fwrite($lp, "\n[".date("Y-m-d H:i:s")."]\n");
 
-  $headers = array();
+  $curl_settings = array(
+    CURLOPT_STDERR => $lp,
+    CURLOPT_URL => $WSDL->getWsdl($APPENDED_URL),
+    CURLOPT_VERBOSE => TRUE,
+    CURLOPT_HTTPGET => TRUE,
+    CURLOPT_FORBID_REUSE => TRUE,
+    CURLOPT_FILETIME => TRUE,
+    CURLOPT_FRESH_CONNECT => TRUE,
+    CURLOPT_SSLVERSION => $WSDL->getCurlSslVersion(),
+    CURLOPT_SSL_VERIFYPEER => FALSE,
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_FOLLOWLOCATION => TRUE
+  );
 
   if (!empty($WSDL->getUserName()) || $WSDL->getUserName() != "null") {
+    $headers = array();
     $headers[] = 'Authorization: Basic '. $WSDL->getCombinedUserPass($PASS_AS_ENCODED);
-    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    curl_setopt($ch, CURLOPT_USERPWD, $WSDL->getCombinedUserPass($PASS_AS_ENCODED));
+    $curl_settings[CURLOPT_HTTPAUTH] = CURLAUTH_BASIC;
+    $curl_settings[CURLOPT_USERPWD] = $WSDL->getCombinedUserPass($PASS_AS_ENCODED);
+    $curl_settings[CURLOPT_HTTPHEADER] = $headers;
   }
 
+  curl_setopt_array($ch, $curl_settings);
+/*
   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   curl_setopt($ch, CURLOPT_STDERR, $lp);
   curl_setopt($ch, CURLOPT_URL, $WSDL->getWsdl($APPENDED_URL));
@@ -281,6 +297,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Needed!! Mb for k&h only
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+  */
 
   if (TRUE === $DEBUG_MODE) {
     curl_setopt($ch, CURLOPT_CERTINFO, true);
@@ -289,6 +306,8 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
 
   $result = curl_exec($ch);
   $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  $err     = curl_errno($ch);
+  $errmsg  = curl_error($ch) ;
   curl_close($ch);
 
   $WSDL->setStatusCode($responseCode);
