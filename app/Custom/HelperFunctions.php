@@ -257,6 +257,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
   $logWsdlPath = $logPath . "/" . $WSDL->getFilename() . "-log.txt";
   $backupFilePath = $backupPath . "/" . $WSDL->getBackupFilename();
 
+  /** @todo: maybe try guzle instead of curl https://github.com/guzzle/guzzle */
   $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
   $lp = fopen($logWsdlPath, "a+");
   fwrite($lp, "\n[".date("Y-m-d H:i:s")."]\n");
