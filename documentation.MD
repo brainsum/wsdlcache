@@ -16,6 +16,10 @@
   * Logging for each WSDL
      * Go down to this level: HTTP request, SSL handshake, etc.
      
+### Version Control
+* The application was created using git
+* Remote host for the repository is here: https://github.com/brainsum/wsdlcache     
+     
 ### Planning     
 Catalog
 * We need to store WSDL data in a file

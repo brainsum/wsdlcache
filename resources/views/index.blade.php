@@ -78,6 +78,11 @@
       </div>
     </div>
     <div class="random">
+      <ol>
+        <li>Fixme: Cleanup kernel, outsource the stuff to another file</li>
+        <li>Fixme: email names to config</li>
+      </ol>
+
       <table class="table table-responsive table-bordered table-striped text-center">
         <tbody>
           <tr>
@@ -103,9 +108,6 @@
             <th>minor</th>
             <td>Refactor the code</td>
           </tr>
-        <tr>
-          <td></td>
-        </tr>
         <tr>
           <td>NOTES</td>
           <td>illuminate/mail suggests installing aws/aws-sdk-php (Required to use the SES mail driver (~3.0).)
