@@ -81,6 +81,8 @@
       <ol>
         <li>Fixme: Cleanup kernel, outsource the stuff to another file</li>
         <li>Fixme: email names to config</li>
+        <li>The parse should skip unfinished stuff</li>
+        <li>Create unexisting stuff (directory, etc)</li>
       </ol>
 
       <table class="table table-responsive table-bordered table-striped text-center">
