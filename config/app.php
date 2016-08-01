@@ -10,7 +10,7 @@ return [
   | services your application utilizes. Set this in your ".env" file.
   |
   */
-  'env' => env('APP_ENV', 'local'),
+  'env' => env('APP_ENV', 'prod'),
   /*
   |--------------------------------------------------------------------------
   | Application Debug Mode
@@ -21,7 +21,7 @@ return [
   | application. If disabled, a simple generic error page is shown.
   |
   */
-  'debug' => env('APP_DEBUG', true),
+  'debug' => env('APP_DEBUG', false),
   /*
   |--------------------------------------------------------------------------
   | Application URL
@@ -54,7 +54,7 @@ return [
   | to any of the locales which will be supported by the application.
   |
   */
-  'locale' => 'en',
+  'locale' => env('APP_LOCALE', 'en'),
   /*
   |--------------------------------------------------------------------------
   | Application Fallback Locale
@@ -65,7 +65,7 @@ return [
   | the language folders that are provided through your application.
   |
   */
-  'fallback_locale' => 'en',
+  'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
   /*
   |--------------------------------------------------------------------------
   | Encryption Key
@@ -77,7 +77,7 @@ return [
   |
   */
   'key' => env('APP_KEY', 'fsZjBnik7fbcQMLNGgkxadNjXeFBefeI'),
-  'cipher' => 'AES-256-CBC',
+  'cipher' => env("APP_CIPHER", 'AES-256-CBC'),
   /*
   |--------------------------------------------------------------------------
   | Logging Configuration

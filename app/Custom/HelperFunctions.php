@@ -341,18 +341,16 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
       fwrite($newCache, $result);
       fclose($newCache);
 
-      // We also have to send a mail about the differences.
-      Mail::send("Emails.wsdl_modification_info",
-        array(
-          "datetimeOfCheck" => date("Y-m-d H:i:s"),
-          "WSDLDiff" => htmlentities($fileDiff),
-          "WSDLName" => $WSDL->getName(),
-          "WSDLUrl" => $WSDL->getWsdl(TRUE)
-        ),
-        function($msg) use ($WSDL) {
-          $msg->to("mhavelant+lumen2@brainsum.com")
-            ->subject("Attention! The " . $WSDL->getName() . " WSDL file has been updated!");
-        });
+      $template = "Emails.wsdl_modification_info";
+      $options = array(
+        "datetimeOfCheck" => date("Y-m-d H:i:s"),
+        "WSDLDiff" => htmlentities($fileDiff),
+        "WSDLName" => $WSDL->getName(),
+        "WSDLUrl" => $WSDL->getWsdl(TRUE)
+      );
+      $messageSubject = "Attention! The " . $options["WSDLName"] . " WSDL file has been updated!";
+      // Send mail about diffs
+      sendCustomMail($template, $options, $messageSubject);
     }
 
     wsdlStatusUpdateWrapper($WSDL, $differ->getDiffCount());
@@ -388,16 +386,14 @@ function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
       // When a modification has been done and the status is an error, we send an email
       // When a host becomes unavailable, the file gets overwritten even when the result is empty.
       if (strtotime($mapObject->wsdl[$i]->modificationDate) == $currDate->getTimestamp() && !$WSDL->isAvailable()) {
-        Mail::send("Emails.wsdl_unavailable",
-        array(
+        $template = "Emails.wsdl_unavailable";
+        $options =         array(
           "WSDLStatusCode" => $WSDL->getStatusCode(),
           "WSDLName" => $WSDL->getName(),
           "WSDLUrl" => $WSDL->getWsdl(TRUE)
-        ),
-        function($msg) use ($WSDL) {
-          $msg->to("mhavelant+lumen2@brainsum.com")
-            ->subject("WARNING! The " . $WSDL->getName() . " WSDL host is unavailable!");
-        });
+        );
+        $messageSubject = "WARNING! The " . $options["WSDLName"] . " WSDL host is unavailable!";
+        sendCustomMail($template, $options, $messageSubject);
       }
 
       break;
@@ -409,4 +405,30 @@ function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
   }
 }
 
+function sendCustomMail($template, $options, $messageSubject) {
+  Mail::send($template,
+    $options,
+    function($msg) use ($messageSubject) {
+      $msg->to(env("MAIL_TO_ADDRESS"))
+        ->subject($messageSubject);
+    });
 
+}
+
+// @todo: move these to the Jobs folder
+
+function wsdlUpdateJob() {
+  $fullMap = getWsdlMapAsArray();
+
+  foreach ($fullMap as $WSDL) {
+    checkAndUpdateWSDLFileWithCurl($WSDL);
+  }
+}
+
+function reminderForAppUpdate() {
+  Mail::send("Emails.update_reminder",
+    function($msg) {
+      $msg->to(env("MAIL_TO_ADDRESS"))
+        ->subject("Reminder - Check for updates!");
+    });
+}

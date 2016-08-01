@@ -3,7 +3,7 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 try {
-    (new Dotenv\Dotenv(__DIR__.'/../'))->load();
+    $dotenv = new Dotenv\Dotenv(__DIR__.'/../');
 } catch (Dotenv\Exception\InvalidPathException $e) {
     $myLog = __DIR__.'/../myLog.txt';
 
@@ -12,7 +12,10 @@ try {
     fwrite($logHander, "Dotenv exception!\n");
     fwrite($logHander, $e->getMessage());
     fclose($logHander);
+    die();
 }
+
+$dotenv->overload();
 
 /*
 |--------------------------------------------------------------------------

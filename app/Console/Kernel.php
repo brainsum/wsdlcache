@@ -27,28 +27,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function() {
-            $this->wsdlUpdateJob();
+           Custom\wsdlUpdateJob();
         })
         ->everyMinute();
 
         $schedule->call(function() {
-            $this->reminderForAppUpdate();
+            Custom\reminderForAppUpdate();
         })->monthly();
-    }
-
-    private function wsdlUpdateJob() {
-        $fullMap = Custom\getWsdlMapAsArray();
-
-        foreach ($fullMap as $WSDL) {
-            Custom\checkAndUpdateWSDLFileWithCurl($WSDL);
-        }
-    }
-
-    private function reminderForAppUpdate() {
-        Mail::send("Emails.update_reminder",
-          function($msg) {
-              $msg->to("mhavelant+lumen2@brainsum.com")
-                ->subject("Reminder - Check for updates!");
-          });
     }
 }
