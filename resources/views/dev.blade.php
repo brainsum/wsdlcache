@@ -20,6 +20,9 @@
                     <li>The parse should skip unfinished stuff</li>
                     <li>Create unexisting stuff (directory, etc)</li>
                     <li>Proper install guide</li>
+                    <li>
+                        drupal/moduls/mabiaszm/config file betöltése kéne, drupalt bootstrapelve; így éles siteból jönnének a jelszavak
+                    </li>
                 </ol>
 
                 <table class="table table-responsive table-bordered table-striped text-center">
