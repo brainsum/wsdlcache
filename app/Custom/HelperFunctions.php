@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Mail;
 
 /**
  * @param string $pathFromRoot
- * @param string $file
+ * @param string $mapFile
+ * @param string $statusFile
+ * @return \App\Models\WSDL[]
  *
- * @return array(WSDL)
  */
 function getWsdlMapAsArray($pathFromRoot = "container", $mapFile = "wsdlMap.xml", $statusFile = "wsdlStatus.xml") {
   $basePath = app()->basePath();
