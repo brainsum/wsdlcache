@@ -15,6 +15,8 @@
                 </h1>
 
                 <ol>
+                    <li>MAJOR!! Solve parallel wsdl access, so we don't run out of time (cron runs every minute, stuff must be ready by that)</li>
+                    <li>REFACTOR THE WSDL FILE ACCORDING TO NEW FIELDS</li>
                     <li>The parse should skip unfinished stuff</li>
                     <li>Create unexisting directories (parents, subs, etc.)</li>
                     <li>Every dumped string should go into the lumen log.</li>

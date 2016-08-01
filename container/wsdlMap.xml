@@ -4,7 +4,21 @@
      plaintext passwords ;_;
 -->
 <!--
-  @todo: Add a manual ID, explode file so status code and the dates are in another file, which are not versioned
+  <wsdl>
+    <id>(integer)</id>
+    <fileName>(string)</fileName>
+    <name>(string)</name>
+    <type>(string)</type>
+    <isTest>(integer; 1 or 0)</isTest>
+    <isKgfb>(integer; 1 or 0)</isKgfb>
+    <isCalc>(integer; 1 or 0)</isCalc>
+    <description>(sring)</description>
+    <url>(string)</url>
+    <userName>(string)</userName>
+    <password>(string)</password>
+    <curlSslVersion>(integer)</curlSslVersion>
+  </wsdl>
+
 -->
 <content>
   <wsdl>
@@ -12,6 +26,10 @@
     <fileName>aegon.test.xml</fileName>
     <name>Aegon</name>
     <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
     <url>https://tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx</url>
     <userName>0000922995</userName>
     <password>Pkr90022995</password>
@@ -22,6 +40,10 @@
     <fileName>kandh.casco.test.xml</fileName>
     <name>KandH-casco</name>
     <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
     <url>https://ws.atollgroup.eu/secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/CascoCalculatorBeanService.xml</url>
     <userName>soron_test</userName>
     <password>Gonta72</password>
@@ -32,6 +54,10 @@
     <fileName>kandh.kgfb.test.xml</fileName>
     <name>KandH-kgfb</name>
     <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
     <url>https://ws.atollgroup.eu/secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/GFBCalculatorBeanService.xml</url>
     <userName>soron_test</userName>
     <password>Gonta72</password>
@@ -42,6 +68,10 @@
     <fileName>generali.test.xml</fileName>
     <name>Generali</name>
     <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
     <url>https://testcalculate.generali.hu/CalculateNS.asmx</url>
     <userName>null</userName>
     <password>null</password>
@@ -52,9 +82,208 @@
     <fileName>groupama.test.xml</fileName>
     <name>Groupama</name>
     <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
     <url>https://www.garancia-online.hu/Kalkulatorok/PDFTarolasWS</url>
     <userName>null</userName>
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
+  <wsdl>
+    <id>5</id>
+    <fileName>aegon.casco.test.xml</fileName>
+    <name>Aegon</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://tesztfe.aegon.hu/dijkalk_webservice/csb.asmx/CSB_Dijkalk</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>6</id>
+    <fileName>generali.casco.test.xml</fileName>
+    <name>Generali-calc-casco</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://test.calculate.generali.hu/CalculateNS.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
 </content>
+
+
+<!--
+@todo: debug these, error code 0 [curl can't connect]
+  <wsdl>
+    <id>7</id>
+    <fileName>signal.casco.test.xml</fileName>
+    <name>Signal</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>Might not be a test? Only url in the calculate file</description>
+    <url>http://gjkalkulacio.signal.hu/gjkalkulacio2/calculationservice.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>8</id>
+    <fileName>posta.casco.test.xml</fileName>
+    <name>Posta</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://wstest.mpb.hu/MPBWS/mpbws.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>9</id>
+    <fileName>OTP.casco.test.xml</fileName>
+    <name>OTP</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://www.garancia-online.hu/Kalkulatorok/PDFTarolasWS</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>10</id>
+    <fileName>genertel.casco.test.xml</fileName>
+    <name>Genertel</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://testwebservice.genertel.hu/SuperCalculate/SuperCalculateNS.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>11</id>
+    <fileName>astra.casco.test.xml</fileName>
+    <name>Astra</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>not valid, not working.</description>
+    <url>https://www.astrasig.hu/test/api/v3/casco.svc</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>12</id>
+    <fileName>uniqa.casco.test.xml</fileName>
+    <name>Uniqa</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://t-uniweb.uniqa.at/webservice-hu/services/CalcMHull4G100</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>13</id>
+    <fileName>wabard.casco.test.xml</fileName>
+    <name>Wabard</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://www.wabererbiztosito.hu:10461/CascoAjanlat.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>14</id>
+    <fileName>union.casco.test.xml</fileName>
+    <name>Union</name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://tesztportal.unionbiztosito.hu/UnionTariffWS/casco.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+-->
+
+<!-- 
+@todo: casco+kgfb, calc+offer cuccokat is külön írni, description mező is kell
+  <wsdl>
+    <id>15</id>
+    <fileName>.test.xml</fileName>
+    <name></name>
+    <type>Test</type>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://test.calculate.generali.hu/CalculateNS.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+
+
+
+Others:
+kalk casco
+* A teszt kikommentezve volt a calculate fileban
+    Union
+
+** Nem volt teszt megadva a calculate fileban
+    Signal
+    OTP
+
+*** Allianze local file, why?
+
+kalk casco
+    MKB [wsdl]      https://services.mkbb.hu:8080/SalesML/mkb-sales-tool-service-motor_secure.wsdl
+    MKB [action]    https://services.mkbb.hu:8080/SalesML/motor
+    
+kalk kgfb
+    Allianze        https://webservicetest.allianz.hu/det/premium3.Gfb2016Interface1?wsdl
+    Astra           https://www.astrasig.hu/test/api/v3/mtpl.svc?wsdl
+    Uniqa           https://t-uniweb.uniqa.at/webservice-hu/services/uniCalc?WSDL
+    Wabard          https://www.wabererbiztosito.hu:10461/kgfb2016.asmx?WSDL
+    Union           https://tesztportal.unionbiztosito.hu/UnionTariffWS/kgfb.asmx?WSDL
+    Signal**        http://gjkalkulacio.signal.hu/gjkalkulacio2/calculationservice.asmx?WSDL
+    Posta           https://wstest.mpb.hu/MPBWS/mpbws.asmx?wsdl
+    OTP [ws]        https://agentportal.groupama.hu/testservices/MTPL351BrokerWebService/MTPL351BrokerWSService/META-INF/wsdl/MTPL351BrokerWSService.wsdl
+    OTP [location]  https://agentportal.groupama.hu/testservices/MTPL351BrokerWebService/MTPL351BrokerWSService
+    MKB [wsdl]      https://services.mkbb.hu:8080/SalesML/mkb-sales-tool-service-motor_secure.wsdl
+    MKB [action]    https://services.mkbb.hu:8080/SalesML/motor
+    Genertel        https://testwebservice.genertel.hu/SuperCalculate/SuperCalculateNS.asmx
+    Kobe            https://voice.a-r-t.hu/kobewww/_ws3/?wsdl
+-->

@@ -76,12 +76,11 @@ function getWsdlMapAsArray($pathFromRoot = "container", $mapFile = "wsdlMap.xml"
       dump(
         "Create mode. WSDL with id $i has no status, so we create one for it."
       );
-      $currDate = new \DateTime();
+      $startingDate = new \DateTime("0000-00-00 00:00:00");
       $updateHasHappened = TRUE;
-      $arrayOfWsdlObjects[$i]->setStatusCode(200);
-      $arrayOfWsdlObjects[$i]->setLastCheck($currDate);
-      $arrayOfWsdlObjects[$i]->setLastModification($currDate);
-      // @todo Maybe we could search for the file, and get its modification date as the lastModification?
+      $arrayOfWsdlObjects[$i]->setStatusCode(0);
+      $arrayOfWsdlObjects[$i]->setLastCheck($startingDate);
+      $arrayOfWsdlObjects[$i]->setLastModification($startingDate);
       createNewStatus($mapObject, $arrayOfWsdlObjects[$i]);
     }
   }
