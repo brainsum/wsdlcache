@@ -24,7 +24,7 @@
   <wsdl>
     <id>0</id>
     <fileName>aegon.test.xml</fileName>
-    <name>Aegon</name>
+    <name>Aegon-calc-kgfb</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -38,7 +38,7 @@
   <wsdl>
     <id>1</id>
     <fileName>kandh.casco.test.xml</fileName>
-    <name>KandH-casco</name>
+    <name>KandH-calc-casco</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -52,7 +52,7 @@
   <wsdl>
     <id>2</id>
     <fileName>kandh.kgfb.test.xml</fileName>
-    <name>KandH-kgfb</name>
+    <name>KandH-calc-kgfb</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -66,7 +66,7 @@
   <wsdl>
     <id>3</id>
     <fileName>generali.test.xml</fileName>
-    <name>Generali</name>
+    <name>Generali-calc-kgfb</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -80,7 +80,7 @@
   <wsdl>
     <id>4</id>
     <fileName>groupama.test.xml</fileName>
-    <name>Groupama</name>
+    <name>Groupama-calc-kgfb</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -94,7 +94,7 @@
   <wsdl>
     <id>5</id>
     <fileName>aegon.casco.test.xml</fileName>
-    <name>Aegon</name>
+    <name>Aegon-calc-casco</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
@@ -105,6 +105,11 @@
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
+</content>
+
+
+<!--
+@todo: debug these, error code 0 [curl can't connect]
   <wsdl>
     <id>6</id>
     <fileName>generali.casco.test.xml</fileName>
@@ -119,11 +124,6 @@
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
-</content>
-
-
-<!--
-@todo: debug these, error code 0 [curl can't connect]
   <wsdl>
     <id>7</id>
     <fileName>signal.casco.test.xml</fileName>
