@@ -15,50 +15,20 @@
                 </h1>
 
                 <ol>
-                    <li>Fixme: Cleanup kernel, outsource the stuff to another file</li>
-                    <li>Fixme: email names to config</li>
                     <li>The parse should skip unfinished stuff</li>
-                    <li>Create unexisting stuff (directory, etc)</li>
+                    <li>Create unexisting directories (parents, subs, etc.)</li>
+                    <li>status map should create new status entries on its own so we don't have to do it manually</li>
                     <li>Proper install guide</li>
                     <li>
-                        drupal/moduls/mabiaszm/config file betöltése kéne, drupalt bootstrapelve; így éles siteból jönnének a jelszavak
+                        drupal/moduls/mabiaszm/config file betöltése kéne, drupalt bootstrapelve; így éles siteból jönnének a jelszavak, nem itt lennének tárolva
                     </li>
+                    <li>Look out for additional PHP7.0 features (like String $name) and remove them.</li>
+                    <li>Test the API</li>
+                    <li>better logging (standard format, try monolog, etc)</li>
+                    <li>refactor parts of the code</li>
+                    <li>add stuff, so illuminate/mail has everything it might need. aws/aws-sdk-php ;; guzzlehttp/guzzle ;; jeremeamia/superclosure  </li>
+                    <li>Try guzzlehttp as a secondary download tool; it might be more modern than curl</li>
                 </ol>
-
-                <table class="table table-responsive table-bordered table-striped text-center">
-                    <tbody>
-                    <tr>
-                        <th>MAJOR</th>
-                        <td>go live as fast as possible</td>
-                        <td>php version might be blocker (5.6 on server, 7.0 on local)</td>
-                    </tr>
-                    <tr>
-                        <th>MAJOR</th>
-                        <td>Write server API so outsiders can access the cached WSDL files</td>
-                    </tr>
-                    <tr>
-                        <th>Standard</th>
-                        <td>What if we add smth to the map but not to the status part?</td>
-                        <td>We should create a status in this case (automation rules)</td>
-                    </tr>
-                    <tr>
-                        <th>Standard</th>
-                        <td>restructure logs (watchdog style)</td>
-                        <td>research: standard log formats [try monolog logger]</td>
-                    </tr>
-                    <tr>
-                        <th>minor</th>
-                        <td>Refactor the code</td>
-                    </tr>
-                    <tr>
-                        <td>NOTES</td>
-                        <td>illuminate/mail suggests installing aws/aws-sdk-php (Required to use the SES mail driver (~3.0).)
-                            illuminate/mail suggests installing guzzlehttp/guzzle (Required to use the Mailgun and Mandrill mail drivers (~5.3|~6.0).)
-                            illuminate/mail suggests installing jeremeamia/superclosure (Required to be able to serialize closures (~2.0).)
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
