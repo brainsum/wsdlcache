@@ -80,7 +80,7 @@ class WSDL {
   }
 
   public function getId() {
-    return $this->id;
+    return (int) $this->id;
   }
 
   /**
@@ -112,24 +112,32 @@ class WSDL {
   }
 
   /**
-   * @param $available
+   * @param bool $available
    */
   public function setAvailable($available) {
     $this->available = $available;
   }
 
   /**
-   * @param $lastCheck
+   * @param \DateTime $lastCheck
    */
   public function setLastCheck($lastCheck) {
-    $this->lastCheck = $lastCheck;
+    if ($lastCheck instanceof \DateTime) {
+      $this->lastCheck = $lastCheck;
+    } else {
+      $this->lastCheck = new \DateTime($lastCheck);
+    }
   }
 
   /**
-   * @param $lastModification
+   * @param \DateTime $lastModification
    */
   public function setLastModification($lastModification) {
-    $this->lastModification = $lastModification;
+    if ($lastModification instanceof \DateTime) {
+      $this->lastModification = $lastModification;
+    } else {
+      $this->lastModification = new \DateTime($lastModification);
+    }
   }
 
   /**

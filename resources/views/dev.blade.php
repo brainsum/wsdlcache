@@ -17,7 +17,7 @@
                 <ol>
                     <li>The parse should skip unfinished stuff</li>
                     <li>Create unexisting directories (parents, subs, etc.)</li>
-                    <li>status map should create new status entries on its own so we don't have to do it manually</li>
+                    <li>Every dumped string should go into the lumen log.</li>
                     <li>Proper install guide</li>
                     <li>
                         drupal/moduls/mabiaszm/config file betöltése kéne, drupalt bootstrapelve; így éles siteból jönnének a jelszavak, nem itt lennének tárolva

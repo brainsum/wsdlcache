@@ -8,7 +8,7 @@
 -->
 <content>
   <wsdl>
-    <id>1</id>
+    <id>0</id>
     <fileName>aegon.test.xml</fileName>
     <name>Aegon</name>
     <type>Test</type>
@@ -18,7 +18,7 @@
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
   <wsdl>
-    <id>2</id>
+    <id>1</id>
     <fileName>kandh.casco.test.xml</fileName>
     <name>KandH-casco</name>
     <type>Test</type>
@@ -28,7 +28,7 @@
     <curlSslVersion>4</curlSslVersion>
   </wsdl>
   <wsdl>
-    <id>3</id>
+    <id>2</id>
     <fileName>kandh.kgfb.test.xml</fileName>
     <name>KandH-kgfb</name>
     <type>Test</type>
@@ -38,7 +38,7 @@
     <curlSslVersion>4</curlSslVersion>
   </wsdl>
   <wsdl>
-    <id>4</id>
+    <id>3</id>
     <fileName>generali.test.xml</fileName>
     <name>Generali</name>
     <type>Test</type>
@@ -48,7 +48,7 @@
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
   <wsdl>
-    <id>5</id>
+    <id>4</id>
     <fileName>groupama.test.xml</fileName>
     <name>Groupama</name>
     <type>Test</type>

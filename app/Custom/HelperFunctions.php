@@ -29,55 +29,66 @@ function getWsdlMapAsArray($pathFromRoot = "container", $mapFile = "wsdlMap.xml"
   $parser = new Parser();
   $mapAsArray = $parser->xml($mapData);
 
+  if (!isset($mapAsArray["wsdl"])) {
+    print "The WSDL map is empty. Before using the application, please add elements to the WSDL map.";
+    die();
+  }
+
   /** @var WSDL[] $arrayOfWsdlObjects */
   $arrayOfWsdlObjects = array();
 
-  // The map stores each WSDL info between <wsdl></wsdl> tags
-  // The parser returns this as array( "wsdl" => array(...));
-  // The wsdl array can contain:
-  //    1, The info for a single wsdl
-  //    2, The info for each wsdl as separate arrays
-  // This means, we have to consider these two cases
-  // So when the 0 numeric key exists, we have to deal with multiple wsdl descriptions
-  // If 0 is not a key, we can be sure (based on the xml structure), that it's a single wsdl description
-
-  $mapContainsMultipleWsdlData = array_key_exists(0, $mapAsArray["wsdl"]);
-
-  if ($mapContainsMultipleWsdlData) {
+  // When we have multiple WSDL definitions in the map, we iterate through them.
+  // If it's a single one, then we don't need to iterate.
+  if (sizeof($mapAsArray["wsdl"]) > 1) {
     foreach ($mapAsArray["wsdl"] as $wsdl) {
       $arrayOfWsdlObjects[] = parseWsdlFromArrayToObject($wsdl);
     }
-  } else {
+  }
+  else {
     $arrayOfWsdlObjects[] = parseWsdlFromArrayToObject($mapAsArray["wsdl"]);
   }
 
-  $statusData = file_get_contents("$basePath/$pathFromRoot/$statusFile");
-  $parser2 = new Parser();
-  $statusAsArray = $parser2->xml($statusData);
+  $mapObject = getXMLAsSimpleXML();
 
-  $statusContainsMultipleWsdlData = array_key_exists(0, $statusAsArray["wsdl"]);
+  $updateHasHappened = FALSE;
 
-  if ($mapContainsMultipleWsdlData && $statusContainsMultipleWsdlData && count($statusAsArray["wsdl"]) !== count($mapAsArray["wsdl"])) {
-    throw new UnexpectedValueException("The count of wsdls in the map and statuses don't match!");
-  }
+  for ($i = 0; $i < sizeof($arrayOfWsdlObjects); ++$i) {
+    try {
+      // We try to get the element with the given ID
+      // For his to work the ID and the Array index must be the same
+      // If we do't temper with it, however, it should be ok, as IDs in the status
+      // file start from 0 and increase by one.
+      $mapId = $mapId = (int) $mapObject->wsdl[$i]->id;
 
-  /**
-   * @fixme @todo refactor needed.
-   */
-  if (TRUE === $mapContainsMultipleWsdlData && TRUE === $statusContainsMultipleWsdlData) {
-    foreach($arrayOfWsdlObjects as $wsdl) {
-      foreach ($statusAsArray["wsdl"] as $status) {
-        if ($status["id"] == $wsdl->getId()) {
-          $wsdl->setLastCheck(new \DateTime($status["checkDate"]));
-          $wsdl->setLastModification(new \DateTime($status["modificationDate"]));
-          $wsdl->setStatusCode((int) $status["statusCode"]);
-        }
-      }
+      // If the execution reaches this point, the status exists.
+      // This means we update the WSDL object with the stored status
+      $arrayOfWsdlObjects[$i]->setStatusCode(
+        (int) $mapObject->wsdl[$i]->statusCode
+      );
+      $arrayOfWsdlObjects[$i]->setLastCheck(
+        new \DateTime($mapObject->wsdl[$i]->checkDate)
+      );
+      $arrayOfWsdlObjects[$i]->setLastModification(
+        new \DateTime($mapObject->wsdl[$i]->modificationDate)
+      );
+    } catch (\ErrorException $e) {
+      // @todo: this should go into the logs
+      dump(
+        "Create mode. WSDL with id $i has no status, so we create one for it."
+      );
+      $currDate = new \DateTime();
+      $updateHasHappened = TRUE;
+      $arrayOfWsdlObjects[$i]->setStatusCode(200);
+      $arrayOfWsdlObjects[$i]->setLastCheck($currDate);
+      $arrayOfWsdlObjects[$i]->setLastModification($currDate);
+      // @todo Maybe we could search for the file, and get its modification date as the lastModification?
+      createNewStatus($mapObject, $arrayOfWsdlObjects[$i]);
     }
-  } else {
-    $arrayOfWsdlObjects[0]->setLastCheck($statusAsArray["wsdl"]["checkDate"]);
-    $arrayOfWsdlObjects[0]->setLastModification($statusAsArray["wsdl"]["modificationDate"]);
-    $arrayOfWsdlObjects[0]->setStatusCode((int) $statusAsArray["wsdl"]["statusCode"]);
+  }
+  if ($updateHasHappened) {
+    if (FALSE === updateWsdlMap($mapObject)) {
+      dump("update failed");
+    }
   }
 
   return $arrayOfWsdlObjects;
@@ -113,7 +124,14 @@ function getXMLAsSimpleXML($pathFromRoot = "container", $file = "wsdlStatus.xml"
 function updateWsdlMap(\SimpleXMLElement $mapObject, $pathFromRoot = "container", $file = "wsdlStatus.xml") {
   $basePath = app()->basePath();
   try {
-    $mapObject->saveXML("$basePath/$pathFromRoot/$file");
+    // $mapObject->saveXML("$basePath/$pathFromRoot/$file");
+
+    $dom = new \DOMDocument('1.0');
+    $dom->preserveWhiteSpace = false;
+    $dom->formatOutput = true;
+    $dom->loadXML($mapObject->asXML());
+    $dom->save("$basePath/$pathFromRoot/$file");
+
   } catch (\Exception $exc) {
     dump($exc);
     return false;
@@ -296,7 +314,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
   $result = curl_exec($ch);
   $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
   $err     = curl_errno($ch);
-  $errmsg  = curl_error($ch) ;
+  $errmsg  = curl_error($ch);
   curl_close($ch);
   fclose($lp);
 
@@ -367,28 +385,65 @@ function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
   try {
     /** @var \SimpleXMLElement $mapObject */
     $mapObject = getXMLAsSimpleXML();
-  } catch (\Dotenv\Exception\InvalidFileException $exc) {
+  } catch (\Exception $exc) {
     dump($exc->getMessage());
     return;
   }
 
   $currDate = new \DateTime();
+  $WSDL->setLastCheck($currDate);
+  $WSDL->setLastModification($currDate);
+
+  dump($WSDL);
+
+  try {
+    // We try to get the element with the given ID
+    // For his to work the ID and the Array index must be the same
+    // If we do't temper with it, however, it should be ok, as IDs in the status
+    // file start from 0 and increase by one.
+    $mapId = (int) $mapObject->wsdl[$WSDL->getId()]->id;
+    // If we can get the element, we update it
+    $mapObject->wsdl[$WSDL->getId()]->statusCode = $WSDL->getStatusCode();
+    $mapObject->wsdl[$WSDL->getId()]->checkDate = $WSDL->getLastCheck()->format("Y-m-d H:i:s");
+
+    if (0 < $diffCount) {
+      $mapObject->wsdl[$WSDL->getId()]->modificationDate = $WSDL->getLastModification()->format("Y-m-d H:i:s");
+    }
+
+  } catch (\ErrorException $exc) {
+    // If we can't access the element, we create it
+    dump($exc);
+    createNewStatus($mapObject, $WSDL);
+  }
+
+  // When there was a modification, and the status is unavailable, we send a warning email
+  if (0 < $diffCount && !$WSDL->isAvailable()) {
+    $template = "Emails.wsdl_unavailable";
+    $options = array(
+      "WSDLStatusCode" => $WSDL->getStatusCode(),
+      "WSDLName" => $WSDL->getName(),
+      "WSDLUrl" => $WSDL->getWsdl(TRUE)
+    );
+    $messageSubject = "WARNING! The " . $options["WSDLName"] . " WSDL host is unavailable!";
+    sendCustomMail($template, $options, $messageSubject);
+  }
 
   /* We only update the current wsdl object data. */
+  /*
   for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
     if ((string) $mapObject->wsdl[$i]->id == $WSDL->getId()) {
       $mapObject->wsdl[$i]->statusCode = $WSDL->getStatusCode();
-      $mapObject->wsdl[$i]->checkDate = $currDate->format("Y-m-d H:i:s");
+      $mapObject->wsdl[$i]->checkDate = $WSDL->getLastCheck()->format("Y-m-d H:i:s");
 
       if (0 < $diffCount) {
-        $mapObject->wsdl[$i]->modificationDate = $currDate->format("Y-m-d H:i:s");
+        $mapObject->wsdl[$i]->modificationDate = $WSDL->getLastModification()->format("Y-m-d H:i:s");
       }
 
       // When a modification has been done and the status is an error, we send an email
       // When a host becomes unavailable, the file gets overwritten even when the result is empty.
       if (strtotime($mapObject->wsdl[$i]->modificationDate) == $currDate->getTimestamp() && !$WSDL->isAvailable()) {
         $template = "Emails.wsdl_unavailable";
-        $options =         array(
+        $options = array(
           "WSDLStatusCode" => $WSDL->getStatusCode(),
           "WSDLName" => $WSDL->getName(),
           "WSDLUrl" => $WSDL->getWsdl(TRUE)
@@ -399,11 +454,28 @@ function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
 
       break;
     }
-  }
+  }*/
 
   if (FALSE === updateWsdlMap($mapObject)) {
     dump("update failed");
   }
+}
+
+/**
+ * The $mapObject is a SimpleXMLElement, so we can expand it here by adding
+ * a new "wsdl" child to it with the new status data.
+ *
+ * @param \SimpleXMLElement $mapObject
+ * @param WSDL $WSDL
+ * @return \SimpleXMLElement
+ */
+function createNewStatus(&$mapObject, $WSDL) {
+  $element = $mapObject->addChild("wsdl");
+
+  $element->addChild("id", $WSDL->getId());
+  $element->addChild("statusCode", $WSDL->getStatusCode());
+  $element->addChild("checkDate", $WSDL->getLastCheck()->format("Y-m-d H:i:s"));
+  $element->addChild("modificationDate", $WSDL->getLastModification()->format("Y-m-d H:i:s"));
 }
 
 function sendCustomMail($template, $options, $messageSubject) {
