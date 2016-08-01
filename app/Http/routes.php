@@ -15,10 +15,6 @@
 
 $app->get('/', "MainController@indexAction");
 
-$app->get('/dev', function () {
-    return view("dev");
-});
-
 $app->get('/wsdl/name/{name}', array(
   'as' => "getWSDLByName",
   'uses' => "MainController@getWSDLByNameAction"
@@ -34,14 +30,23 @@ $app->get('/log/{name}/download', array(
   'uses' => "MainController@downloadWSDLLogByNameAction"
 ));
 
-/*
-$app->get('/info', function () {
-    return view("info");
-});
-*/
-/*
-$app->get('/sandbox', "MainController@sandboxAction");
-*/
+if (app()->environment("local")) {
+    $app->get(
+      '/dev',
+      function () {
+          return view("dev");
+      }
+    );
+
+    $app->get(
+      '/info',
+      function () {
+          return view("info");
+      }
+    );
+
+    $app->get('/sandbox', "MainController@sandboxAction");
+}
 /** API v1 */
 
 $app->get('/api/v1/get/wsdl', array(
