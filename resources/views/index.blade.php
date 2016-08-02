@@ -1,6 +1,9 @@
 @extends('Layouts.template')
 
 @section('title')
+  @if(env('APP_ENV') == "local")
+    LOCAL
+  @endif
   WSDL Cache Status Page
 @endsection
 
@@ -8,7 +11,12 @@
   <div class="container container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <h1>Mabiasz WSDL Cache status</h1>
+        <h1>
+          @if(env('APP_ENV') == "local")
+            LOCAL
+          @endif
+          Mabiasz WSDL Cache status
+        </h1>
 
         <table style="vertical-align: middle;" class="table table-responsive table-bordered table-striped text-center">
           <thead>
