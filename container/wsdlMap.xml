@@ -291,9 +291,9 @@
     <isCalc>1</isCalc>
     <description>needAuth</description>
     <url>https://voice.a-r-t.hu/kobewww/_ws3/</url>
-    <userName>null</userName>
-    <password>null</password>
-    <curlSslVersion>0</curlSslVersion>
+    <userName>SoronMo</userName>
+    <password>B5eKz9r</password>
+    <curlSslVersion>4</curlSslVersion>
   </wsdl>
   <wsdl>
     <id>23</id>
@@ -327,8 +327,8 @@
     <isCalc>1</isCalc>
     <description>0</description>
     <url>https://agentportal.groupama.hu/testservices/MTPL351BrokerWebService/MTPL351BrokerWSService/META-INF/wsdl/MTPL351BrokerWSService.wsdl</url>
-    <userName>null</userName>
-    <password>null</password>
+    <userName>1900719568</userName>
+    <password>#&amp;@AB123</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
   <wsdl>
