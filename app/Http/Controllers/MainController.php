@@ -24,6 +24,7 @@ class MainController extends BaseController {
 
     $today = new \DateTime();
     $today->setTime(0,0,0);
+    $today = $today->getTimestamp();
 
     return view("index", array(
       'wsdlList' => $wsdlMap,

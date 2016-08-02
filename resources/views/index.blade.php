@@ -57,12 +57,12 @@
                   {{ $wsdl->getLastCheck()->format("Y-m-d H:i:s") }}
                 </td>
                 <?php
-                  /**
-                   * @var \DateTime $today
-                   * @var App\Models\WSDL $wsdl
-                   */
-                  $diff = $today->diff($wsdl->getLastModification());
-                  if((integer)$diff->format( "%R%a" ) == 0) {
+
+                /**
+                 * @var App\Models\WSDL $wsdl
+                 * @var integer $today
+                 */
+                  if($wsdl->getLastModification()->getTimestamp() >= $today) {
                     $tdClass = "danger"; $tdTitle = "Was updated today.";
                   } else {
                     $tdClass = ""; $tdTitle = "";
