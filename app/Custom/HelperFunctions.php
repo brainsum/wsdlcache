@@ -399,7 +399,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
       $options = array(
         "datetimeOfCheck" => date("Y-m-d H:i:s"),
         "WSDLDiff" => htmlentities($fileDiff),
-        "WSDLName" => $WSDL->getName(),
+        "WSDLName" => $WSDL->getName(TRUE,TRUE,TRUE),
         "WSDLUrl" => $WSDL->getWsdl(TRUE)
       );
       $messageSubject = "Attention! The " . $options["WSDLName"] . " WSDL file has been updated!";
@@ -456,7 +456,7 @@ function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
     $template = "Emails.wsdl_unavailable";
     $options = array(
       "WSDLStatusCode" => $WSDL->getStatusCode(),
-      "WSDLName" => $WSDL->getName(),
+      "WSDLName" => $WSDL->getName(TRUE,TRUE,TRUE),
       "WSDLUrl" => $WSDL->getWsdl(TRUE)
     );
     $messageSubject = "WARNING! The " . $options["WSDLName"] . " WSDL host is unavailable!";
