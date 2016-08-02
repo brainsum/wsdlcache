@@ -27,9 +27,24 @@ class WSDL {
   private $wsdl;
 
   /**
+   * @var bool
+   */
+  private $isTest;
+
+  /**
+   * @var bool
+   */
+  private $isKgfb;
+
+  /**
+   * @var bool
+   */
+  private $isCalculation;
+
+  /**
    * @var String
    */
-  private $type;
+  private $description;
 
   /**
    * @var String
@@ -98,10 +113,19 @@ class WSDL {
   }
 
   /**
+   * @param bool $appendIsCalc
+   * @param bool $appendIsKGFB
+   * @param bool $appendIsTest
+   * @param String $separator
    * @return String
    */
-  public function getName() {
-    return $this->name;
+  public function getName($appendIsCalc = FALSE, $appendIsKGFB = FALSE, $appendIsTest = FALSE, $separator = "-") {
+    $appendix = "";
+    $appendix = ($appendIsTest) ? (($this->isTest() ? $appendix.$separator."test" : $appendix.$separator."live")) : $appendix;
+    $appendix = ($appendIsKGFB) ? (($this->isKgfb() ? $appendix.$separator."kgfb" : $appendix.$separator."casco")) : $appendix;
+    $appendix = ($appendIsCalc) ? (($this->isCalculation() ? $appendix.$separator."calculation" : $appendix.$separator."offer")) : $appendix;
+
+    return $this->name . $appendix;
   }
 
   /**
@@ -150,6 +174,8 @@ class WSDL {
   /**
    * Returns the url with ?WSDL appended.
    *
+   * @param bool $appended
+   *
    * @return String
    */
   public function getWsdl($appended = FALSE) {
@@ -160,18 +186,36 @@ class WSDL {
     return $this->wsdl;
   }
 
-  /**
-   * @param $type
-   */
-  public function setType($type) {
-    $this->type = $type;
+  public function setIsCalculation($isCalculation) {
+    $this->isCalculation = $isCalculation;
   }
 
-  /**
-   * @return String
-   */
-  public function getType() {
-    return $this->type;
+  public function setIsKgfb($isKgfb) {
+    $this->isKgfb = $isKgfb;
+  }
+
+  public function setIsTest($isTest) {
+    $this->isTest = $isTest;
+  }
+
+  public function isCalculation() {
+    return $this->isCalculation;
+  }
+
+  public function isKgfb() {
+    return $this->isKgfb;
+  }
+
+  public function isTest() {
+    return $this->isTest;
+  }
+
+  public function setDescription($description) {
+    $this->description = $description;
+  }
+
+  public function getDescription() {
+    return $this->description;
   }
 
   public function getPassword() {
@@ -199,7 +243,7 @@ class WSDL {
   }
 
   public function getBackupFilename() {
-    return ($this->getName() . "." . $this->getType() . ".backup.from_" . $this->getLastModification()->format("Y-m-d_H-i-s") . "_to_" . date("Y-m-d_H-i-s") . ".xml");
+    return ($this->getName(TRUE, TRUE, TRUE, ".") . ".backup.from_" . $this->getLastModification()->format("Y-m-d_H-i-s") . "_to_" . date("Y-m-d_H-i-s") . ".xml");
   }
 
   public function setFilename($filename) {
@@ -230,7 +274,7 @@ class WSDL {
    * @return string
    */
   public function generateFileName() {
-    $this->filename = ($this->getName().".".$this->getType().".xml");
+    $this->filename = ($this->getName(TRUE, TRUE, TRUE, ".").".xml");
 
     return $this->filename;
   }

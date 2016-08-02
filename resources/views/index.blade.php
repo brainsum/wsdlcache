@@ -15,7 +15,6 @@
             <tr>
               <th>#</th>
               <th>Name</th>
-              <th>Type</th>
               <th>WSDL</th>
               <th>Status</th>
               <th>Last Check Date</th>
@@ -33,8 +32,7 @@
               @foreach ($wsdlList as $wsdl)
               <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $wsdl->getName() }}</td>
-                <td>{{ $wsdl->getType() }}</td>
+                <td>{{ $wsdl->getName(TRUE, TRUE, TRUE) }}</td>
                 <td>{{ $wsdl->getWsdl() }}</td>
                 @if ($wsdl->isAvailable())
                   <?php $tdClass = "success"; $spanClass = "ok"; ?>

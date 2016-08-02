@@ -150,10 +150,13 @@ function parseWsdlFromArrayToObject($wsdlDataArray) {
   $wsdl = new WSDL($wsdlDataArray["url"]);
   $wsdl->setId($wsdlDataArray["id"]);
   $wsdl->setName($wsdlDataArray["name"]);
-  $wsdl->setType($wsdlDataArray["type"]);
   $wsdl->setUserName($wsdlDataArray["userName"]);
   $wsdl->setPassword($wsdlDataArray["password"]);
   $wsdl->setCurlSslVersion($wsdlDataArray["curlSslVersion"]);
+  $wsdl->setIsTest($wsdlDataArray["isTest"]);
+  $wsdl->setIsKgfb($wsdlDataArray["isKgfb"]);
+  $wsdl->setIsCalculation($wsdlDataArray["isCalc"]);
+  $wsdl->setDescription($wsdlDataArray["description"]);
 
   return $wsdl;
 }

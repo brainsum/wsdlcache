@@ -3,7 +3,7 @@
   @critical @todo @fixme
      plaintext passwords ;_;
 -->
-<!--
+<!-- template
   <wsdl>
     <id>(integer)</id>
     <fileName>(string)</fileName>
@@ -23,8 +23,7 @@
 <content>
   <wsdl>
     <id>0</id>
-    <fileName>aegon.test.xml</fileName>
-    <name>Aegon-calc-kgfb</name>
+    <name>Aegon</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -37,8 +36,7 @@
   </wsdl>
   <wsdl>
     <id>1</id>
-    <fileName>kandh.casco.test.xml</fileName>
-    <name>KandH-calc-casco</name>
+    <name>KandH</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -51,8 +49,7 @@
   </wsdl>
   <wsdl>
     <id>2</id>
-    <fileName>kandh.kgfb.test.xml</fileName>
-    <name>KandH-calc-kgfb</name>
+    <name>KandH</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -65,8 +62,7 @@
   </wsdl>
   <wsdl>
     <id>3</id>
-    <fileName>generali.test.xml</fileName>
-    <name>Generali-calc-kgfb</name>
+    <name>Generali</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -79,8 +75,7 @@
   </wsdl>
   <wsdl>
     <id>4</id>
-    <fileName>groupama.test.xml</fileName>
-    <name>Groupama-calc-kgfb</name>
+    <name>Groupama</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
@@ -93,8 +88,7 @@
   </wsdl>
   <wsdl>
     <id>5</id>
-    <fileName>aegon.casco.test.xml</fileName>
-    <name>Aegon-calc-casco</name>
+    <name>Aegon</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
@@ -105,15 +99,9 @@
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
-</content>
-
-
-<!--
-@todo: debug these, error code 0 [curl can't connect]
   <wsdl>
     <id>6</id>
-    <fileName>generali.casco.test.xml</fileName>
-    <name>Generali-calc-casco</name>
+    <name>Generali</name>
     <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
@@ -126,7 +114,6 @@
   </wsdl>
   <wsdl>
     <id>7</id>
-    <fileName>signal.casco.test.xml</fileName>
     <name>Signal</name>
     <type>Test</type>
     <isTest>1</isTest>
@@ -140,7 +127,6 @@
   </wsdl>
   <wsdl>
     <id>8</id>
-    <fileName>posta.casco.test.xml</fileName>
     <name>Posta</name>
     <type>Test</type>
     <isTest>1</isTest>
@@ -154,7 +140,6 @@
   </wsdl>
   <wsdl>
     <id>9</id>
-    <fileName>OTP.casco.test.xml</fileName>
     <name>OTP</name>
     <type>Test</type>
     <isTest>1</isTest>
@@ -168,7 +153,6 @@
   </wsdl>
   <wsdl>
     <id>10</id>
-    <fileName>genertel.casco.test.xml</fileName>
     <name>Genertel</name>
     <type>Test</type>
     <isTest>1</isTest>
@@ -182,7 +166,6 @@
   </wsdl>
   <wsdl>
     <id>11</id>
-    <fileName>astra.casco.test.xml</fileName>
     <name>Astra</name>
     <type>Test</type>
     <isTest>1</isTest>
@@ -196,7 +179,6 @@
   </wsdl>
   <wsdl>
     <id>12</id>
-    <fileName>uniqa.casco.test.xml</fileName>
     <name>Uniqa</name>
     <type>Test</type>
     <isTest>1</isTest>
@@ -210,7 +192,6 @@
   </wsdl>
   <wsdl>
     <id>13</id>
-    <fileName>wabard.casco.test.xml</fileName>
     <name>Wabard</name>
     <type>Test</type>
     <isTest>1</isTest>
@@ -224,7 +205,6 @@
   </wsdl>
   <wsdl>
     <id>14</id>
-    <fileName>union.casco.test.xml</fileName>
     <name>Union</name>
     <type>Test</type>
     <isTest>1</isTest>
@@ -236,10 +216,15 @@
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
+</content>
+
+
+<!--
+@todo: debug these, error code 0 [curl can't connect]
+
 -->
 
 <!-- 
-@todo: casco+kgfb, calc+offer cuccokat is külön írni, description mező is kell
   <wsdl>
     <id>15</id>
     <fileName>.test.xml</fileName>
