@@ -3,7 +3,7 @@
   @critical @todo @fixme
      plaintext passwords ;_;
 -->
-<!-- template
+<!-- template for adding new data
   <wsdl>
     <id>(integer)</id>
     <fileName>(string)</fileName>
@@ -217,58 +217,3 @@
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
 </content>
-
-
-<!--
-@todo: debug these, error code 0 [curl can't connect]
-
--->
-
-<!-- 
-  <wsdl>
-    <id>15</id>
-    <fileName>.test.xml</fileName>
-    <name></name>
-    <type>Test</type>
-    <isTest>1</isTest>
-    <isKgfb>1</isKgfb>
-    <isCalc>1</isCalc>
-    <description>0</description>
-    <url>https://test.calculate.generali.hu/CalculateNS.asmx</url>
-    <userName>null</userName>
-    <password>null</password>
-    <curlSslVersion>0</curlSslVersion>
-  </wsdl>
-
-
-
-Others:
-kalk casco
-* A teszt kikommentezve volt a calculate fileban
-    Union
-
-** Nem volt teszt megadva a calculate fileban
-    Signal
-    OTP
-
-*** Allianze local file, why?
-
-kalk casco
-    MKB [wsdl]      https://services.mkbb.hu:8080/SalesML/mkb-sales-tool-service-motor_secure.wsdl
-    MKB [action]    https://services.mkbb.hu:8080/SalesML/motor
-    
-kalk kgfb
-    Allianze        https://webservicetest.allianz.hu/det/premium3.Gfb2016Interface1?wsdl
-    Astra           https://www.astrasig.hu/test/api/v3/mtpl.svc?wsdl
-    Uniqa           https://t-uniweb.uniqa.at/webservice-hu/services/uniCalc?WSDL
-    Wabard          https://www.wabererbiztosito.hu:10461/kgfb2016.asmx?WSDL
-    Union           https://tesztportal.unionbiztosito.hu/UnionTariffWS/kgfb.asmx?WSDL
-    Signal**        http://gjkalkulacio.signal.hu/gjkalkulacio2/calculationservice.asmx?WSDL
-    Posta           https://wstest.mpb.hu/MPBWS/mpbws.asmx?wsdl
-    OTP [ws]        https://agentportal.groupama.hu/testservices/MTPL351BrokerWebService/MTPL351BrokerWSService/META-INF/wsdl/MTPL351BrokerWSService.wsdl
-    OTP [location]  https://agentportal.groupama.hu/testservices/MTPL351BrokerWebService/MTPL351BrokerWSService
-    MKB [wsdl]      https://services.mkbb.hu:8080/SalesML/mkb-sales-tool-service-motor_secure.wsdl
-    MKB [action]    https://services.mkbb.hu:8080/SalesML/motor
-    Genertel        https://testwebservice.genertel.hu/SuperCalculate/SuperCalculateNS.asmx
-    Kobe            https://voice.a-r-t.hu/kobewww/_ws3/?wsdl
--->
