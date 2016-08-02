@@ -268,6 +268,22 @@ function downloadWsdlFileByName($WSDL_name, $filename = null) {
   $httpStatus = checkAndUpdateWSDLFileWithCurl($WSDL);
 }
 
+function downloadWsdlFileById($WSDL_id, $filename = null) {
+  $WSDL = getWsdlInfoByID($WSDL_id);
+
+  if ($WSDL === false) {
+    throw new NotFoundResourceException("The WSDL $WSDL_id is not managed by the wsdl map.");
+  }
+
+  if (empty($filename)) {
+    $WSDL->generateFileName();
+  } else {
+    $WSDL->setFilename($filename);
+  }
+
+  $httpStatus = checkAndUpdateWSDLFileWithCurl($WSDL);
+}
+
 /**
  * Downloads the supplied WSDL to the given filename.
  *

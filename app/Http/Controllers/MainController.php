@@ -48,12 +48,12 @@ class MainController extends BaseController {
    *
    * @route("/wsdl/name/{name}")
    */
-  public function getWSDLByNameAction($WSDL_name) {
-    $WSDL = Custom\getWsdlInfoByName($WSDL_name);
+  public function getWSDLByIdAction($WSDL_id) {
+    $WSDL = Custom\getWsdlInfoByID($WSDL_id);
     dump($WSDL);
 
     try {
-      Custom\downloadWsdlFileByName($WSDL_name);
+      Custom\downloadWsdlFileById($WSDL_id);
     } catch(\Exception $exc) {
       dump($exc);
     }

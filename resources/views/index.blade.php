@@ -49,8 +49,8 @@
                 <td>{{ $wsdl->getLastModification()->format("Y-m-d H:i:s") }}</td>
                 <td>
                   <ul class="list-inline">
-                    <li>* <a target="_blank" href="{{ route("getWSDLByName", array("name" => $wsdl->getName())) }}">Check</a></li>
-                    <li>* <a href="{{ route("downloadWSDLLogById", array("name" => $wsdl->getId())) }}">Get logs</a></li>
+                    <li>* <a target="_blank" href="{{ route("getWSDLById", array("id" => $wsdl->getId())) }}" title="Checks the given entry independently from the cron.">Check</a></li>
+                    <li>* <a href="{{ route("downloadWSDLLogById", array("id" => $wsdl->getId())) }}" title="Download the full log for the given entry.">Get logs</a></li>
                   </ul>
                 </td>
               </tr>

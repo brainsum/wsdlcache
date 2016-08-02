@@ -15,17 +15,12 @@
 
 $app->get('/', "MainController@indexAction");
 
-$app->get('/wsdl/name/{name}', array(
-  'as' => "getWSDLByName",
-  'uses' => "MainController@getWSDLByNameAction"
+$app->get('/wsdl/id/{id}', array(
+  'as' => "getWSDLById",
+  'uses' => "MainController@getWSDLByIdAction"
 ));
 
-$app->get('/wsdl/name/{name}', array(
-  'as' => "getWSDLByName",
-  'uses' => "MainController@getWSDLByNameAction"
-));
-
-$app->get('/log/{name}/download', array(
+$app->get('/log/{id}/download', array(
   'as' => "downloadWSDLLogById",
   'uses' => "MainController@downloadWSDLLogByIdAction"
 ));
