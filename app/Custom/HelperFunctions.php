@@ -313,7 +313,23 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
 
   /** @todo: maybe try guzle instead of curl https://github.com/guzzle/guzzle */
   $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
-  $lp = fopen($logWsdlPath, "a+");
+
+  if(file_exists($logWsdlPath)) {
+    if (substr(sprintf('%o', fileperms($logWsdlPath)), -4) != "0664") {
+      dump("fileperms is not 0664");
+      dump(substr(sprintf('%o', fileperms($logWsdlPath)), -4));
+      //chmod($logWsdlPath, 0664);// rw for owner + group, r for others
+    }
+
+    $lp = fopen($logWsdlPath, "a+");
+  } else {
+    $lp = fopen($logWsdlPath, "a+");
+    dump("fiel is new");
+    dump(substr(sprintf('%o', fileperms($logWsdlPath)), -4));
+    //chmod($logWsdlPath, 0664);
+  }
+
+
   fwrite($lp, "\n[".date("Y-m-d H:i:s")."]\n");
 
   /** @todo: set this at a WSDL level */
