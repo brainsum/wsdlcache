@@ -52,7 +52,7 @@
     <name>KandH</name>
     <type>Test</type>
     <isTest>1</isTest>
-    <isKgfb>1</isKgfb>
+    <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
     <description>0</description>
     <url>https://ws.atollgroup.eu/secure_weblogic/KHAB_WS/KHAB_WS_ENT-war/GFBCalculatorBeanService.xml</url>
