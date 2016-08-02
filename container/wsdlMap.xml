@@ -107,7 +107,7 @@
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
     <description>0</description>
-    <url>https://test.calculate.generali.hu/CalculateNS.asmx</url>
+    <url>https://testcalculate.generali.hu/CalculateNS.asmx</url>
     <userName>null</userName>
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
@@ -136,7 +136,7 @@
     <url>https://wstest.mpb.hu/MPBWS/mpbws.asmx</url>
     <userName>null</userName>
     <password>null</password>
-    <curlSslVersion>0</curlSslVersion>
+    <curlSslVersion>4</curlSslVersion>
   </wsdl>
   <wsdl>
     <id>9</id>
@@ -188,7 +188,7 @@
     <url>https://t-uniweb.uniqa.at/webservice-hu/services/CalcMHull4G100</url>
     <userName>null</userName>
     <password>null</password>
-    <curlSslVersion>0</curlSslVersion>
+    <curlSslVersion>4</curlSslVersion>
   </wsdl>
   <wsdl>
     <id>13</id>

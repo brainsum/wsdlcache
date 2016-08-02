@@ -26,8 +26,8 @@ $app->get('/wsdl/name/{name}', array(
 ));
 
 $app->get('/log/{name}/download', array(
-  'as' => "downloadWSDLLogByName",
-  'uses' => "MainController@downloadWSDLLogByNameAction"
+  'as' => "downloadWSDLLogById",
+  'uses' => "MainController@downloadWSDLLogByIdAction"
 ));
 
 if (app()->environment("local")) {

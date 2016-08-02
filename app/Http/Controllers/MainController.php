@@ -33,8 +33,8 @@ class MainController extends BaseController {
    * @param \App\Http\Controllers\String $WSDL_name
    * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
    */
-  public function downloadWSDLLogByNameAction($WSDL_name) {
-    $WSDL_log_path = Custom\getWsdlLogPath($WSDL_name);
+  public function downloadWSDLLogByIdAction($WSDL_id) {
+    $WSDL_log_path = Custom\getWsdlLogPath($WSDL_id);
 
     return response()->download($WSDL_log_path);
   }

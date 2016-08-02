@@ -26,8 +26,12 @@ function getWsdlMapAsArray($pathFromRoot = "container", $mapFile = "wsdlMap.xml"
   $basePath = app()->basePath();
 
   $mapData = file_get_contents("$basePath/$pathFromRoot/$mapFile");
-  $parser = new Parser();
+  $parser = new Parser(); // @todo: switch to simpleXML
   $mapAsArray = $parser->xml($mapData);
+/*
+  $tmpArr = getXMLAsSimpleXML("container", "wsdlMap.xml");
+  dump($tmpArr);
+*/
 
   if (!isset($mapAsArray["wsdl"])) {
     print "The WSDL map is empty. Before using the application, please add elements to the WSDL map.";
@@ -183,6 +187,19 @@ function getWsdlInfoByName($name, $container = null) {
   return false;
 }
 
+function getWsdlInfoByID($id, $container = null) {
+  $wsdlList = (empty($container) ? getWsdlMapAsArray() : $container);
+
+  /** @var WSDL $wsdl */
+  foreach ($wsdlList as $wsdl) {
+    if ($id == $wsdl->getId()) {
+      return $wsdl;
+    }
+  }
+
+  return false;
+}
+
 function getWsdlInfoByUrl($url, $container = null) {
   $wsdlList = (empty($container) ? getWsdlMapAsArray() : $container);
 
@@ -204,8 +221,8 @@ function getWsdlInfoByUrl($url, $container = null) {
  * @return string
  *  The path to the log file.
  */
-function getWsdlLogPath($WSDL_name, $filename = null) {
-  $WSDL = getWsdlInfoByName($WSDL_name);
+function getWsdlLogPath($WSDL_id, $filename = null) {
+  $WSDL = getWsdlInfoByID($WSDL_id);
 
   if ($WSDL !== false) {
     if (empty($filename)) {
