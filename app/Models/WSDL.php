@@ -263,7 +263,7 @@ class WSDL {
   }
 
   public function setStatusCode($statusCode) {
-    $this->statusCode = $statusCode;
+    $this->statusCode = ($statusCode == 0) ? 503 : $statusCode; // mb 408
 
     $this->available = (100 <= (int) $this->statusCode && (int) $this->statusCode < 400) ? true : false;
   }

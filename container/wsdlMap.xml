@@ -6,9 +6,7 @@
 <!-- template for adding new data
   <wsdl>
     <id>(integer)</id>
-    <fileName>(string)</fileName>
     <name>(string)</name>
-    <type>(string)</type>
     <isTest>(integer; 1 or 0)</isTest>
     <isKgfb>(integer; 1 or 0)</isKgfb>
     <isCalc>(integer; 1 or 0)</isCalc>
@@ -24,7 +22,6 @@
   <wsdl>
     <id>0</id>
     <name>Aegon</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
     <isCalc>1</isCalc>
@@ -37,7 +34,6 @@
   <wsdl>
     <id>1</id>
     <name>KandH</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -50,7 +46,6 @@
   <wsdl>
     <id>2</id>
     <name>KandH</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
     <isCalc>1</isCalc>
@@ -63,7 +58,6 @@
   <wsdl>
     <id>3</id>
     <name>Generali</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
     <isCalc>1</isCalc>
@@ -76,7 +70,6 @@
   <wsdl>
     <id>4</id>
     <name>Groupama</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>1</isKgfb>
     <isCalc>1</isCalc>
@@ -89,7 +82,6 @@
   <wsdl>
     <id>5</id>
     <name>Aegon</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -102,7 +94,6 @@
   <wsdl>
     <id>6</id>
     <name>Generali</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -115,7 +106,6 @@
   <wsdl>
     <id>7</id>
     <name>Signal</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -128,7 +118,6 @@
   <wsdl>
     <id>8</id>
     <name>Posta</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -141,7 +130,6 @@
   <wsdl>
     <id>9</id>
     <name>OTP</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -154,7 +142,6 @@
   <wsdl>
     <id>10</id>
     <name>Genertel</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -167,7 +154,6 @@
   <wsdl>
     <id>11</id>
     <name>Astra</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -180,7 +166,6 @@
   <wsdl>
     <id>12</id>
     <name>Uniqa</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -193,7 +178,6 @@
   <wsdl>
     <id>13</id>
     <name>Wabard</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
@@ -206,12 +190,155 @@
   <wsdl>
     <id>14</id>
     <name>Union</name>
-    <type>Test</type>
     <isTest>1</isTest>
     <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
     <description>0</description>
     <url>https://tesztportal.unionbiztosito.hu/UnionTariffWS/casco.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>15</id>
+    <name>MKB</name>
+    <isTest>1</isTest>
+    <isKgfb>0</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://services.mkbb.hu:8080/SalesML/mkb-sales-tool-service-motor_secure.wsdl</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>16</id>
+    <name>Allianz</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://webservicetest.allianz.hu/det/premium3.Gfb2016Interface1</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>17</id>
+    <name>Astra</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://www.astrasig.hu/test/api/v3/mtpl.svc</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>18</id>
+    <name>Wabard</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://www.wabererbiztosito.hu:10461/kgfb2016.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>19</id>
+    <name>Union</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://tesztportal.unionbiztosito.hu/UnionTariffWS/kgfb.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>20</id>
+    <name>Posta</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://wstest.mpb.hu/MPBWS/mpbws.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>21</id>
+    <name>Genertel</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://testwebservice.genertel.hu/SuperCalculate/SuperCalculateNS.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>22</id>
+    <name>Kobe</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>needAuth</description>
+    <url>https://voice.a-r-t.hu/kobewww/_ws3/</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>23</id>
+    <name>Uniqa</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://t-uniweb.uniqa.at/webservice-hu/services/uniCalc</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>24</id>
+    <name>Signal</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>http://gjkalkulacio.signal.hu/gjkalkulacio2/calculationservice.asmx</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>25</id>
+    <name>Groupama</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://agentportal.groupama.hu/testservices/MTPL351BrokerWebService/MTPL351BrokerWSService/META-INF/wsdl/MTPL351BrokerWSService.wsdl</url>
+    <userName>null</userName>
+    <password>null</password>
+    <curlSslVersion>0</curlSslVersion>
+  </wsdl>
+  <wsdl>
+    <id>26</id>
+    <name>MKB</name>
+    <isTest>1</isTest>
+    <isKgfb>1</isKgfb>
+    <isCalc>1</isCalc>
+    <description>0</description>
+    <url>https://services.mkbb.hu:8080/SalesML/mkb-sales-tool-service-motor_secure.wsdl</url>
     <userName>null</userName>
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>

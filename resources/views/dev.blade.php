@@ -30,7 +30,7 @@
                     <li>refactor parts of the code</li>
                     <li>add stuff, so illuminate/mail has everything it might need. aws/aws-sdk-php ;; guzzlehttp/guzzle ;; jeremeamia/superclosure  </li>
                     <li>Try guzzlehttp as a secondary download tool; it might be more modern than curl</li>
-                    <li>Add commands: mabiasz:clear:cache; mabiasz:clear:logs; mabiasz:clear:backup; mabiasz:init:status; </li>
+                    <li>Add commands: mabiasz:clear:cache; mabiasz:clear:logs; mabiasz:clear:backup; mabiasz:init:status; mabiasz:map:idreset</li>
                 </ol>
             </div>
         </div>
