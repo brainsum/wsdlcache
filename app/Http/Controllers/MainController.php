@@ -30,7 +30,7 @@ class MainController extends BaseController {
   /**
    * Action which gives back the log file for the given WSDL
    *
-   * @param \App\Http\Controllers\String $WSDL_name
+   * @param int $WSDL_id
    * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
    */
   public function downloadWSDLLogByIdAction($WSDL_id) {

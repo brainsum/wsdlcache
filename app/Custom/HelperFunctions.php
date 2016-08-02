@@ -216,7 +216,7 @@ function getWsdlInfoByUrl($url, $container = null) {
 /**
  * Gets an returns the path to the log for the WSDL
  *
- * @param $WSDL_name
+ * @param $WSDL_id
  * @param null $filename
  * @return string
  *  The path to the log file.
@@ -236,7 +236,7 @@ function getWsdlLogPath($WSDL_id, $filename = null) {
 
     return "$basePath/$logPath/".$WSDL->getFilename() . "-log.txt";
   } else {
-    throw new NotFoundResourceException("The WSDL $WSDL_name is not managed by the wsdl map.");
+    throw new NotFoundResourceException("The WSDL $WSDL_id is not managed by the wsdl map.");
   }
 }
 
@@ -446,34 +446,6 @@ function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
     $messageSubject = "WARNING! The " . $options["WSDLName"] . " WSDL host is unavailable!";
     sendCustomMail($template, $options, $messageSubject);
   }
-
-  /* We only update the current wsdl object data. */
-  /*
-  for ($i = 0, $count = count($mapObject->wsdl); $i < $count; ++$i) {
-    if ((string) $mapObject->wsdl[$i]->id == $WSDL->getId()) {
-      $mapObject->wsdl[$i]->statusCode = $WSDL->getStatusCode();
-      $mapObject->wsdl[$i]->checkDate = $WSDL->getLastCheck()->format("Y-m-d H:i:s");
-
-      if (0 < $diffCount) {
-        $mapObject->wsdl[$i]->modificationDate = $WSDL->getLastModification()->format("Y-m-d H:i:s");
-      }
-
-      // When a modification has been done and the status is an error, we send an email
-      // When a host becomes unavailable, the file gets overwritten even when the result is empty.
-      if (strtotime($mapObject->wsdl[$i]->modificationDate) == $currDate->getTimestamp() && !$WSDL->isAvailable()) {
-        $template = "Emails.wsdl_unavailable";
-        $options = array(
-          "WSDLStatusCode" => $WSDL->getStatusCode(),
-          "WSDLName" => $WSDL->getName(),
-          "WSDLUrl" => $WSDL->getWsdl(TRUE)
-        );
-        $messageSubject = "WARNING! The " . $options["WSDLName"] . " WSDL host is unavailable!";
-        sendCustomMail($template, $options, $messageSubject);
-      }
-
-      break;
-    }
-  }*/
 
   if (FALSE === updateWsdlMap($mapObject)) {
     dump("update failed");
