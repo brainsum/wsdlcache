@@ -312,123 +312,135 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
   $logWsdlPath = $logPath . "/" . $WSDL->getFilename() . "-log.txt";
   $backupFilePath = $backupPath . "/" . $WSDL->getBackupFilename();
 
-  /** @todo: maybe try guzle instead of curl https://github.com/guzzle/guzzle */
-  $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
-/*
-  if(file_exists($logWsdlPath)) {
-    if (substr(sprintf('%o', fileperms($logWsdlPath)), -4) != "0664") {
-      //dump("fileperms is not 0664");
-      //dump(substr(sprintf('%o', fileperms($logWsdlPath)), -4));
-      //chmod($logWsdlPath, 0664);// rw for owner + group, r for others
+  try {
+
+    /** @todo: maybe try guzle instead of curl https://github.com/guzzle/guzzle */
+    $ch = curl_init($WSDL->getWsdl($APPENDED_URL));
+    /*
+      if(file_exists($logWsdlPath)) {
+        if (substr(sprintf('%o', fileperms($logWsdlPath)), -4) != "0664") {
+          //dump("fileperms is not 0664");
+          //dump(substr(sprintf('%o', fileperms($logWsdlPath)), -4));
+          //chmod($logWsdlPath, 0664);// rw for owner + group, r for others
+        }
+
+        $lp = fopen($logWsdlPath, "a+");
+      } else {
+
+        //dump("fiel is new");
+        //dump(substr(sprintf('%o', fileperms($logWsdlPath)), -4));
+        //chmod($logWsdlPath, 0664);
+      }
+    */
+    $lp = fopen($logWsdlPath, "a+");
+    fwrite($lp, "\n[" . date("Y-m-d H:i:s") . "]\n");
+
+    /** @todo: set this at a WSDL level */
+    $curl_settings = array(
+      CURLOPT_STDERR => $lp,
+      CURLOPT_URL => $WSDL->getWsdl($APPENDED_URL),
+      CURLOPT_VERBOSE => TRUE,
+      CURLOPT_HTTPGET => TRUE,
+      CURLOPT_FORBID_REUSE => TRUE,
+      CURLOPT_FILETIME => TRUE,
+      CURLOPT_FRESH_CONNECT => TRUE,
+      CURLOPT_SSLVERSION => $WSDL->getCurlSslVersion(),
+      CURLOPT_SSL_VERIFYPEER => FALSE,
+      CURLOPT_RETURNTRANSFER => TRUE,
+      CURLOPT_FOLLOWLOCATION => TRUE,
+      CURLOPT_CONNECTTIMEOUT => 5,
+      CURLOPT_TIMEOUT => 0
+    );
+
+    if (!empty($WSDL->getUserName()) || $WSDL->getUserName() != "null") {
+      $headers = array();
+      $headers[] = 'Authorization: Basic ' . $WSDL->getCombinedUserPass(
+          $PASS_AS_ENCODED
+        );
+      $curl_settings[CURLOPT_HTTPAUTH] = CURLAUTH_BASIC;
+      $curl_settings[CURLOPT_USERPWD] = $WSDL->getCombinedUserPass(
+        $PASS_AS_ENCODED
+      );
+      $curl_settings[CURLOPT_HTTPHEADER] = $headers;
     }
 
-    $lp = fopen($logWsdlPath, "a+");
-  } else {
+    if (TRUE === $DEBUG_MODE) {
+      $curl_settings[CURLOPT_CERTINFO] = TRUE;
+      $curl_settings[CURLOPT_HEADER] = TRUE;
+    }
 
-    //dump("fiel is new");
-    //dump(substr(sprintf('%o', fileperms($logWsdlPath)), -4));
-    //chmod($logWsdlPath, 0664);
-  }
-*/
-  $lp = fopen($logWsdlPath, "a+");
-  fwrite($lp, "\n[".date("Y-m-d H:i:s")."]\n");
+    curl_setopt_array($ch, $curl_settings);
 
-  /** @todo: set this at a WSDL level */
-  $curl_settings = array(
-    CURLOPT_STDERR => $lp,
-    CURLOPT_URL => $WSDL->getWsdl($APPENDED_URL),
-    CURLOPT_VERBOSE => TRUE,
-    CURLOPT_HTTPGET => TRUE,
-    CURLOPT_FORBID_REUSE => TRUE,
-    CURLOPT_FILETIME => TRUE,
-    CURLOPT_FRESH_CONNECT => TRUE,
-    CURLOPT_SSLVERSION => $WSDL->getCurlSslVersion(),
-    CURLOPT_SSL_VERIFYPEER => FALSE,
-    CURLOPT_RETURNTRANSFER => TRUE,
-    CURLOPT_FOLLOWLOCATION => TRUE,
-    CURLOPT_CONNECTTIMEOUT => 5,
-    CURLOPT_TIMEOUT => 0
-  );
+    $result = curl_exec($ch);
+    $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $err = curl_errno($ch);
+    $errmsg = curl_error($ch);
+    curl_close($ch);
+    fclose($lp);
 
-  if (!empty($WSDL->getUserName()) || $WSDL->getUserName() != "null") {
-    $headers = array();
-    $headers[] = 'Authorization: Basic '. $WSDL->getCombinedUserPass($PASS_AS_ENCODED);
-    $curl_settings[CURLOPT_HTTPAUTH] = CURLAUTH_BASIC;
-    $curl_settings[CURLOPT_USERPWD] = $WSDL->getCombinedUserPass($PASS_AS_ENCODED);
-    $curl_settings[CURLOPT_HTTPHEADER] = $headers;
+    $WSDL->setStatusCode($responseCode);
+  } catch (\Exception $e) {
+    Log::error($e->getMessage());
+    $WSDL->setStatusCode(-1);
   }
 
-  if (TRUE === $DEBUG_MODE) {
-    $curl_settings[CURLOPT_CERTINFO] = true;
-    $curl_settings[CURLOPT_HEADER] = true;
-  }
+  if ($WSDL->getStatusCode() > -1) {
+    /**
+     * Get diff.
+     */
+    $wsdlIsAlreadyInCache = TRUE;
 
-  curl_setopt_array($ch, $curl_settings);
-
-  $result = curl_exec($ch);
-  $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-  $err     = curl_errno($ch);
-  $errmsg  = curl_error($ch);
-  curl_close($ch);
-  fclose($lp);
-
-  $WSDL->setStatusCode($responseCode);
-
-  /**
-   * Get diff.
-   */
-  $wsdlIsAlreadyInCache = TRUE;
-
-  try {
-    // Try to get the old file.
-    $oldFileContents = file_get_contents($cachedWsdlPath);
-  } catch (\Exception $exc) {
-    // When we can't open the old file, it's probably because it's new.
-    // So we create the cached file for it.
-    $newCache = fopen($cachedWsdlPath, "w+");
-    fwrite($newCache, $result);
-    fclose($newCache);
-
-    // Diffcount is set to 1 (> 0) so we set the modification date as well for new files.
-    wsdlStatusUpdateWrapper($WSDL, 1);
-
-    $wsdlIsAlreadyInCache = FALSE;
-  }
-
-  // When the file already exists in the cache.
-  if (TRUE === $wsdlIsAlreadyInCache) {
-    $differ = new CustomDiffer;
-    $differ->setOldFilePath($cachedWsdlPath);
-    $differ->setNewFilePath("File from remote server");
-    $fileDiff = $differ->diff($oldFileContents, $result);
-
-    // If there are diffs, the cache and remote files are not in sync
-    if (0 < $differ->getDiffCount()) {
-      // So we create a backup of the old file
-      $backup = fopen($backupFilePath, "w+");
-      fwrite($backup, $oldFileContents);
-      fclose($backup);
-
-      // So we save the new file in the cache
+    try {
+      // Try to get the old file.
+      $oldFileContents = file_get_contents($cachedWsdlPath);
+    } catch (\Exception $exc) {
+      // When we can't open the old file, it's probably because it's new.
+      // So we create the cached file for it.
       $newCache = fopen($cachedWsdlPath, "w+");
       fwrite($newCache, $result);
       fclose($newCache);
 
-      $template = "Emails.wsdl_modification_info";
-      $options = array(
-        "datetimeOfCheck" => date("Y-m-d H:i:s"),
-        "WSDLDiff" => htmlentities($fileDiff),
-        "WSDLName" => $WSDL->getName(TRUE,TRUE,TRUE),
-        "WSDLUrl" => $WSDL->getWsdl(TRUE)
-      );
-      $messageSubject = "Attention! The " . $options["WSDLName"] . " WSDL file has been updated!";
-      // Send mail about diffs
-      sendCustomMail($template, $options, $messageSubject);
+      // Diffcount is set to 1 (> 0) so we set the modification date as well for new files.
+      wsdlStatusUpdateWrapper($WSDL, 1);
+
+      $wsdlIsAlreadyInCache = FALSE;
     }
 
-    wsdlStatusUpdateWrapper($WSDL, $differ->getDiffCount());
+    // When the file already exists in the cache.
+    if (TRUE === $wsdlIsAlreadyInCache) {
+      $differ = new CustomDiffer;
+      $differ->setOldFilePath($cachedWsdlPath);
+      $differ->setNewFilePath("File from remote server");
+      $fileDiff = $differ->diff($oldFileContents, $result);
+
+      // If there are diffs, the cache and remote files are not in sync
+      if (0 < $differ->getDiffCount()) {
+        // So we create a backup of the old file
+        $backup = fopen($backupFilePath, "w+");
+        fwrite($backup, $oldFileContents);
+        fclose($backup);
+
+        // So we save the new file in the cache
+        $newCache = fopen($cachedWsdlPath, "w+");
+        fwrite($newCache, $result);
+        fclose($newCache);
+
+        $template = "Emails.wsdl_modification_info";
+        $options = array(
+          "datetimeOfCheck" => date("Y-m-d H:i:s"),
+          "WSDLDiff" => htmlentities($fileDiff),
+          "WSDLName" => $WSDL->getName(TRUE, TRUE, TRUE),
+          "WSDLUrl" => $WSDL->getWsdl(TRUE)
+        );
+        $messageSubject = "Attention! The " . $options["WSDLName"] . " WSDL file has been updated!";
+        // Send mail about diffs
+        sendCustomMail($template, $options, $messageSubject);
+      }
+
+      wsdlStatusUpdateWrapper($WSDL, $differ->getDiffCount());
+    }
   }
-  return $responseCode;
+  return $WSDL->getStatusCode();
 }
 
 /**
