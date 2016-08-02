@@ -20,11 +20,15 @@ class MainController extends BaseController {
    * @return \Illuminate\View\View
    */
   public function indexAction() {
-      $wsdlMap = Custom\getWsdlMapAsArray();
+    $wsdlMap = Custom\getWsdlMapAsArray();
 
-      return view("index", array(
-        'wsdlList' => $wsdlMap
-      ));
+    $today = new \DateTime();
+    $today->setTime(0,0,0);
+
+    return view("index", array(
+      'wsdlList' => $wsdlMap,
+      'today' => $today
+    ));
   }
 
   /**
@@ -42,7 +46,7 @@ class MainController extends BaseController {
   /**
    * Helper action for testing and debugging the download functions.
    *
-   * @param \App\Http\Controllers\String $WSDL_name
+   * @param int $WSDL_id
    *
    * @return \Illuminate\View\View
    *

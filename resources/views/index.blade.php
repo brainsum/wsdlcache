@@ -53,8 +53,24 @@
                   <span>{{ $wsdl->getStatusCode() }}</span>
                   </a>
                 </td>
-                <td>{{ $wsdl->getLastCheck()->format("Y-m-d H:i:s") }}</td>
-                <td>{{ $wsdl->getLastModification()->format("Y-m-d H:i:s") }}</td>
+                <td>
+                  {{ $wsdl->getLastCheck()->format("Y-m-d H:i:s") }}
+                </td>
+                <?php
+                  /**
+                   * @var \DateTime $today
+                   * @var App\Models\WSDL $wsdl
+                   */
+                  $diff = $today->diff($wsdl->getLastModification());
+                  if((integer)$diff->format( "%R%a" ) == 0) {
+                    $tdClass = "danger"; $tdTitle = "Was updated today.";
+                  } else {
+                    $tdClass = ""; $tdTitle = "";
+                  }
+                ?>
+                <td class="{{ $tdClass }}" title="{{ $tdTitle }}">
+                  {{ $wsdl->getLastModification()->format("Y-m-d H:i:s") }}
+                </td>
                 <td>
                   <ul class="list-inline">
                     @if(env('APP_ENV') == "local")
