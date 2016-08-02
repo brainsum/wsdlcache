@@ -71,7 +71,7 @@
     <id>4</id>
     <name>Groupama</name>
     <isTest>1</isTest>
-    <isKgfb>1</isKgfb>
+    <isKgfb>0</isKgfb>
     <isCalc>1</isCalc>
     <description>0</description>
     <url>https://www.garancia-online.hu/Kalkulatorok/PDFTarolasWS</url>
