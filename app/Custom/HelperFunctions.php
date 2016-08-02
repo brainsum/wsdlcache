@@ -14,6 +14,7 @@ use Nathanmac\Utilities\Parser\Parser;
 use App\Models\WSDL;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @param string $pathFromRoot
@@ -518,9 +519,18 @@ function sendCustomMail($template, $options, $messageSubject) {
 function wsdlUpdateJob() {
   $fullMap = getWsdlMapAsArray();
 
+  Log::info("WSDL check started.");
+
+  $resultString = "";
+
   foreach ($fullMap as $WSDL) {
-    checkAndUpdateWSDLFileWithCurl($WSDL);
+    $httpStatus = checkAndUpdateWSDLFileWithCurl($WSDL);
+    $resultString .= $WSDL->getId() . "=> $httpStatus ;;";
   }
+
+  Log::info($resultString);
+  Log::info("WSDL check ended.");
+
 }
 
 function reminderForAppUpdate() {
