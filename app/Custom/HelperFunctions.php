@@ -346,7 +346,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
     CURLOPT_RETURNTRANSFER => TRUE,
     CURLOPT_FOLLOWLOCATION => TRUE,
     CURLOPT_CONNECTTIMEOUT => 5,
-    CURLOPT_TIMEOUT => 15
+    CURLOPT_TIMEOUT => 0
   );
 
   if (!empty($WSDL->getUserName()) || $WSDL->getUserName() != "null") {
