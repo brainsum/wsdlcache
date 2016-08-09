@@ -99,7 +99,7 @@
                 <td class="{{ $tdClass }}" title="{{ $tdTitle }}">
                   {{ $wsdl->getLastModification()->format("Y-m-d H:i:s") }}
                 </td>
-                <td>{{ $wsdl->getWsdl() }}</td>
+                <td class="wsdlColumn">{{ $wsdl->getWsdl() }}</td>
                 <td>
                   <ul class="list-inline">
                     @if(env('APP_ENV') == "local")

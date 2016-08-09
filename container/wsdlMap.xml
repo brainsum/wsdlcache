@@ -18,6 +18,10 @@
   </wsdl>
 
 -->
+<!--
+@major @todo: ID11 és ID17 szabad!!
+
+-->
 <content>
   <wsdl>
     <id>0</id>
@@ -152,18 +156,6 @@
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
   <wsdl>
-    <id>11</id>
-    <name>Astra</name>
-    <isTest>1</isTest>
-    <isKgfb>0</isKgfb>
-    <isCalc>1</isCalc>
-    <description>not valid, not working.</description>
-    <url>https://www.astrasig.hu/test/api/v3/casco.svc</url>
-    <userName>null</userName>
-    <password>null</password>
-    <curlSslVersion>0</curlSslVersion>
-  </wsdl>
-  <wsdl>
     <id>12</id>
     <name>Uniqa</name>
     <isTest>1</isTest>
@@ -219,18 +211,6 @@
     <isCalc>1</isCalc>
     <description>0</description>
     <url>https://webservicetest.allianz.hu/det/premium3.Gfb2016Interface1</url>
-    <userName>null</userName>
-    <password>null</password>
-    <curlSslVersion>0</curlSslVersion>
-  </wsdl>
-  <wsdl>
-    <id>17</id>
-    <name>Astra</name>
-    <isTest>1</isTest>
-    <isKgfb>1</isKgfb>
-    <isCalc>1</isCalc>
-    <description>0</description>
-    <url>https://www.astrasig.hu/test/api/v3/mtpl.svc</url>
     <userName>null</userName>
     <password>null</password>
     <curlSslVersion>0</curlSslVersion>
