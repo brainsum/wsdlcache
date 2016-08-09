@@ -25,6 +25,10 @@ $app->get('/log/{id}/download', array(
   'uses' => "MainController@downloadWSDLLogByIdAction"
 ));
 
+$app->get('/informations', ['as' => 'informations', function () {
+  return view("publicInfo");
+}]);
+
 if (app()->environment("local")) {
     $app->get(
       '/dev',

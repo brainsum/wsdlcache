@@ -16,6 +16,18 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
           integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
           crossorigin="anonymous">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        h1 {
+            font-weight: lighter;
+        }
+    </style>
 </head>
 
 <body>

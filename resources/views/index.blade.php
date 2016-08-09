@@ -19,7 +19,7 @@
         </h1>
 
         <div>
-          <a style="font-size: xx-large;" href="">Bővebb innformációk</a>
+          <a style="font-size: xx-large;" href="{{ route("informations") }}">Bővebb információk</a>
         </div>
 
         <table style="vertical-align: middle;" class="table table-responsive table-bordered table-striped text-center">

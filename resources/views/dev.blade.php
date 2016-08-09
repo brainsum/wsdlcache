@@ -14,14 +14,12 @@
                 <ol>
                     <li>
                         cím alá egy info link: (info page magyarul;)
-                                infókkal, hogy mi mit csinál (status codes, mi a lastmoddate, actionök); mi a wsdl; + email-ről írni picit + mire szolgál + milyen gyakroisággal check
+                                infókkal, hogy mi mit csinál (status codes, mi a lastmoddate, actionök);
+                                mi a wsdl;
+                                + email-ről írni picit + mire szolgál + milyen gyakroisággal check
                     </li>
-                    <li>
-                        Gergővel consult: font-family open-sans; h1 legyen light
-                    </li>
-                    <li>
-                        inline förmedvényeket kivenni css-be
-                    </li>
+
+                    <li>inline förmedvényeket kivenni css-be</li>
                 </ol>
 
 
@@ -42,6 +40,9 @@
                     </li>
                     <li>
                         status: legyen kiírva, hogy ok; kék pipák legyenek zöldek; pirosak mg pirosak
+                    </li>
+                    <li>
+                        Gergővel consult: font-family open-sans; h1 legyen light
                     </li>
                 </ol>
 
@@ -67,6 +68,7 @@
                     <li>add stuff, so illuminate/mail has everything it might need. aws/aws-sdk-php ;; guzzlehttp/guzzle ;; jeremeamia/superclosure  </li>
                     <li>Try guzzlehttp as a secondary download tool; it might be more modern than curl</li>
                     <li>Add commands: mabiasz:clear:cache; mabiasz:clear:logs; mabiasz:clear:backup; mabiasz:init:status; mabiasz:map:idreset</li>
+
                 </ol>
             </div>
         </div>
