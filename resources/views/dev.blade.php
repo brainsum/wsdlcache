@@ -10,6 +10,42 @@
             <div class="col-md-12">
                 <h1>Todo list</h1>
 
+
+                <ol>
+                    <li>
+                        cím alá egy info link: (info page magyarul;)
+                                infókkal, hogy mi mit csinál (status codes, mi a lastmoddate, actionök); mi a wsdl; + email-ről írni picit + mire szolgál + milyen gyakroisággal check
+                    </li>
+                    <li>
+                        Gergővel consult: font-family open-sans; h1 legyen light
+                    </li>
+                    <li>
+                        inline förmedvényeket kivenni css-be
+                    </li>
+                </ol>
+
+
+                <h3>DONE</h3>
+
+                <ol>
+                    <li>
+                        WSDL, name legyen kisebb, kevesebb helyet foglaljon
+                    </li>
+                    <li>
+                        oszlopook: Bizt. név; típus (casco/kgfb); Calc/Offer? ;live?(test/live); status; dates; (curr)name; WSDL; ACtions
+                    </li>
+                    <li>
+                        bizt név legyen bold
+                    </li>
+                    <li>
+                        nbsp legyen az action-öknél
+                    </li>
+                    <li>
+                        status: legyen kiírva, hogy ok; kék pipák legyenek zöldek; pirosak mg pirosak
+                    </li>
+                </ol>
+
+
                 <h1>
                     <span>E-mail log here: <a target="_blank" href="https://mailtrap.io/inboxes/124612/messages/223731773/html">Open</a></span>
                 </h1>
