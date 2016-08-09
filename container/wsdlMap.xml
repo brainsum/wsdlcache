@@ -32,7 +32,7 @@
     <description>0</description>
     <url>https://tesztfe64.aegon.hu/dijkalk_webservice/gfb.asmx</url>
     <userName>0000922995</userName>
-    <password>Pkr10022995</password>
+    <password>Pkr92922995</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
   <wsdl>
@@ -92,7 +92,7 @@
     <description>0</description>
     <url>https://tesztfe64.aegon.hu/dijkalk_webservice/casco.asmx</url>
     <userName>0000922995</userName>
-    <password>Pkr10022995</password>
+    <password>Pkr92922995</password>
     <curlSslVersion>0</curlSslVersion>
   </wsdl>
   <wsdl>

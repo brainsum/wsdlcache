@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Információk a rendszerről</h1>
-
+                <br />
                 <p>
                     Az alkalmazás a MABIASZ rendszerben is használt WSDL fájlok nyilvántartására illetve ellenőrzésére szolgál. A felületen az alábbi információkat tekinthetjük át:
                 </p>
@@ -70,8 +70,11 @@
                         </tr>
                     </tbody>
                 </table>
+                <br />
                 <p>
-
+                    Az alkalmazás percenként ellenőrzi a listában szereplő WSDL fájlokat és le is menti azokat.
+                    Ha egy biztosítói WSDL nem elérhető (ennek oka lehet szolgáltató által megváltoztatott felhasználónév/jelszó páros, illetve szerverelérési hiba), akkor erről e-mailes üzenetet küld.
+                    Akkor is értesít, ha a WSDL elérésével nincs gond, de a fájl lementett változathoz képest eltérést észlel a rendszer. Ilyenkor minden változást elküld szövegesen, soronként jelezve, hogy előzőleg mi szerepelt és mi az új érték.
                 </p>
             </div>
         </div>

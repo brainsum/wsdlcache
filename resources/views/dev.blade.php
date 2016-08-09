@@ -9,8 +9,6 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Todo list</h1>
-
-
                 <ol>
                     <li>
                         cím alá egy info link: (info page magyarul;)
