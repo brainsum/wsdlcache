@@ -1,5 +1,10 @@
 # Mabiasz WSDL Cache Documentation
 
+MAjOR TODO:
+ErrorException in HelperFunctions.php line 111:
+simplexml_load_file(): /var/www/wsdlcache.mabiasz.hu/container/wsdlStatus.xml:1: parser error : Document is empty
+TryCatch it, if empty then fill
+
 ## List of Todos, Planning, Specs
 ### Specs
 * JIRA task: https://brainsum.atlassian.net/browse/MABIASZ-452
