@@ -9,6 +9,41 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>Todo list</h1>
+
+                <ol>
+                    <li>
+                        Refactor needed,
+
+                        KandH - http://biztositasbazis.net/ws_teszt/kh_v2/kh_casco.wsdl  Unused???
+                        Signal - No wsdl? WTF?
+                        Uniqa - No wsdl? WTF?
+
+
+                        Ugyanaz van a Calc KGFB-nél
+                        KandH
+                        Köbe
+                        Wabard
+
+                        Ugyanaz az URL van mindenhol
+                        Generali
+                        Genertel
+                        MKB
+                        Posta
+                        OTP
+
+                        Ugyanaz van a Calc CASCO-nál
+                        Wabard
+                        Aegon
+
+                        Ugyanaz az URL van mindenhol
+                        Posta
+                        OTP
+                        MKB
+                        Genertel
+                        Generali
+                    </li>
+                </ol>
+
                 <ol>
                     <li>
                         cím alá egy info link: (info page magyarul;)
