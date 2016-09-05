@@ -433,7 +433,7 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
           "WSDLUrl" => $WSDL->getWsdl(TRUE),
           "WSDLID" => $WSDL->getId()
         );
-        $messageSubject = "Attention! The " . $options["WSDLName"] . " WSDL file has been updated!";
+        $messageSubject = "Attention! The " . $options["WSDLName"] . "(ID " . $options["WSDLID"] . ") WSDL file has been updated!";
         // Send mail about diffs
         sendCustomMail($template, $options, $messageSubject);
       }
@@ -492,7 +492,7 @@ function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
       "WSDLUrl" => $WSDL->getWsdl(TRUE),
       "WSDLID" => $WSDL->getId()
     );
-    $messageSubject = "WARNING! The " . $options["WSDLName"] . " WSDL host is unavailable!";
+    $messageSubject = "WARNING! The " . $options["WSDLName"] . "(ID " . $options["WSDLID"] . ") WSDL host is unavailable!";
     sendCustomMail($template, $options, $messageSubject);
   }
 
