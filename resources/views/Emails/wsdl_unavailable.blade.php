@@ -3,6 +3,10 @@
 <table>
     <tbody>
         <tr>
+            <th scope="row">ID in map</th>
+            <td>{{ $WSDLID }}</td>
+        </tr>
+        <tr>
             <th scope="row">Name</th>
             <td>{{ $WSDLName }}</td>
         </tr>

@@ -430,7 +430,8 @@ function checkAndUpdateWSDLFileWithCurl($WSDL) {
           "datetimeOfCheck" => date("Y-m-d H:i:s"),
           "WSDLDiff" => htmlentities($fileDiff),
           "WSDLName" => $WSDL->getName(TRUE, TRUE, TRUE),
-          "WSDLUrl" => $WSDL->getWsdl(TRUE)
+          "WSDLUrl" => $WSDL->getWsdl(TRUE),
+          "WSDLID" => $WSDL->getId()
         );
         $messageSubject = "Attention! The " . $options["WSDLName"] . " WSDL file has been updated!";
         // Send mail about diffs
@@ -488,7 +489,8 @@ function wsdlStatusUpdateWrapper($WSDL, $diffCount) {
     $options = array(
       "WSDLStatusCode" => $WSDL->getStatusCode(),
       "WSDLName" => $WSDL->getName(TRUE,TRUE,TRUE),
-      "WSDLUrl" => $WSDL->getWsdl(TRUE)
+      "WSDLUrl" => $WSDL->getWsdl(TRUE),
+      "WSDLID" => $WSDL->getId()
     );
     $messageSubject = "WARNING! The " . $options["WSDLName"] . " WSDL host is unavailable!";
     sendCustomMail($template, $options, $messageSubject);
@@ -537,7 +539,7 @@ function wsdlUpdateJob() {
 
   foreach ($fullMap as $WSDL) {
     if (in_array($WSDL->getId(), array(27, 29))) { continue; }
-    
+
     $httpStatus = checkAndUpdateWSDLFileWithCurl($WSDL);
     $resultString .= $WSDL->getId() . "=> $httpStatus ;;";
   }
