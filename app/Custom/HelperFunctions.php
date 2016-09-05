@@ -536,6 +536,8 @@ function wsdlUpdateJob() {
   $resultString = "";
 
   foreach ($fullMap as $WSDL) {
+    if (in_array($WSDL->getId(), array(27, 29))) { continue; }
+    
     $httpStatus = checkAndUpdateWSDLFileWithCurl($WSDL);
     $resultString .= $WSDL->getId() . "=> $httpStatus ;;";
   }

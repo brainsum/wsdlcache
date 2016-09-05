@@ -103,6 +103,13 @@
                     <li>Add commands: mabiasz:clear:cache; mabiasz:clear:logs; mabiasz:clear:backup; mabiasz:init:status; mabiasz:map:idreset</li>
 
                 </ol>
+
+                Revision oldal WSDL-ekként (új oszlop az index oldalon pl.), ahol mindent listázunk (current + backup) és megnézhetjük a diff-eket.
+                Admin oldal, ahol a felületen lehet hozzáadni új WSDL-eket
+                Enabled/Disabled flag az egyes WSDL-ekhez
+                Map refactor: Külön auth file, amiben csak id, userName, password vannak, gitből kiírtani a mostani mapet, új map + auth berakása
+
+
             </div>
         </div>
     </div>
