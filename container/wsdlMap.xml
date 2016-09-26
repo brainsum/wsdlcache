@@ -132,18 +132,6 @@
     <curlSslVersion>4</curlSslVersion>
   </wsdl>
   <wsdl>
-    <id>9</id>
-    <name>OTP</name>
-    <isTest>1</isTest>
-    <isKgfb>0</isKgfb>
-    <isCalc>1</isCalc>
-    <description>0</description>
-    <url>https://www.garancia-online.hu/Kalkulatorok/PDFTarolasWS</url>
-    <userName>null</userName>
-    <password>null</password>
-    <curlSslVersion>0</curlSslVersion>
-  </wsdl>
-  <wsdl>
     <id>10</id>
     <name>Genertel</name>
     <isTest>1</isTest>
