@@ -12,6 +12,32 @@
 
                 <ol>
                     <li>
+                        Refactor the map:
+                        Tree- structure:
+
+                        insurer:
+                            id
+                            wsdlList
+                                wsdl
+                                    id
+                                    url
+                                    ...
+                        insurer:
+                            id
+                            ...
+                        ...
+
+
+                        Reason: conviniently add new stuff
+                                more structured
+                        todo: add insurer-wide settings like "curlOptions"
+                        goal: mostly global settings, adding a new wsdl = adding id + url + isTest + isCasco + isCalc
+
+                    </li>
+                </ol>
+
+                <ol>
+                    <li>
                         Refactor needed,
 
                         KandH - http://biztositasbazis.net/ws_teszt/kh_v2/kh_casco.wsdl  Unused???
