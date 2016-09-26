@@ -29,7 +29,7 @@ $app->get('/informations', ['as' => 'informations', function () {
   return view("publicInfo");
 }]);
 
-if (app()->environment("local")) {
+if (app()->environment("local") || app()->environment("dev")) {
     $app->get(
       '/dev',
       function () {
